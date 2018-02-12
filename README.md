@@ -1,4 +1,4 @@
-## capi workstation setup
+## capi workstation setup 🐋
 
 Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://www.github.com/cloudfoundry/sprout-capi) with some new, lighter-weight tooling.
 
