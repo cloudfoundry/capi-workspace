@@ -2,6 +2,9 @@
 
 Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://www.github.com/cloudfoundry/sprout-capi) with some new, lighter-weight tooling.
 
+### Dependencies
+* Mac OSX High Sierra
+
 ### Goals:
 * Tooling is clear and easy to understand - where things are, what they do, how
   to modify them.
