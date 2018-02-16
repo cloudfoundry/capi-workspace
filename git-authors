@@ -1,0 +1,18 @@
+# This file is linked from capi-workspace
+
+authors:
+  ml: Maryam Labib; mlabib
+  an: Annie Sing; asing
+  td: Tim Downey; tdowney
+  lc: Lisa Cho; lcho
+  gc: Greg Cobb; gcobb
+  ep: Eric Promislow
+  zr: Zach Robinson; zrobinson
+  rm: Raina Masand; rmasand
+  es: Elena Sharma; esharma
+  ad: Amelia Downs; adowns
+  ay: An Yu; anyu
+email:
+  domain: pivotal.io
+email_addresses:
+  ep: eric.promislow@suse.com
