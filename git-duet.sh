@@ -1,7 +1,5 @@
 #!/bin/bash
 
-brew tap 'git-duet/tap'
-
 brew link git-duet
 
 capi_authors="${PWD}/git-authors"

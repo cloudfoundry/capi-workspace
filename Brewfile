@@ -1,6 +1,7 @@
 tap 'cloudfoundry/tap'
 tap 'universal-ctags/universal-ctags'
 tap 'businesscritical/tap'
+tap 'git-duet/tap'
 
 brew 'ack'
 brew 'aria2'
@@ -26,6 +27,7 @@ brew 'tree'
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 brew 'watch'
 brew 'wget'
+brew 'git-duet'
 
 cask 'flycut'
 cask 'google-chrome'
