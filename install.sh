@@ -1,3 +1,9 @@
 #!/bin/bash
 
-source ./brew_bundle.sh
+set -e
+set -x
+
+source ./initial-bootstrap.sh
+source ./brew-bundle.sh
+source ./setup-bash-it.sh
+
