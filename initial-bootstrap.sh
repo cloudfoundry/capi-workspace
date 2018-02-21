@@ -18,9 +18,6 @@ function install_brew {
 	if ! which brew > /dev/null ; then
                 echo "Installing Homebrew"
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        else
-                echo "Brew already installed, upgrading"
-		brew upgrade
 	fi
 }
 

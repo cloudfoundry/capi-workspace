@@ -1,5 +1,6 @@
 #!/bin/bash
-set -ex
+
+set -e
 
 capi_brewfile="${PWD}/Brewfile"
 brewfile_link="${HOME}/.Brewfile"
