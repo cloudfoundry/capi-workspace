@@ -2,6 +2,8 @@
 
 set -e
 
+source ./helpers/bash-it-helpers.sh
+
 function install_bash_it {
 	if ! type bash_it > /dev/null 2>&1 ; then
 		echo "Installing bash_it"
@@ -16,3 +18,5 @@ function install_bash_it {
 }
 
 install_bash_it
+
+enable_bash_it_plugin fasd.plugin.bash
