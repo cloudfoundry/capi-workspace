@@ -6,6 +6,7 @@ set -x
 source ./initial-bootstrap.sh
 source ./brew-bundle.sh
 source ./setup-bash-it.sh
+source ./setup-git-config.sh
 source ./clone-repos.sh
 source ./setup-ruby.sh
 source ./setup-rubymine.sh
