@@ -23,6 +23,9 @@ Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://w
     ./install.sh
 ```
 
+### Manual steps (to be automated later)
+* Open `flycut` and set it to start at login
+
 #### Nice-To-Haves / Future Goals:
 * Cross-platform compatibility (for teammates who run Linux at home)
 * Ability to select with parts to install
