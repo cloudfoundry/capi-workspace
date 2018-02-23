@@ -13,5 +13,6 @@ source ./setup-rubymine.sh
 source ./setup-keyboard.sh
 source ./install-custom-bash-it-plugins.sh
 source ./setup-mysql.sh
+source ./setup-postgres.sh
 
 echo "Success!!"

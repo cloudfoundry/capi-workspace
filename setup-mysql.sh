@@ -4,7 +4,7 @@ set -e
 brew services start mysql
 
 # Is mysql running?
-for i in seq 60; do
+for i in $(seq 60); do
 	if [ -e /tmp/mysql.sock ]; then
 		break
 	else
