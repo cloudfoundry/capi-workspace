@@ -2,6 +2,20 @@
 
 set -e
 
+function enable_custom_bash_it_plugin {
+	local filepath=$1
+	local filename=$(basename $filepath)
+
+	pushd $BASH_IT/enabled > /dev/null
+		if [ ! -e "./$filename" ]; then
+			echo "Enabling $filename custom bash_it plugin"
+			ln -s $filepath
+		else
+			echo "$filename custom bash_it plugin already enabled"
+		fi
+	popd > /dev/null
+}
+
 function enable_bash_it_entity {
 	local name=$1
 	local directory=$2

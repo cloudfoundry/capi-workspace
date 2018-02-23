@@ -10,3 +10,6 @@ source ./clone-repos.sh
 source ./setup-ruby.sh
 source ./setup-rubymine.sh
 source ./setup-keyboard.sh
+source ./install-custom-bash-it-plugins.sh
+
+echo "Success!!"
