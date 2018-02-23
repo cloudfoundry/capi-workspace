@@ -20,12 +20,15 @@ function enable_bash_it_entity {
 
 function enable_bash_it_plugin {
 	local plugin=$1
-	
 	enable_bash_it_entity $plugin plugins plugin
 }
 
 function enable_bash_it_completion {
 	local completion=$1
-
 	enable_bash_it_entity $completion completion completion
+}
+
+function enable_bash_it_alias {
+	local completion=$1
+	enable_bash_it_entity $completion aliases aliases
 }

@@ -23,3 +23,5 @@ enable_bash_it_plugin fasd
 enable_bash_it_completion defaults
 enable_bash_it_completion git
 enable_bash_it_completion ssh
+enable_bash_it_alias bundler
+enable_bash_it_alias git
