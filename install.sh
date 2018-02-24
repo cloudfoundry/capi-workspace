@@ -11,8 +11,9 @@ source ./clone-repos.sh
 source ./setup-ruby.sh
 source ./setup-rubymine.sh
 source ./setup-keyboard.sh
-source ./install-custom-bash-it-plugins.sh
+source ./setup-custom-bash-it-plugins.sh
 source ./setup-mysql.sh
 source ./setup-postgres.sh
+source ./setup-iterm2.sh
 
 echo "Success!!"
