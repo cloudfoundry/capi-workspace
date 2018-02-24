@@ -2,4 +2,4 @@
 
 set -e
 
-ln -fs "${PWD}/gitconfig" "${HOME}/.gitconfig"
+ln -fs "${PWD}/assets/gitconfig" "${HOME}/.gitconfig"
