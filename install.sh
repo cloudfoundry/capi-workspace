@@ -18,5 +18,6 @@ source ./setup-mysql.sh
 source ./setup-postgres.sh
 source ./setup-iterm2.sh
 source ./setup-vim.sh
+source ./setup-spectacle.sh
 
 echo "Success!!"
