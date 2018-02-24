@@ -25,6 +25,7 @@ Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://w
 
 ### Manual steps (to be automated later)
 * Open `flycut` and set it to start at login
+* Install the rubymine license from the labs license server (http://omaha.pivotallabs.com:8080/licenseServer in the SF office)
 
 #### Nice-To-Haves / Future Goals:
 * Cross-platform compatibility (for teammates who run Linux at home)
