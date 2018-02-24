@@ -17,5 +17,6 @@ source ./setup-custom-bash-it-plugins.sh
 source ./setup-mysql.sh
 source ./setup-postgres.sh
 source ./setup-iterm2.sh
+source ./setup-vim.sh
 
 echo "Success!!"
