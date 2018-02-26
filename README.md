@@ -27,6 +27,11 @@ Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://w
 * Open `flycut` and set it to start at login
 * Install the rubymine license from the labs license server (http://omaha.pivotallabs.com:8080/licenseServer in the SF office)
 
+### Contributing to this repo
+* [bash-it](https://github.com/Bash-it/bash-it) We use bash-it to organize and streamline our bash settings. This includes stuff like color schemes, aliases, shell settings, and the shell prompt formatting. Adding "plugins" to `custom-bash-it-plugins` will cause them to be installed in every new shell.
+
+TODO: add more instructions on adding to different parts of this setup, e.g. aliases, iterm config etc.
+
 #### Nice-To-Haves / Future Goals:
 * Cross-platform compatibility (for teammates who run Linux at home)
 * Ability to select with parts to install
