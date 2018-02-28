@@ -22,6 +22,7 @@ pushd ~/workspace > /dev/null
 	clone git@github.com:cloudfoundry/capi-env-pool.git ~/workspace/capi-env-pool
 	clone git@github.com:cloudfoundry/capi-ci.git ~/workspace/capi-ci
 	clone git@github.com:cloudfoundry/capi-ci-private.git ~/workspace/capi-ci-private
+	clone git@github.com:cloudfoundry/cf-deployment.git ~/workspace/cf-deployment
 
 	# clone golang repos and symlink them into the GOPATH
 	clone git@github.com:cloudfoundry/cf-acceptance-tests.git ~/go/src/github.com/cloudfoundry/cf-acceptance-tests
