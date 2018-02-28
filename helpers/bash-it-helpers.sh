@@ -22,7 +22,7 @@ function enable_bash_it_entity {
 	local extension=$3
 	local filename="$name.$extension.bash"
 
-	pushd $BASH_IT/enabled > /dev/null
+	pushd $BASH_IT/$directory/enabled > /dev/null
 		if [ ! -e "./$filename" ]; then
 			echo "Enabling $name bash_it $extension"
 			ln -s "$BASH_IT/$directory/available/$filename"
