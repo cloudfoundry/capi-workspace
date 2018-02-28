@@ -18,4 +18,4 @@ if ! mysql -uroot -ppassword -e 'show databases' > /dev/null 2>&1; then
 	mysqladmin -uroot password password
 else
 	echo "MySQL admin password already set"
-fi	
+fi

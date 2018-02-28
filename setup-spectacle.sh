@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 current_directory=$PWD
 preferences_path="/Users/$(whoami)/Library/Preferences/com.divisiblebyzero.Spectacle.plist"
 

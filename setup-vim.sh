@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [[ ! -d ~/.vim ]]; then
 	curl vimfiles.luan.sh/install | bash

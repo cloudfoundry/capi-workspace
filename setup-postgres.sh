@@ -18,4 +18,4 @@ if ! psql -U postgres -c "select 1" &> /dev/null; then
 	createuser -U "$(whoami)" --superuser postgres
 else
 	echo "postgres user already created"
-fi	
+fi

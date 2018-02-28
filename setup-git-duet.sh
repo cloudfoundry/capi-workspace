@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 brew link git-duet
 
