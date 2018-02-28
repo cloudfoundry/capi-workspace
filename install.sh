@@ -3,7 +3,9 @@
 set -e
 set -x
 
-source ./initial-bootstrap.sh
+# install brew and its packages
+source ./install-brew.sh
+source ./install-xcode.sh
 source ./brew-bundle.sh
 
 source ./setup-bash-it.sh
