@@ -25,6 +25,7 @@ source ./setup-git-duet.sh
 # ruby setup
 source ./setup-ruby.sh
 source ./setup-rubymine.sh
+source ./install-bundler.sh
 
 source ./setup-keyboard.sh
 source ./setup-spectacle.sh
