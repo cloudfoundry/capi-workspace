@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-set -x
 
 # install brew and its packages
 source ./install-brew.sh
