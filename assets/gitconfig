@@ -1,18 +1,18 @@
 [alias]
-	ci = duet-commit
-        st = status
-        di = diff
-        co = checkout
-        br = branch
-        sta = stash
-        llog = "log --date=local"
-        flog = "log --pretty=fuller --decorate"
-        lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
-        lol = "log --graph --decorate --oneline"
-        lola = "log --graph --decorate --oneline --all"
         blog = "log origin/master... --left-right"
+        br = branch
+	ci = duet-commit
+        co = checkout
+        di = diff
         ds = "diff --staged"
         fixup = "commit --fixup"
-        squash = "commit --squash"
-        unstage = "reset HEAD"
+        flog = "log --pretty=fuller --decorate"
+        lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
+        llog = "log --date=local"
+        lol = "log --graph --decorate --oneline"
+        lola = "log --graph --decorate --oneline --all"
         rum = "rebase master@{u}"
+        squash = "commit --squash"
+        st = status
+        sta = stash
+        unstage = "reset HEAD"
