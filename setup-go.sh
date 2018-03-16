@@ -16,3 +16,6 @@ GOPATH="${HOME}/go" go get -u github.com/onsi/ginkgo/ginkgo
 
 echo "Install gomega..."
 GOPATH="${HOME}/go" go get -u github.com/onsi/gomega
+
+echo "Installing hey..."
+GOPATH="${HOME}/go" go get -u github.com/rakyll/hey
