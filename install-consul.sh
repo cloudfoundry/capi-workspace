@@ -1,6 +1,12 @@
 #!/bin/bash
 
+set -e
+
 if ! which consul > /dev/null ; then
+  if [ -z "$GOPATH" ] ; then
+    echo "GOPATH isn't set"
+    exit 2
+  fi
   echo "Installing consul for testing with CC bridge"
   consul_path=$GOPATH/src/github.com/hashicorp/consul
 
