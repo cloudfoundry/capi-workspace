@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-brew services start postgresql
+brew link postgresql@9.6 --force
+brew services start postgresql@9.6
 
 # Is postgres running?
 for i in $(seq 60); do
