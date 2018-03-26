@@ -1,14 +1,14 @@
 #!/bin/bash
 
-if ! which consul > /dev/null ; then
-  echo "Installing consul for testing with CC bridge"
-  consul_path=$GOPATH/src/github.com/hashicorp/consul
+echo "Installing Consul"
 
-  git clone https://github.com/hashicorp/consul.git "${consul_path}"
+set +e
+consul --version
+consul_status=$?
+set -e
 
-  pushd $consul_path
-    git co "v0.7.0"
-	  make
-	  mv bin/consul /usr/local/bin/consul
-  popd
+if [ ${consul_status} -ne 0 ]; then
+  wget https://releases.hashicorp.com/consul/0.7.0/consul_0.7.0_darwin_amd64.zip -O /tmp/consul.zip && \
+  unzip /tmp/consul.zip -d /usr/local/bin
+  rm /tmp/consul.zip
 fi
