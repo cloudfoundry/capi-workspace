@@ -11,3 +11,12 @@ if git remote -v | grep -q luan &> /dev/null; then
 	./install
 fi
 popd
+
+echo "Update pip..."
+pip3 install --upgrade pip
+
+echo "Install python-client for neovim..."
+pip3 install neovim
+
+echo "Add yamllint for neomake..."
+pip3 install -q yamllint
