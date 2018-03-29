@@ -42,4 +42,6 @@ source ./clone-repos.sh
 
 source ./setup-cats.sh
 
+source ./install-fly.sh
+
 echo "Success!!"
