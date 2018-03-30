@@ -6,9 +6,9 @@ set -e
 source ./install-brew.sh
 source ./install-xcode.sh
 source ./brew-bundle.sh
+source ./install-bbl.sh
 
 # install specific version of consul that's compatible with cc bridge
-# there's a tech forum item to discuss whether cc bridge tests should still rely on consul
 source ./install-consul.sh
 
 # bash-it / terminal
@@ -32,7 +32,6 @@ source ./setup-spectacle.sh
 # daemons to launch databases at startup
 source ./setup-mysql.sh
 source ./setup-postgres.sh
-
 
 # Golang setup
 source ./setup-go.sh
