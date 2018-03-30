@@ -42,6 +42,7 @@ brew 'watch'
 brew 'wget'
 
 cask 'flycut'
+cask 'goland'
 cask 'google-chrome'
 cask 'iterm2'
 cask 'rubymine'
