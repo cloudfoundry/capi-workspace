@@ -9,3 +9,7 @@ if [ ! -e ~/.rubies/ruby-2.4.2 ]; then
 fi
 echo "ruby-2.4.2" > ~/.ruby-version
 enable_bash_it_plugin chruby-auto
+set +e
+source ~/.bash_profile
+set -e
+chruby 2.4.2
