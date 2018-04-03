@@ -1,7 +1,7 @@
 alias resprout='(cd ~/workspace/sprout-capi && git pull && chruby-exec system -- bundle exec soloist)'
 
 # CATs
-alias cats='(cd ~/workspace/cf-release/src/github.com/cloudfoundry/cf-acceptance-tests && CONFIG=$PWD/integration_config.json bin/test --nodes=3)'
+alias cats='(cd ~/go/src/github.com/cloudfoundry/cf-acceptance-tests && CONFIG=$PWD/integration_config.json bin/test --nodes=3)'
 
 # Deploying (bosh2 + cf-deployment)
 alias upload_capi_release='~/workspace/capi-release/scripts/create-and-upload'
