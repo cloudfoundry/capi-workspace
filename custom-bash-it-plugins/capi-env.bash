@@ -2,9 +2,9 @@
 export HISTTIMEFORMAT="%F %T "
 export THEME_CLOCK_CHAR="⛅️ "
 
-# Set vim as default editor
-export GIT_EDITOR=vim
-export EDITOR=vim
+# Set nvim as default editor
+export GIT_EDITOR=nvim
+export EDITOR=nvim
 
 # Setup GOPATH
 export GOPATH=$HOME/go
