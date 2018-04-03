@@ -2,10 +2,8 @@
 
 set -e
 
-source ./helpers/bash-it-helpers.sh
-
 function install_bash_it {
-	if ! grep -q bash_it ~/.bash_profile ; then
+	if [ -z "$BASH_IT" ] ; then
 		echo "Installing bash_it"
 		if [ ! -e ~/.bash_it ] ; then
 			git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
@@ -18,6 +16,8 @@ function install_bash_it {
 }
 
 install_bash_it
+
+source ./helpers/bash-it-helpers.sh
 
 enable_bash_it_plugin fasd
 enable_bash_it_plugin history
