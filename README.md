@@ -21,7 +21,7 @@ Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://w
 ### Installation:
 ```
     mkdir -p ~/workspace && cd ~/workspace
-    git clone https://github.com/cloudfoundry/capi-workspace && cd capi-workspace
+    git clone git@github.com:cloudfoundry/capi-workspace.git && cd capi-workspace
     ./install.sh
 ```
 
