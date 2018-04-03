@@ -27,6 +27,7 @@ source ./setup-rubymine.sh
 source ./install-bundler.sh
 
 source ./setup-keyboard.sh
+source ./setup-dock.sh
 source ./setup-spectacle.sh
 
 # daemons to launch databases at startup
