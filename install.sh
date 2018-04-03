@@ -20,6 +20,7 @@ source ./setup-vim.sh
 # git setup
 source ./setup-git-config.sh
 source ./setup-git-duet.sh
+source ./setup-git-hooks.sh
 
 # ruby setup
 source ./setup-ruby.sh
