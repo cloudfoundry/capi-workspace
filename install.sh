@@ -25,6 +25,7 @@ source ./setup-git-duet.sh
 source ./setup-ruby.sh
 source ./setup-rubymine.sh
 source ./install-bundler.sh
+source ./install-uaac.sh
 
 source ./setup-keyboard.sh
 source ./setup-dock.sh
