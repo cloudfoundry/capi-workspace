@@ -23,9 +23,11 @@ source ./setup-git-duet.sh
 
 # ruby setup
 source ./setup-ruby.sh
-source ./setup-rubymine.sh
 source ./install-bundler.sh
 source ./install-uaac.sh
+
+# ide prefs
+source ./setup-ide-prefs.sh
 
 source ./setup-keyboard.sh
 source ./setup-dock.sh
