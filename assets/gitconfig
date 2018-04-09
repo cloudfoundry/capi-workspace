@@ -16,3 +16,5 @@
         st = status
         sta = stash
         unstage = "reset HEAD"
+[core]
+	hooksPath = /Users/pivotal/workspace/git-hooks-core
