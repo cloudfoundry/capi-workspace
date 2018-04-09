@@ -3,7 +3,6 @@
 set -e
 
 if [ ! -d ~/workspace/git-hooks-core ]; then
-
   echo "Installing global git hooks & their dependencies..."
 
   # install cred-alert-cli as it is a dependency
@@ -14,11 +13,13 @@ if [ ! -d ~/workspace/git-hooks-core ]; then
   mv cred-alert-cli /usr/local/bin # <= or other directory in ${PATH}
 
   # clone our branch of git-hooks-core @ team/capi branch
-	git clone -b "team/capi" https://github.com/pivotal-cf/git-hooks-core ~/workspace/git-hooks-core
-
-  # add our hooks
-  git config --global --add core.hooksPath ~/workspace/git-hooks-core
+  git clone -b "team/capi" https://github.com/pivotal-cf/git-hooks-core ~/workspace/git-hooks-core
 fi
 
-
+# add our hooks
+set +e
+if ! git config --global --get core.hookspath; then
+  set -e
+  git config --global --add core.hooksPath ~/workspace/git-hooks-core
+fi
 
