@@ -6,11 +6,11 @@ function enable_custom_bash_it_plugin {
   local filepath=$1
   local filename=$(basename $filepath)
 
-  if [ ! -d $BASH_IT/enabled ]; then
-    mkdir -p "${BASH_IT}/enabled"
+  if [ ! -d $BASH_IT/custom ]; then
+    mkdir -p "${BASH_IT}/custom"
   fi
 
-  pushd $BASH_IT/enabled > /dev/null
+  pushd $BASH_IT/custom > /dev/null
 	  if [ ! -e "./$filename" ]; then
 		  echo "Enabling $filename custom bash_it plugin"
 		  ln -s $filepath
