@@ -9,7 +9,6 @@ function install_bash_it {
 			git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 		fi
 		~/.bash_it/install.sh --silent
-		source ~/.bash_profile
 	else
 		echo "bash_it already installed"
 	fi

@@ -2,6 +2,7 @@
 
 set -e
 
+BASH_IT=$HOME/.bash_it
 function enable_custom_bash_it_plugin {
   local filepath=$1
   local filename=$(basename $filepath)
