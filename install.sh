@@ -2,6 +2,7 @@
 
 set -e
 
+function run_nightly {
 # install brew and its packages
 source ./install-brew.sh
 source ./install-xcode.sh
@@ -47,5 +48,12 @@ source ./clone-repos.sh
 source ./setup-cats.sh
 
 source ./install-fly.sh
+}
+
+function open_picklecat() {
+  'open http://dn.ht/picklecat/'
+}
+
+trap open_picklecat ERR 
 
 echo "Success!!"
