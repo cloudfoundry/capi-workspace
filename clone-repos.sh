@@ -30,6 +30,11 @@ pushd ~/workspace > /dev/null
 		ln -s	/Users/pivotal/go/src/github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
 	fi
 
+	clone git@github.com:cloudfoundry/sync-integration-tests.git ~/go/src/github.com/cloudfoundry/sync-integration-tests
+	if [ ! -L ~/workspace/sync-integration-tests ]; then
+		ln -s	/Users/pivotal/go/src/github.com/cloudfoundry/sync-integration-tests ~/workspace/sync-integration-tests
+	fi
+
 	clone git@github.com:cloudfoundry/cli.git ~/go/src/github.com/code.cloudfoundry.org/cli
 	if [ ! -L ~/workspace/cli ]; then
 		ln -s	/Users/pivotal/go/src/github.com/code.cloudfoundry.org/cli/ ~/workspace/cli
