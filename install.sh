@@ -3,7 +3,6 @@
 set -e
 
 function install {
-  exit 0
 # install brew and its packages
 source ./install-brew.sh
 source ./install-xcode.sh
@@ -61,6 +60,5 @@ trap '{ case $? in
    0) echo "Success!" ;;
    *) open_picklecat ; exit 0;;
  esac ; }' EXIT
-install
 
-echo "Success!!"
+install
