@@ -34,3 +34,6 @@ alias gi='gem install'
 # dev org/space setup
 alias lite='(target_cf && cf rp test)'
 alias relite='(target_cf && cf rp retest)'
+
+# ci
+alias set_capi_pipeline='~/workspace/capi-ci/scripts/set-capi-pipeline'
