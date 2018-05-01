@@ -10,6 +10,7 @@ authors:
   ep: Eric Promislow
   es: Elena Sharma; esharma
   gc: Greg Cobb; gcobb
+  jp: Jeff Pak
   lc: Lisa Cho; lcho
   ml: Maryam Labib; mlabib
   rm: Raina Masand; rmasand
@@ -21,3 +22,4 @@ email:
   domain: pivotal.io
 email_addresses:
   ep: eric.promislow@suse.com
+  jp: jeffrey.pak@dell.com
