@@ -34,9 +34,6 @@ function unclaim_bosh_lite() {
         git rm -rf "${env}" && \rm -rf "${env}"
       fi
 
-      # trigger destroy-bosh-lite job
-      date +%s >| .trigger-bosh-lites-destroy && git add .trigger-bosh-lites-destroy
-
       git ci --quiet -m"releasing $env on ${HOSTNAME} [nostory]" --no-verify
       echo "Pushing the release commit to $( basename "$PWD" )..."
       git push --quiet
