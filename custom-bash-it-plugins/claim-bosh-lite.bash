@@ -126,7 +126,12 @@ EOF
     }
 
     function commit_and_push() {
-      git ci --quiet --message "manually claim ${env} on ${HOSTNAME} [nostory]" --no-verify
+      local story=$1
+      if [ -z "$story" ]; then
+        story="nostory"
+      fi
+
+      git ci --quiet --message "manually claim ${env} on ${HOSTNAME} [${story}]" --no-verify
       msg "Pushing reservation to $( basename $PWD )..."
       git push --quiet
     }
@@ -136,7 +141,7 @@ EOF
     env_file="$(realpath $newfile)"
 
     >&2 create_env_dir "${env_file}"
-    >&2 commit_and_push
+    >&2 commit_and_push $1
 
     echo "$PWD/$(basename "${env_file}")"
   )
