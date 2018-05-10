@@ -50,6 +50,8 @@ source ./setup-cats.sh
 source ./install-fly.sh
 
 source ./setup-cron.sh
+
+source ./setup-misc.sh
 }
 
 function open_picklecat() {
