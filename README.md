@@ -5,7 +5,7 @@ Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://w
 ![capi](https://im-01.gifer.com/9Y0s.gif)
 
 ### Dependencies
-* Mac OSX High Sierra
+* Mac OSX Sierra
 
 ### Goals:
 * Tooling is clear and easy to understand - where things are, what they do, how to modify them.
