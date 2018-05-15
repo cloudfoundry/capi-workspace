@@ -37,3 +37,4 @@ alias relite='(target_cf && cf rp retest)'
 
 # ci
 alias set_capi_pipeline='~/workspace/capi-ci/scripts/set-capi-pipeline'
+alias watch_latest_cc_units='fly -t capi watch -j capi/cc-unit-tests'
