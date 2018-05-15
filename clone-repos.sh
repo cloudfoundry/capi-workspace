@@ -40,4 +40,8 @@ pushd ~/workspace > /dev/null
 		ln -s	/Users/pivotal/go/src/github.com/code.cloudfoundry.org/cli/ ~/workspace/cli
 	fi
 
+	# perm stuff
+	clone git@github.com:cloudfoundry-incubator/perm-ci.git ~/workspace/perm-ci
+	clone git@github.com:cloudfoundry-incubator/perm-release.git ~/workspace/perm-release
+
 popd > /dev/null
