@@ -19,3 +19,6 @@ GOPATH="${HOME}/go" go get -u github.com/onsi/gomega
 
 echo "Installing hey..."
 GOPATH="${HOME}/go" go get -u github.com/rakyll/hey
+
+echo "Installing perm..."
+GOPATH="${HOME}/go" go get -u code.cloudfoundry.org/perm/cmd/perm
