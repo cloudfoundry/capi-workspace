@@ -12,8 +12,9 @@ function enable_custom_bash_it_plugin {
   fi
 
   pushd $BASH_IT/custom > /dev/null
-	  if [ ! -e "./$filename" ]; then
+	  if [ ! -L "./$filename" ]; then
 		  echo "Enabling $filename custom bash_it plugin"
+		  rm -f $filepath
 		  ln -s $filepath
 	  else
 		  echo "$filename custom bash_it plugin already enabled"
