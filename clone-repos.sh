@@ -40,11 +40,6 @@ pushd ~/workspace > /dev/null
 		ln -s	/Users/pivotal/go/src/github.com/code.cloudfoundry.org/cli/ ~/workspace/cli
 	fi
 
-	clone git@github.com:cloudfoundry/tps.git ~/go/src/github.com/code.cloudfoundry.org/tps
-	if [ ! -L ~/workspace/tps ]; then
-		ln -s	/Users/pivotal/go/src/github.com/code.cloudfoundry.org/tps/ ~/workspace/tps
-	fi
-
 	# perm stuff
 	clone git@github.com:cloudfoundry-incubator/perm-ci.git ~/workspace/perm-ci
 	clone git@github.com:cloudfoundry-incubator/perm-release.git ~/workspace/perm-release
