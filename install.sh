@@ -17,6 +17,7 @@ source ./setup-bash-it.sh
 source ./setup-custom-bash-it-plugins.sh
 source ./setup-iterm2.sh
 source ./setup-vim.sh
+source ./setup-jarg.sh
 
 # git setup
 source ./setup-git-config.sh
