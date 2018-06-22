@@ -53,6 +53,9 @@ source ./install-fly.sh
 source ./setup-cron.sh
 
 source ./setup-misc.sh
+
+# Instal CLI cf-httpie plugin
+source ./setup-httpie.sh
 }
 
 function open_picklecat() {
