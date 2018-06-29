@@ -58,6 +58,9 @@ source ./setup-misc.sh
 source ./setup-httpie.sh
 }
 
+# Index capi.land links in Spotlight
+source ./setup-capi-land-links.sh
+
 function open_picklecat() {
   open http://dn.ht/picklecat/
 }
