@@ -1,15 +1,17 @@
 #!/bin/bash
 
-declare -a capi_links=("board.capi.land"
-"chris.capi.land"
-"greg.capi.land"
-"tim.capi.land"
-"video.capi.land")
+declare -a capi_links=("board"
+"chris"
+"greg"
+"tim"
+"video")
 
 # open each link in Safari do it's Spotlight-indexed
+echo "Indexing the following links in Safari:"
 for link in "${capi_links[@]}"
 do
-  open -a safari http://$link
+  echo "${link}.capi.land"
+  open -a safari http://$link.capi.land
 done
 
 # close Safari
