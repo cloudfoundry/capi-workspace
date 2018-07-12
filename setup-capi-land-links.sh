@@ -3,6 +3,7 @@
 declare -a capi_links=("board"
 "chris"
 "greg"
+"mike"
 "tim"
 "video")
 
