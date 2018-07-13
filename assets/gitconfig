@@ -5,6 +5,7 @@
 	ci = duet-commit --verbose
         co = checkout
         di = diff
+	drb = rebase -i --exec 'git duet-commit --amend'
         ds = "diff --staged"
         fixup = "commit --fixup"
         flog = "log --pretty=fuller --decorate"
