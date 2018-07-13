@@ -1,4 +1,5 @@
 [alias]
+	amend = "duet-commit --amend"
         blog = "log origin/master... --left-right"
         br = branch
 	ci = duet-commit --verbose
