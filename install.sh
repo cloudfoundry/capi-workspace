@@ -19,15 +19,15 @@ source ./setup-iterm2.sh
 source ./setup-vim.sh
 source ./setup-jarg.sh
 
-# git setup
-source ./setup-git-config.sh
-source ./setup-git-duet.sh
-source ./setup-git-hooks.sh
-
 # ruby setup
 source ./setup-ruby.sh
 source ./install-bundler.sh
 source ./install-uaac.sh
+
+# git setup
+source ./setup-git-config.sh
+source ./setup-git-duet.sh
+source ./setup-git-hooks.sh
 
 # ide prefs
 source ./setup-ide-prefs.sh
