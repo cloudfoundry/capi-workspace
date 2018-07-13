@@ -20,3 +20,6 @@
         unstage = "reset HEAD"
 [core]
 	hooksPath = /Users/pivotal/workspace/git-hooks-core
+[merge]
+	# Display common-ancestor blocks in conflict hunks
+	conflictStyle = diff3
