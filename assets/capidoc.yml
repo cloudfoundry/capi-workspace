@@ -1,0 +1,187 @@
+# capi-release
+bootstrap_cf:
+  description: "Target a CF, creates an org, space, and targets them"
+  location: capi-release/scripts
+  group: cf
+cats-cleanup:
+  description: Deletes builpacks, orgs, quotes, and service brokers in a targeted CF
+  location: capi-release/scripts
+  group: test
+commit_with_shortlog:
+  description: Git commit with a staged_shortlog
+  location: capi-release/scripts
+  group: git
+compare_db_rows:
+  description: Compares counts of two db's rows in specific tables
+  location: capi-release/scripts
+  group: cb
+create-and-upload:
+  description: Create a capi release and upload to a CF env
+  location: capi-release/scripts
+  group: bosh
+deploy:
+  description: Bosh deploy a CF
+  location: capi-release/scripts
+  group: bosh
+fixcommitter:
+  description: Cleans up committer/author after a merge
+  location: capi-release/scripts
+  group: git
+install-git-hooks:
+  description: installs a repo's git pre-push hooks
+  location: capi-release/scripts
+  group: git
+mysql-bosh-lite:
+  description: Tunnel to a bosh lite MySQL DB
+  location: capi-release/scripts
+  group: db
+psql-bosh-lite:
+  description: Tunnel to a bosh lite Postgres DB
+  location: capi-release/scripts
+  group: db
+run-bridge-tests:
+  description: Run Bridge tests
+  location: capi-release/scripts
+  group: test
+run-release-tests:
+  description: Run release tests
+  location: capi-release/scripts
+  group: test
+run-release-tests-linux:
+  description: Run release tests on Linux
+  location: capi-release/scripts
+  group: test
+staged_shortlog:
+  description: Add a git log to a commit
+  location: capi-release/scripts
+  group: git
+sync-package-specs:
+  description:
+  location: capi-release/scripts
+  group:
+sync-submodule-config:
+  description:
+  location: capi-release/scripts
+  group:
+target-cf:
+  description: Get creds from Credhub and target a CF
+  location: capi-release/scripts
+  group: cf
+target-uaa:
+  description: Get creds from Credhub and target a UAA
+  location: capi-release/scripts
+  group: cf
+unused_blobs:
+  description: Removes unused blobs from the blobs.yml file
+  location: capi-release/scripts
+  group: cc
+update:
+  description: Update all the git submodules
+  location: capi-release/scripts
+  group: git
+which-cf.sh:
+  description: Which CF Deployment has a CAPI @ a SHA
+  location: capi-release/scripts
+  group: cc
+# Aliases
+vim:
+  description: Run nvim
+  location: capi-workspace/custom-bash-it-plugins
+  group: alias
+v:
+  description: fasd -e vim
+  location: capi-workspace/custom-bash-it-plugins
+  group: alias
+b:
+  description: bundle exec
+  location: capi-workspace/custom-bash-it-plugins
+  group: ruby-dev
+bake:
+  description: bundle exec rake
+  location: capi-workspace/custom-bash-it-plugins
+  group: ruby-dev
+gd:
+  description: git diff
+  location: capi-workspace/custom-bash-it-plugins
+  group: git
+gdc:
+  description: git diff --cached
+  location: capi-workspace/custom-bash-it-plugins
+  group: git
+g:
+  description: git status
+  location: capi-workspace/custom-bash-it-plugins
+  group: git
+gi:
+  description: gem install
+  location: capi-workspace/custom-bash-it-plugins
+  group: ruby-dev
+lite:
+  description: (target_cf && cf rp test)
+  location: capi-workspace/custom-bash-it-plugins
+  group: cf
+relite:
+  description: (target_cf && cf rp retest)
+  location: capi-workspace/custom-bash-it-plugins
+  group: cf
+set_capi_pipeline:
+  description: Set the current Concourse pipeline to CAPI
+  location: capi-ci/scripts
+  group: ci
+watch_latest_cc_units:
+  description: Wach CAPI CI unit tests
+  location: capi-workspace/custom-bash-it-plugins
+  group: ci
+# functions
+add_perm_to_bosh_lite:
+  description:
+  location: capi-workspace/custom-bash-it-plugins/perm.bash
+  group: cc
+claim_bosh_lite:
+  description: Claim an available bosh lite CF
+  location: capi-workspace/custom-bash-it-plugins
+  group: cf
+create_and_upload_perm_release:
+  description:
+  location: capi-workspace/custom-bash-it-plugins/perm.bash
+  group: cc
+create_perm_release:
+  description:
+  location: capi-workspace/custom-bash-it-plugins/perm.bash
+  group: cc
+create_release:
+  description:
+  location: capi-workspace/custom-bash-it-plugins/perm.bash
+  group: cc
+delete_orgs:
+  description:
+  location:
+  group: cf
+deploy_only_new_capi:
+  description: Deploy just the current CAPI
+  location: capi-workspace/custom-bash-it-plugins
+  group: cc
+target_bosh:
+  description: Target a bosh environment
+  location: capi-workspace/custom-bash-it-plugins
+  group: cf
+unclaim_bosh_lite:
+  description: Return a bosh lite CF back to the pool
+  location: capi-workspace/custom-bash-it-plugins
+  group: cf
+upload_perm_release:
+  description:
+  location: capi-workspace/custom-bash-it-plugins/perm.bash
+  group: cc
+upload_release:
+  description:
+  location: capi-workspace/custom-bash-it-plugins/perm.bash
+  group: cc
+pullify:
+  description:
+  location: capi-workspace/custom-bash-it-plugins
+  group: git
+recreate_bosh_lite:
+  description:  Recreates your local virtualbox bosh-lite Director
+  location: capi-workspace/custom-bash-it-plugins
+  group: bosh

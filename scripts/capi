@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'yaml'
+require 'rainbow/refinement'
+using Rainbow
+
+class Capi < Thor
+
+  package_name 'CAPI'
+
+  def self.exit_on_failure?
+    true
+  end
+
+  desc 'list GROUP', 'List available helpful CAPI commands'
+  def list(group = "all")
+    load_capidoc
+    groups = group_and_sort_by_command
+
+    groups.each do |group, commands|
+      puts group.yellow.bright
+
+      commands.each do |cmd|
+        printf "    %-32s \t\t %s\n", cmd[:command].green.bright, cmd[:description]
+      end
+    end
+  end
+
+  desc 'which COMMAND', 'Show where command is defined'
+  def which(command)
+    load_capidoc
+    commands = sorted_commands
+
+
+    if commands[command].nil?
+      puts "No command #{command} found".red
+      puts 'If you expect this command to exist, please update ' + 'capi-workspace/assets/capidoc.yml'.yellow.bright
+      return
+    end
+
+    puts "#{command}".green.bright + ' is defined in ' + "#{commands[command]['location']}".yellow
+  end
+
+  default_task :list
+
+  private
+
+  def load_capidoc
+    @docs = YAML.load(File.open('../assets/capidoc.yml'))
+  end
+
+  def group_and_sort_by_command
+    groups = {}
+    @docs.each do |command, command_info|
+      group = command_info["group"] || "None"
+      groups[group] = [] if groups[group].nil?
+
+      groups[group].push({
+        command: command,
+        description: command_info["description"],
+        location: command_info["location"]
+      })
+    end
+
+    groups = Hash[groups.sort_by {|group, cmd| group}]
+
+    groups.each do |group, command|
+      command.sort! {|x,y| x[:command] <=> y[:command]}
+    end
+  end
+
+  def sorted_commands
+    Hash[@docs.sort_by { |command, command_info| command }]
+  end
+
+end
+
+Capi.start(ARGV)
