@@ -61,6 +61,9 @@ source ./setup-httpie.sh
 # Index capi.land links in Spotlight
 source ./setup-capi-land-links.sh
 
+# Add CAPI repos/scripts to the PATH
+source ./setup-paths.sh
+
 function open_picklecat() {
   open http://dn.ht/picklecat/
 }

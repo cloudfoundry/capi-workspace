@@ -3,133 +3,141 @@ bootstrap_cf:
   description: "Target a CF, creates an org, space, and targets them"
   location: capi-release/scripts
   group: cf
+print_env_info:
+  description: List all the bosh-lites in the pool
+  location: capi-workspace/custom-bash-it-plugins
+  group: bosh
+cats:
+  description: Runs cats with local integration_config
+  location: capi-workspace/custom-bash-it-plugins
+  group: test
 cats-cleanup:
   description: Deletes builpacks, orgs, quotes, and service brokers in a targeted CF
   location: capi-release/scripts
   group: test
 commit_with_shortlog:
-  description: Git commit with a staged_shortlog
+  descripiton: Git commit with a staged_shortlog
   location: capi-release/scripts
   group: git
 compare_db_rows:
-  description: Compares counts of two db's rows in specific tables
+  descripiton: Compares counts of two db's rows in specific tables
   location: capi-release/scripts
   group: cb
 create-and-upload:
-  description: Create a capi release and upload to a CF env
+  descripiton: Create a capi release and upload to a CF env
   location: capi-release/scripts
   group: bosh
 deploy:
-  description: Bosh deploy a CF
+  descripiton: Bosh deploy a CF
   location: capi-release/scripts
   group: bosh
 fixcommitter:
-  description: Cleans up committer/author after a merge
+  descripiton: Cleans up committer/author after a merge
   location: capi-release/scripts
   group: git
 install-git-hooks:
-  description: installs a repo's git pre-push hooks
+  descripiton: installs a repo's git pre-push hooks
   location: capi-release/scripts
   group: git
 mysql-bosh-lite:
-  description: Tunnel to a bosh lite MySQL DB
+  descripiton: Tunnel to a bosh lite MySQL DB
   location: capi-release/scripts
   group: db
 psql-bosh-lite:
-  description: Tunnel to a bosh lite Postgres DB
+  descripiton: Tunnel to a bosh lite Postgres DB
   location: capi-release/scripts
   group: db
 run-bridge-tests:
-  description: Run Bridge tests
+  descripiton: Run Bridge tests
   location: capi-release/scripts
   group: test
 run-release-tests:
-  description: Run release tests
+  descripiton: Run release tests
   location: capi-release/scripts
   group: test
 run-release-tests-linux:
-  description: Run release tests on Linux
+  descripiton: Run release tests on Linux
   location: capi-release/scripts
   group: test
 staged_shortlog:
-  description: Add a git log to a commit
+  descripiton: Add a git log to a commit
   location: capi-release/scripts
   group: git
 sync-package-specs:
-  description:
+  descripiton:
   location: capi-release/scripts
   group:
 sync-submodule-config:
-  description:
+  descripiton:
   location: capi-release/scripts
   group:
 target-cf:
-  description: Get creds from Credhub and target a CF
+  descripiton: Get creds from Credhub and target a CF
   location: capi-release/scripts
   group: cf
 target-uaa:
-  description: Get creds from Credhub and target a UAA
+  descripiton: Get creds from Credhub and target a UAA
   location: capi-release/scripts
   group: cf
 unused_blobs:
-  description: Removes unused blobs from the blobs.yml file
+  descripiton: Removes unused blobs from the blobs.yml file
   location: capi-release/scripts
   group: cc
 update:
-  description: Update all the git submodules
+  descripiton: Update all the git submodules
   location: capi-release/scripts
   group: git
 which-cf.sh:
-  description: Which CF Deployment has a CAPI @ a SHA
+  descripiton: Which CF Deployment has a CAPI @ a SHA
   location: capi-release/scripts
   group: cc
 # Aliases
 vim:
-  description: Run nvim
+  descripiton: Run nvim
   location: capi-workspace/custom-bash-it-plugins
   group: alias
 v:
-  description: fasd -e vim
+  descripiton: fasd -e vim
   location: capi-workspace/custom-bash-it-plugins
   group: alias
 b:
-  description: bundle exec
+  descripiton: bundle exec
   location: capi-workspace/custom-bash-it-plugins
   group: ruby-dev
 bake:
-  description: bundle exec rake
+  descripiton: bundle exec rake
   location: capi-workspace/custom-bash-it-plugins
   group: ruby-dev
 gd:
-  description: git diff
+  descripiton: git diff
   location: capi-workspace/custom-bash-it-plugins
   group: git
 gdc:
-  description: git diff --cached
+  descripiton: git diff --cached
   location: capi-workspace/custom-bash-it-plugins
   group: git
 g:
-  description: git status
+  descripiton: git status
   location: capi-workspace/custom-bash-it-plugins
   group: git
 gi:
-  description: gem install
+  descripiton: gem install
   location: capi-workspace/custom-bash-it-plugins
   group: ruby-dev
 lite:
-  description: (target_cf && cf rp test)
+  descripiton: (target_cf && cf rp test)
   location: capi-workspace/custom-bash-it-plugins
   group: cf
 relite:
-  description: (target_cf && cf rp retest)
+  descripiton: (target_cf && cf rp retest)
   location: capi-workspace/custom-bash-it-plugins
   group: cf
 set_capi_pipeline:
-  description: Set the current Concourse pipeline to CAPI
+  descripiton: Set the current Concourse pipeline to CAPI
   location: capi-ci/scripts
   group: ci
 watch_latest_cc_units:
-  description: Wach CAPI CI unit tests
+  descripiton: Wach CAPI CI unit tests
   location: capi-workspace/custom-bash-it-plugins
   group: ci
 # functions
