@@ -18,6 +18,8 @@ class Capi < Thor
     load_capidoc
     groups = group_and_sort_by_command
 
+    puts "Available CAPI commands: (by group)".red
+
     groups.each do |group, commands|
       puts group.yellow.bright
 
@@ -47,12 +49,13 @@ class Capi < Thor
   private
 
   def load_capidoc
-    @docs = YAML.load(File.open('../assets/capidoc.yml'))
+    path_to_capidoc_yml = File.expand_path(File.join(__FILE__, '..', '..', '/assets', 'capidoc.yml'))
+    @yaml = YAML.load(File.open(path_to_capidoc_yml))
   end
 
   def group_and_sort_by_command
     groups = {}
-    @docs.each do |command, command_info|
+    @yaml.each do |command, command_info|
       group = command_info["group"] || "None"
       groups[group] = [] if groups[group].nil?
 
@@ -71,7 +74,7 @@ class Capi < Thor
   end
 
   def sorted_commands
-    Hash[@docs.sort_by { |command, command_info| command }]
+    Hash[@yaml.sort_by { |command, command_info| command }]
   end
 
 end

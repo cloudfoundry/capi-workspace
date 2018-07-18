@@ -64,6 +64,9 @@ source ./setup-capi-land-links.sh
 # Add CAPI repos/scripts to the PATH
 source ./setup-paths.sh
 
+# Add some gems for the CAPI command
+source ./setup-gems.sh
+
 function open_picklecat() {
   open http://dn.ht/picklecat/
 }
