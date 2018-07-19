@@ -12,6 +12,9 @@ for i in $(seq 60); do
 	fi
 done
 
+# Run mysql upgrader
+mysql_upgrade -uroot -ppassword == 2 || :
+
 # Change the admin password
 if ! mysql -uroot -ppassword -e 'show databases' > /dev/null 2>&1; then
 	echo "Setting MySQL admin password"
