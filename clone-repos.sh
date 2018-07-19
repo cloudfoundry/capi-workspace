@@ -21,6 +21,7 @@ pushd ~/workspace > /dev/null
 	clone git@github.com:cloudfoundry/capi-release.git ~/workspace/capi-release develop
 	clone git@github.com:cloudfoundry/capi-env-pool.git ~/workspace/capi-env-pool
 	clone git@github.com:cloudfoundry/capi-ci.git ~/workspace/capi-ci
+	clone git@github.com:cloudfoundry/capi-dockerfiles.git ~/workspace/capi-dockerfiles
 	clone git@github.com:cloudfoundry/capi-ci-private.git ~/workspace/capi-ci-private
 	clone git@github.com:cloudfoundry/cf-deployment.git ~/workspace/cf-deployment
 
