@@ -11,7 +11,7 @@ cats:
   description: Runs cats with local integration_config
   location: capi-workspace/custom-bash-it-plugins
   group: test
-cats-cleanup:
+cats_cleanup:
   description: Deletes builpacks, orgs, quotes, and service brokers in a targeted CF
   location: capi-release/scripts
   group: test
@@ -35,47 +35,39 @@ fixcommitter:
   description: Cleans up committer/author after a merge
   location: capi-release/scripts
   group: git
-install-git-hooks:
+install_git_hooks:
   description: installs a repo's git pre-push hooks
   location: capi-release/scripts
   group: git
-mysql-bosh-lite:
+mysql_bosh_lite:
   description: Tunnel to a bosh lite MySQL DB
   location: capi-release/scripts
   group: db
-psql-bosh-lite:
+psql_bosh_lite:
   description: Tunnel to a bosh lite Postgres DB
   location: capi-release/scripts
   group: db
-run-bridge-tests:
+run_bridge_tests:
   description: Run Bridge tests
-  location: capi-release/scripts
-  group: test
-run-release-tests:
-  description: Run release tests
-  location: capi-release/scripts
-  group: test
-run-release-tests-linux:
-  description: Run release tests on Linux
   location: capi-release/scripts
   group: test
 staged_shortlog:
   description: Add a git log to a commit
   location: capi-release/scripts
   group: git
-sync-package-specs:
-  description:
+sync_package_specs:
+  description: Add go submodule dependencies to packaging spec
   location: capi-release/scripts
   group:
-sync-submodule-config:
-  description:
+sync_submodule_config:
+  description: 
   location: capi-release/scripts
   group:
-target-cf:
+target_cf:
   description: Get creds from Credhub and target a CF
   location: capi-release/scripts
   group: cf
-target-uaa:
+target_uaa:
   description: Get creds from Credhub and target a UAA
   location: capi-release/scripts
   group: cf
@@ -87,10 +79,6 @@ update:
   description: Update all the git submodules
   location: capi-release/scripts
   group: git
-which-cf.sh:
-  description: Which CF Deployment has a CAPI @ a SHA
-  location: capi-release/scripts
-  group: cc
 # Aliases
 create_and_deploy:
   description: Create a capi release and deploys to a CF env
