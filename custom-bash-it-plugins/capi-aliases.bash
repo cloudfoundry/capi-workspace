@@ -1,12 +1,6 @@
 # CATs
 alias cats='(cd ~/go/src/github.com/cloudfoundry/cf-acceptance-tests && CONFIG=$PWD/integration_config.json bin/test --nodes=3)'
 
-alias print_env_info='pushd ~/workspace/capi-env-pool > /dev/null; git pull > /dev/null &&  ~/workspace/capi-ci/ci/bosh-lite/src/print_env_info; popd > /dev/null'
-
-# PSQL
-alias psql_bosh_lite='~/workspace/capi-release/scripts/psql-bosh-lite'
-alias mysql_bosh_lite='~/workspace/capi-release/scripts/mysql-bosh-lite'
-
 #FASD
 alias v='fasd -e vim'
 

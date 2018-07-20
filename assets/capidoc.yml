@@ -4,8 +4,8 @@ bootstrap_cf:
   location: capi-release/scripts
   group: cf
 print_env_info:
-  description: List all the bosh-lites in the pool
-  location: capi-workspace/custom-bash-it-plugins
+  description: List all the claimed bosh-lites in the pool
+  location: capi-env-pool/scripts
   group: bosh
 cats:
   description: Runs cats with local integration_config
