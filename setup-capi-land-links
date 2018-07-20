@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require 'plist'
+
+class Link
+  def initialize(title, url)
+    @title = title
+    @url = url
+  end
+
+  def to_apple_hash
+    {'ReadingListNonSync' =>
+      {'neverFetchMetadata' => false},
+      'URIDictionary' =>
+        {'title' => @title},
+      'URLString' => @url,
+      'WebBookmarkType' => 'WebBookmarkTypeLeaf',
+      'previewText' => '',
+      'previewTextIsUserDefined' => true}
+  end
+end
+
+bookmarks_plist_path = File.join('/Users', 'pivotal', 'Library', 'Safari', 'Bookmarks.plist')
+
+bookmarks = Plist.parse_xml(`plutil -convert xml1 -o - #{bookmarks_plist_path}`)
+
+folder_names = bookmarks['Children'].collect {|b| b['Title']}
+
+index = if folder_names.include? 'CAPI'
+          index = folder_names.find_index {|f| f == 'CAPI'}
+          bookmarks['Children'][index] = []
+          index
+        else
+          bookmarks['Children'].push ({'Children' => [],
+            'Title' => 'CAPI',
+            'WebBookmarkType' => 'WebBookmarkTypeList'})
+          bookmarks['Children'].count - 1
+        end
+
+capi_folder = bookmarks['Children'][index]
+capi_folder_children = capi_folder['Children']
+
+[
+  Link.new('CAPI Trello', 'http://board.capi.land'),
+  Link.new('Chris', 'http://chris.capi.land'),
+  Link.new('Elena', 'http://elena.capi.land'),
+  Link.new('Greg', 'http://greg.capi.land'),
+  Link.new('Mike', 'http://mike.capi.land'),
+  Link.new('Tim', 'http://tim.capi.land'),
+  Link.new('Video', 'http://video.capi.land')
+].each do |link|
+  capi_folder_children.push link.to_apple_hash
+end
+
+File.open(bookmarks_plist_path, 'w') {|f| f.write bookmarks.to_plist}
+
+
+`open -a "Safari"`
+sleep 2
+`osascript -e 'quit app "Safari"'`
+
+=begin
+links.each do
+
+  declare -a capi_links = ("board"
+  "chris"
+  "greg"
+  "mike"
+  "tim"
+  "video")
+
+# open each link in Safari do it's Spotlight-indexed
+  echo "Indexing the following links in Safari:"
+  for link in "${capi_links[@]}"
+    do
+    echo "${link}.capi.land"
+    open -a safari http: // $link.capi.land
+    done
+
+# close Safari
+    osascript -e 'quit app "Safari"'
+=end
