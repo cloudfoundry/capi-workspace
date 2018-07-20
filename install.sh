@@ -56,13 +56,15 @@ source ./setup-misc.sh
 
 # Instal CLI cf-httpie plugin
 source ./setup-httpie.sh
-}
+
+# Add gem dependencies for CAPI-Workspace
+source ./setup-gems.sh
 
 # Index capi.land links in Spotlight
-source ./setup-capi-land-links.sh
+./setup-capi-land-links
+}
 
-# Add some gems for the CAPI command
-source ./setup-gems.sh
+
 
 function open_picklecat() {
   open http://dn.ht/picklecat/

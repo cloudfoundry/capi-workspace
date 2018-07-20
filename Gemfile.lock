@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    plist (3.4.0)
+    rainbow (3.0.0)
+    thor (0.20.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  plist
+  rainbow
+  thor
+
+BUNDLED WITH
+   1.16.2
