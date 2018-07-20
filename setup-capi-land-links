@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'plist'
+require 'pry'
+
 
 class Link
   def initialize(title, url)
@@ -20,6 +22,7 @@ class Link
   end
 end
 
+binding.pry
 bookmarks_plist_path = File.join('/Users', 'pivotal', 'Library', 'Safari', 'Bookmarks.plist')
 
 bookmarks = Plist.parse_xml(`plutil -convert xml1 -o - #{bookmarks_plist_path}`)
