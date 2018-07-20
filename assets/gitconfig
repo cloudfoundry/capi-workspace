@@ -1,23 +1,26 @@
 [alias]
+	blog = "loga origin/master... --left-right"
+	br = branch
+	co = checkout
+	di = diff
+	ds = "diff --staged"
+	fixup = "commit --fixup"
+	flog = "log --pretty=fuller --decorate"
+	lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
+	llog = "log --date=local"
+	lol = "log --graph --decorate --oneline"
+	lola = "log --graph --decorate --oneline --all"
+	rum = "rebase master@{u}"
+	squash = "commit --squash"
+	st = status
+	sta = stash
+	unstage = "reset HEAD"
+
+## git-duet commands
 	amend = "duet-commit --amend"
-        blog = "log origin/master... --left-right"
-        br = branch
 	ci = duet-commit --verbose
-        co = checkout
-        di = diff
-	drb = rebase -i --exec 'git duet-commit --amend'
-        ds = "diff --staged"
-        fixup = "commit --fixup"
-        flog = "log --pretty=fuller --decorate"
-        lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
-        llog = "log --date=local"
-        lol = "log --graph --decorate --oneline"
-        lola = "log --graph --decorate --oneline --all"
-        rum = "rebase master@{u}"
-        squash = "commit --squash"
-        st = status
-        sta = stash
-        unstage = "reset HEAD"
+	drb = rebase --exec 'fixcommitter'
+
 [core]
 	hooksPath = /Users/pivotal/workspace/git-hooks-core
 [merge]
