@@ -58,7 +58,7 @@ source ./setup-misc.sh
 source ./setup-httpie.sh
 
 # Add gem dependencies for CAPI-Workspace
-source ./setup-gems.sh
+bundle
 
 # Index capi.land links in Spotlight
 ./setup-capi-land-links
