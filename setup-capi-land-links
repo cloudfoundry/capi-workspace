@@ -6,6 +6,7 @@ class Bookmarks
   def initialize(path)
     @path = path
     @plist_hash = Plist.parse_xml(`plutil -convert xml1 -o - #{@path}`)
+    @plist_hash['Children'] = [] if @plist_hash['Children'].nil?
   end
 
   def folder_names
