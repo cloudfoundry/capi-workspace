@@ -56,7 +56,7 @@ class Bookmarks
   end
 end
 
-bookmarks = Bookmarks.new(File.join('/Users', 'pivotal', 'Library', 'Safari', 'Bookmarks.plist'))
+bookmarks = Bookmarks.new(File.join(ENV['HOME'], 'Library', 'Safari', 'Bookmarks.plist'))
 bookmarks.reset_capi_folder
 bookmarks.insert_links_into_capi_folder(
   {

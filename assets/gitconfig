@@ -22,7 +22,7 @@
 	drb = rebase --exec 'fixcommitter'
 
 [core]
-	hooksPath = /Users/pivotal/workspace/git-hooks-core
+	hooksPath = $HOME/workspace/git-hooks-core
 [merge]
 	# Display common-ancestor blocks in conflict hunks
 	conflictStyle = diff3
