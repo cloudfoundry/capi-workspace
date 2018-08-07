@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-brew services start mysql
+brew services restart mysql
 
 # Is mysql running?
 for i in $(seq 60); do
