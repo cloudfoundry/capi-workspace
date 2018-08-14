@@ -15,13 +15,15 @@ function clone {
 }
 
 pushd ~/workspace > /dev/null
+    echo "Getting code.cloudfoundry.org/cli/plugin..."
+    go get code.cloudfoundry.org/cli/plugin
     echo "Cloning cf-httpie cli plugin..."
-	clone git@github.com:zrob/cfhttp-plugin.git ~/workspace/cfhttp-plugin
-	pushd cfhttp-plugin > /dev/null
-        echo "Building cf-httpie plugin..."
-         go build
+    clone git@github.com:zrob/cfhttp-plugin.git ~/workspace/cfhttp-plugin
+    pushd cfhttp-plugin > /dev/null
+    echo "Building cf-httpie plugin..."
+    go build
 
-        echo "Installing cf-httpie plugin..."
-        cf install-plugin -f ./cfhttp-plugin
+    echo "Installing cf-httpie plugin..."
+    cf install-plugin -f ./cfhttp-plugin
     popd > /dev/null
 popd > /dev/null
