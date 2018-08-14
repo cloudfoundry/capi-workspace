@@ -2,6 +2,8 @@
 
 authors:
   ay: An Yu; anyu
+  cb: Connor Braa; cb
+  ch: Charles Hansen; chansen
   cs: Chris Selzo; cselzo
   dwf: Davis W. Frank; dwfrank
   ep: Eric Promislow
@@ -11,14 +13,13 @@ authors:
   ir: Isobel Redelmeier; iredelmeier
   jp: Jeff Pak
   mk: Mike Kenyon; mkenyon
+  nw: Nick Wei; nwei
+  sl: Slawek Ligus; sligus
   sv: Sebastian Vidrio; svidrio
-  tv: Tom Viehman; tviehman
   td: Tim Downey; tdowney
+  tv: Tom Viehman; tviehman
   wp: Will Pragnell; wpragnell
   zr: Zach Robinson; zrobinson
-  sl: Slawek Ligus; sligus
-  nw: Nick Wei; nwei
-  cb: Connor Braa; cb
 email:
   domain: pivotal.io
 email_addresses:
