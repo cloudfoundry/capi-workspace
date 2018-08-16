@@ -30,6 +30,7 @@ Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://w
 * Open up Rubymine manually and select `License Server` and copy in the the rubymine license from the labs license server (http://omaha.pivotallabs.com:8080/licenseServer in the SF office)
   - If you are not on a Pivotal Network, you need to VPN into one in order to access this server.
 * Install the `mine` cli shortcut (RubyMine -> Tools -> Create Command-line Launcher...)
+* If you are using Goland do the same two previous steps for Goland
 
 ### Contributing to this repo
 * [bash-it](https://github.com/Bash-it/bash-it) We use bash-it to organize and streamline our bash settings. This includes stuff like color schemes, aliases, shell settings, and the shell prompt formatting. Adding "plugins" to `custom-bash-it-plugins` will cause them to be installed in every new shell.
