@@ -81,7 +81,7 @@ update:
   group: git
 # Aliases
 create_and_deploy:
-  description: Create a capi release and deploys to a CF env. Add -n to bypass diff prompt.
+  description: Create a capi release and deploys to a CF env. Add -n to bypass diff prompt
   location: capi-release/scripts
   group: bosh
 vim:
@@ -128,9 +128,9 @@ set_capi_pipeline:
   description: Set the current Concourse pipeline to CAPI
   location: capi-ci/scripts
   group: ci
-watch_latest_cc_units:
-  description: Wach CAPI CI unit tests
-  location: capi-workspace/custom-bash-it-plugins
+watch_cc_units:
+  description: Watch CAPI CI unit tests. For a specific run, -b build_number
+  location: capi-release/scripts
   group: ci
 # functions
 add_perm_to_bosh_lite:
