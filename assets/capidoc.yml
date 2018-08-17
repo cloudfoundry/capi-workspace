@@ -9,7 +9,7 @@ print_env_info:
   group: bosh
 cats:
   description: Runs cats with local integration_config
-  location: capi-workspace/custom-bash-it-plugins
+  location: capi-release/scripts
   group: test
 cats_cleanup:
   description: Deletes builpacks, orgs, quotes, and service brokers in a targeted CF

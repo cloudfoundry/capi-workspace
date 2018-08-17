@@ -1,6 +1,3 @@
-# CATs
-alias cats='(cd ~/go/src/github.com/cloudfoundry/cf-acceptance-tests && CONFIG=$PWD/integration_config.json bin/test --nodes=3)'
-
 #FASD
 alias v='fasd -e vim'
 
