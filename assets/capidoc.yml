@@ -118,11 +118,11 @@ gi:
   group: ruby-dev
 lite:
   description: (target_cf && cf rp test)
-  location: capi-workspace/custom-bash-it-plugins
+  location: capi-release/scripts
   group: cf
 relite:
   description: (target_cf && cf rp retest)
-  location: capi-workspace/custom-bash-it-plugins
+  location: capi-release/scripts
   group: cf
 set_capi_pipeline:
   description: Set the current Concourse pipeline to CAPI

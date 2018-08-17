@@ -12,10 +12,6 @@ alias g='git status'
 # Misc aliases
 alias gi='gem install'
 
-# dev org/space setup
-alias lite='(target_cf && cf rp test)'
-alias relite='(target_cf && cf rp retest)'
-
 # ci
 alias watch_latest_cc_units='fly -t capi watch -j capi/cc-unit-tests'
 
