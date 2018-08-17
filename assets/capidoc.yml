@@ -159,7 +159,7 @@ delete_orgs:
   group: cf
 deploy_only_new_capi:
   description: Deploy just the current CAPI
-  location: capi-workspace/custom-bash-it-plugins
+  location: capi-release/scripts
   group: cc
 target_bosh:
   description: Target a bosh environment
