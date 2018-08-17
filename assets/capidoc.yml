@@ -81,7 +81,7 @@ update:
   group: git
 # Aliases
 create_and_deploy:
-  description: Create a capi release and deploys to a CF env
+  description: Create a capi release and deploys to a CF env. Add -n to bypass diff prompt.
   location: capi-release/scripts
   group: bosh
 vim:

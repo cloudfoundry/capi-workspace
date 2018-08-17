@@ -91,7 +91,7 @@ echo -e "${green}\n## Deploy CF with latest CAPI release ##${nc}"
 echo "create_and_deploy"
 
 echo -e "${green}\n## Deploy CF noninteractively with latest CAPI release ##${nc}"
-echo "create_and_force_deploy"
+echo "create_and_deploy -n"
 
 echo -e "${green}\n## Deploy changes only ##${nc}"
 echo "deploy_only_new_capi"
