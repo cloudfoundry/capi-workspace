@@ -181,7 +181,3 @@ pullify:
   description:
   location: capi-workspace/custom-bash-it-plugins
   group: git
-recreate_bosh_lite:
-  description:  Recreates your local virtualbox bosh-lite Director
-  location: capi-workspace/custom-bash-it-plugins
-  group: bosh
