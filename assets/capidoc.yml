@@ -64,7 +64,7 @@ sync_submodule_config:
   location: capi-release/scripts
   group:
 target_cf:
-  description: Get creds from Credhub and target a CF
+  description: "Change cf cli target to the cloud foundry deployed on currently targeted bosh (hint: use \"target_bosh\" first)."
   location: capi-release/scripts
   group: cf
 target_uaa:
