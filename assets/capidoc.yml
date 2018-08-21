@@ -137,6 +137,10 @@ add_perm_to_bosh_lite:
   description:
   location: capi-workspace/custom-bash-it-plugins/perm.bash
   group: cc
+cf_admin_password:
+  description: Get the CF admin password for a deployment (requires credhub)
+  location: capi-release/scripts/cf_admin_password
+  group: cf
 claim_bosh_lite:
   description: Claim an available bosh lite CF
   location: capi-workspace/custom-bash-it-plugins
@@ -177,6 +181,10 @@ upload_release:
   description:
   location: capi-workspace/custom-bash-it-plugins/perm.bash
   group: cc
+which_bosh:
+  description: Print which bosh environment is currently targeted
+  location: capi-release/scripts/which_bosh
+  group: cf
 pullify:
   description:
   location: capi-workspace/custom-bash-it-plugins
