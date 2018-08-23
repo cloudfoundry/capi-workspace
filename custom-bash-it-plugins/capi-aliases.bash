@@ -9,7 +9,7 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 
 # capi likes `alias g="git status"`, other teams like `alias g=git`, so do both:
-alias g 2>/dev/null && unalias g
+alias g  >/dev/null 2>&1 && unalias g
 
 function g() {
     case $# in
