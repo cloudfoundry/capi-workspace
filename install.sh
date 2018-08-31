@@ -7,7 +7,6 @@ function install {
 source ./install-brew.sh
 source ./install-xcode.sh
 source ./brew-bundle.sh
-source ./install-bbl.sh
 
 # install specific version of consul that's compatible with cc bridge
 source ./install-consul.sh
