@@ -57,6 +57,8 @@ source ./setup/misc.sh
 # Instal CLI cf-httpie plugin
 source ./setup/httpie.sh
 
+source ./setup/snyk.sh
+
 # Add gem dependencies for CAPI-Workspace
 bundle
 
