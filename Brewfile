@@ -1,4 +1,5 @@
 tap 'businesscritical/tap'
+tap 'caskroom/fonts'
 tap 'cloudfoundry/tap'
 tap 'git-duet/tap'
 tap 'universal-ctags/universal-ctags'
@@ -49,6 +50,7 @@ brew 'wget'
 
 cask 'docker'
 cask 'flycut'
+cask 'font-hack-nerd-font'
 cask 'goland'
 cask 'google-chrome'
 cask 'iterm2'
