@@ -26,3 +26,6 @@
 [merge]
 	# Display common-ancestor blocks in conflict hunks
 	conflictStyle = diff3
+[url "git@github.com:"]
+  pushInsteadOf = https://github.com/
+  pushInsteadOf = git://github.com/
