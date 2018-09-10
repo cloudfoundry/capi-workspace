@@ -1,27 +1,19 @@
 # This file is managed by sprout
 
 authors:
-  ay: An Yu; anyu
+  ag: Anand Gaitonde; agaitonde
   cb: Connor Braa; cbraa
   ch: Charles Hansen; chansen
   cs: Chris Selzo; cselzo
   dwf: Davis W. Frank; dwfrank
   ep: Eric Promislow
-  es: Elena Sharma; esharma
   ew: Eli Wrenn; ewrenn
   gc: Greg Cobb; gcobb
-  ir: Isobel Redelmeier; iredelmeier
-  jp: Jeff Pak
   mk: Mike Kenyon; mkenyon
-  nw: Nick Wei; nwei
-  sl: Slawek Ligus; sligus
-  sv: Sebastian Vidrio; svidrio
   td: Tim Downey; tdowney
-  tv: Tom Viehman; tviehman
   wp: Will Pragnell; wpragnell
   zr: Zach Robinson; zrobinson
 email:
   domain: pivotal.io
 email_addresses:
   ep: eric.promislow@suse.com
-  jp: jeffrey.pak@dell.com
