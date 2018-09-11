@@ -3,6 +3,9 @@ set -e
 
 if [[ ! -d ~/.config/nvim ]]; then
 	git clone https://github.com/luan/nvim ~/.config/nvim
+	echo "installing custom settings"
+	mkdir -p $HOME/.config/nvim/user
+	ln -s $HOME/workspace/capi-workspace/assets/*.vim $HOME/.config/nvim/user
 fi
 
 pushd ~/.config/nvim
@@ -18,8 +21,3 @@ pip3 install neovim
 echo "Add yamllint for neomake..."
 pip3 install -q yamllint
 
-echo "installing custom settings"
-rm -f $HOME/.config/nvim/user/after.vim
-rm -f $HOME/.config/nvim/user/plug.vim
-
-ln -s $HOME/workspace/capi-workspace/assets/*.vim $HOME/.config/nvim/user
