@@ -9,9 +9,6 @@ source ./setup/brew.sh
 source ./setup/xcode.sh
 source ./brew-bundle.sh
 
-# install specific version of consul that's compatible with cc bridge
-source ./setup/consul.sh
-
 # bash-it / terminal
 source ./setup/bash-it.sh
 source ./setup/custom-bash-it-plugins.sh
