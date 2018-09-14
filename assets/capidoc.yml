@@ -51,6 +51,10 @@ run_bridge_tests:
   description: Run Bridge tests
   location: capi-release/scripts
   group: test
+sits:
+  description: Runs sits against a bosh lite
+  location: capi-release/scripts
+  group: test
 staged_shortlog:
   description: Add a git log to a commit
   location: capi-release/scripts
@@ -60,7 +64,7 @@ sync_package_specs:
   location: capi-release/scripts
   group:
 sync_submodule_config:
-  description: 
+  description:
   location: capi-release/scripts
   group:
 target_cf:
