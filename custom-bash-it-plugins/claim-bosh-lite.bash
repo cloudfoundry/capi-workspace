@@ -17,11 +17,9 @@ function claim_bosh_lite() {
     }
 
     function claim_random_environment() {
-      pool="bosh-lites"
-
       git pull --rebase --quiet --no-verify
 
-      for f in ./${pool}/unclaimed/*; do
+      for f in $(ls -tr ./bosh-lites/unclaimed/*); do
         test -f "$f" || continue
 
         msg "Claiming $( basename $f )..."
@@ -29,7 +27,7 @@ function claim_bosh_lite() {
         return $?
       done
 
-      msg "No unclaimed environment found in $pool"
+      msg "No unclaimed environment found in bosh-lites"
       return 1
     }
 
