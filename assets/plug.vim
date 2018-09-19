@@ -37,6 +37,7 @@ let g:tagbar_type_go = {
 
 Plug 'godoctor/godoctor.vim', { 'do': 'go get -u github.com/godoctor/godoctor' }
 Plug 'scrooloose/nerdtree'
+Plug 'pedrohdz/vim-yaml-folds'
 " ---------------
 " NERDTree
 " ---------------
