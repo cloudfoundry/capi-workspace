@@ -25,9 +25,9 @@ pushd ~/workspace > /dev/null
 		ln -s	$HOME/go/src/github.com/cloudfoundry/sync-integration-tests ~/workspace/sync-integration-tests
 	fi
 
-	clone git@github.com:cloudfoundry/cli.git ~/go/src/github.com/code.cloudfoundry.org/cli
+	clone git@github.com:cloudfoundry/cli.git ~/go/src/code.cloudfoundry.org/cli
 	if [ ! -L ~/workspace/cli ]; then
-		ln -s	$HOME/go/src/github.com/code.cloudfoundry.org/cli/ ~/workspace/cli
+		ln -s	$HOME/go/src/code.cloudfoundry.org/cli/ ~/workspace/cli
 	fi
 
 	# perm stuff
