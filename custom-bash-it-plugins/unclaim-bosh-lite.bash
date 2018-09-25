@@ -53,7 +53,7 @@ function unclaim_bosh_lite() {
 
 
 _unclaim_bosh_lite_completions() {
-  COMPREPLY=($(compgen -W "$(ls ~/workspace/capi-env-pool)" "${COMP_WORDS[1]}"))
+  COMPREPLY=($(compgen -W "$(ls ~/workspace/capi-env-pool/bosh-lites/claimed)" "${COMP_WORDS[1]}"))
 }
 
 export -f unclaim_bosh_lite
