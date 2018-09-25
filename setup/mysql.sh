@@ -13,11 +13,11 @@ for i in $(seq 60); do
 done
 
 # Wait a bit to ensure MySQL is truly up and running
-sleep 5
+sleep 15
 
 # Run mysql upgrader
 mysql_upgrade -uroot -ppassword == 2 || :
-sleep 5
+sleep 15
 
 # Change the admin password
 if ! mysql -uroot -ppassword -e 'show databases' > /dev/null 2>&1; then
