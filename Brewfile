@@ -7,6 +7,7 @@ tap 'neovim/neovim'
 
 brew 'ack'
 brew 'aria2'
+brew 'autojump'
 brew 'awscli'
 brew 'bash-completion'
 brew 'bat'

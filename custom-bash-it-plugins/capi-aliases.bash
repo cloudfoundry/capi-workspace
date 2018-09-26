@@ -1,5 +1,6 @@
 #FASD
 alias v='fasd -e vim'
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 alias b='bundle exec'
 alias bake='bundle exec rake'
