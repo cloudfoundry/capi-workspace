@@ -6,6 +6,7 @@ tap 'universal-ctags/universal-ctags'
 tap 'neovim/neovim'
 
 brew 'ack'
+brew 'adr-tools'
 brew 'aria2'
 brew 'autojump'
 brew 'awscli'
