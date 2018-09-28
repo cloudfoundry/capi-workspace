@@ -61,7 +61,7 @@ bookmarks.reset_capi_folder
 bookmarks.insert_links_into_capi_folder(
   {
     'CAPI Trello' => 'http://board.capi.land',
-    'Conor' => 'http://braa.capi.land',
+    'Connor' => 'http://braa.capi.land',
     'Chris' => 'http://chris.capi.land',
     'CI' => 'https://ci.capi.land',
     'Elena' =>'http://elena.capi.land',
