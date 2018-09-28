@@ -1,15 +1,18 @@
 #!/bin/bash
 set -e
 
-if [[ ! -d ~/.config/nvim ]]; then
-	git clone https://github.com/luan/nvim ~/.config/nvim
-	echo "installing custom settings"
-	mkdir -p $HOME/.config/nvim/user
-	ln -s $HOME/workspace/capi-workspace/assets/*.vim $HOME/.config/nvim/user
+# this is where new luan nvim installs to, so delete it to revert
+rm -rf ~/.config/nvim/
+
+if [[ ! -d ~/.vim ]]; then
+	curl vimfiles.luan.sh/install | bash
 fi
 
-pushd ~/.config/nvim
-	git pull
+pushd ~/.vim
+if git remote -v | grep -q luan &> /dev/null; then
+	echo $PWD
+	./install
+fi
 popd
 
 echo "Update pip..."
@@ -20,4 +23,3 @@ pip3 install neovim
 
 echo "Add yamllint for neomake..."
 pip3 install -q yamllint
-
