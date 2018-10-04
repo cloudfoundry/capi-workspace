@@ -10,6 +10,9 @@ export EDITOR=nvim
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# Add CLI to path
+export PATH=$GOPATH/src/code.cloudfoundry.org/cli/out:$PATH
+
 # Add capi-workspace/scripts, capi-ci/scripts, and capi-release/scripts to PATH
 export PATH="$PATH:$HOME/workspace/capi-release/scripts:$HOME/workspace/capi-ci/scripts:$HOME/workspace/capi-workspace/scripts:$HOME/workspace/capi-env-pool/scripts"
 
