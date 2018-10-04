@@ -4,6 +4,7 @@
 	co = checkout
 	di = diff
 	ds = "diff --staged"
+  commit = duet-commit
 	fixup = "commit --fixup"
 	flog = "log --pretty=fuller --decorate"
 	lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
@@ -15,6 +16,9 @@
 	st = status
 	sta = stash
 	unstage = "reset HEAD"
+  cp = cherry-pick
+  ri = rebase --interactive
+  rio = rebase --interactive origin/master
 
 ## git-duet commands
 	amend = "duet-commit --amend"
