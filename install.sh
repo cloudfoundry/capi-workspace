@@ -59,11 +59,8 @@ source ./setup/snyk.sh
 # Add gem dependencies for CAPI-Workspace
 bundle
 
-# Index capi.land links in Spotlight
-./setup/capi-land-links.rb
 echo "Please set your computer name using \"./setup/system-name.sh <name>\" if you have not already. Thanks!"
 }
-
 
 
 function open_picklecat() {
