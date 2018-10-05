@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+creds_file=$1
+director_file=$2
+
+bosh_ca_cert=$(bosh int ${creds_file} --path=/director_ssl/ca)
+bosh_client_secret=$(bosh int ${creds_file} --path=/admin_password)
+bosh_gw_private_key_contents=$(bosh int ${creds_file} --path=/jumpbox_ssh/private_key)
+credhub_secret=$(bosh int ${creds_file} --path=/credhub_admin_client_secret)
+
+bosh_environment=$(bosh int ${director_file} --path=/instance_groups/name=bosh/networks/name=public/static_ips/0)
+bosh_lite_name=$(bosh int ${director_file} --path=/networks/name=default/subnets/0/cloud_properties/network_name)
+
+cat > "${HOME}/workspace/capi-env-pool/bosh-lites/claimed/${bosh_lite_name}" <<EOF
+export BOSH_CA_CERT="${bosh_ca_cert}"
+export BOSH_CLIENT="admin"
+export BOSH_CLIENT_SECRET="${bosh_client_secret}"
+export BOSH_ENVIRONMENT="${bosh_environment}"
+export BOSH_DEPLOYMENT="cf"
+export BOSH_GW_USER="jumpbox"
+export BOSH_GW_HOST="${bosh_environment}"
+export BOSH_GW_PRIVATE_KEY_CONTENTS="${bosh_gw_private_key_contents}"
+export BOSH_LITE_DOMAIN="${bosh_lite_name}.capi.land"
+export CREDHUB_SERVER="${bosh_environment}:8844"
+export CREDHUB_CLIENT="credhub-admin"
+export CREDHUB_SECRET="${credhub_secret}"
+EOF
+
+mkdir -p "${HOME}/workspace/capi-env-pool/${bosh_lite_name}"
+
+echo "run 'target_bosh ${bosh_lite_name}'"
+echo "To dispose of this bosh lite, run 'mv ~/workspace/capi-env-pool/bosh-lites/claimed/${bosh_lite_name} ~/workspace/capi-env-pool/broken-bosh-lites/unclaimed'"

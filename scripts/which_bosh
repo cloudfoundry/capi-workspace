@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ -z $BOSH_LITE_DOMAIN ]; then
+  echo "No bosh targeted. Use \"target_bosh <name>\" to target an environment or \"print_env_info\" to see a list of environments"
+else
+  echo ${BOSH_LITE_DOMAIN}
+fi
+
+

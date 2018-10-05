@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -ue
+
+get_uaa_admin_password() {
+  echo "Getting UAA admin password from credhub... "
+  set +u # $CREDHUB_PASSWORD may be unbound
+  if [[ -z $CREDHUB_PASSWORD ]]; then
+    credhub login --skip-tls-validation
+  else
+    credhub login -s "$CREDHUB_SERVER" -u "$CREDHUB_USERNAME" -p "$CREDHUB_PASSWORD" --skip-tls-validation
+  fi
+  set -u
+  uaa_admin_password=$(credhub get --name '/bosh-lite/cf/uaa_admin_client_secret' --output-json | jq -r '.value')
+}
+
+login() {
+  uaac target uaa.${BOSH_LITE_DOMAIN} --skip-ssl-validation
+  uaac token client get admin -s $uaa_admin_password
+  echo "UAA password = ${uaa_admin_password}"
+}
+
+main() {
+  get_uaa_admin_password
+  login
+}
+
+main

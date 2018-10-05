@@ -10,8 +10,8 @@ export EDITOR=nvim
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# Add capi-workspace/scripts, capi-ci/scripts, and capi-release/scripts to PATH
-export PATH="$PATH:$HOME/workspace/capi-release/scripts:$HOME/workspace/capi-ci/scripts:$HOME/workspace/capi-workspace/scripts:$HOME/workspace/capi-env-pool/scripts"
+# Add capi-workspace/scripts to PATH
+export PATH="$PATH:$HOME/workspace/capi-workspace/scripts"
 
 # Add brew-installed python to the path.
 # Must go at the beginning so that it's prioritized over the system installation.
