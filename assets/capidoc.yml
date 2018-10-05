@@ -60,7 +60,7 @@ sits:
   group: testing
 staged_shortlog:
   description: Get commit shortlogs and authors from submodule changes
-  location: capi-workspace/scripts
+  location: capi-release/scripts
   group: git
 sync_package_specs:
   description: Add go submodule dependencies to bosh package specs
