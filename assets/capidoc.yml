@@ -1,59 +1,62 @@
-# capi-release
 bootstrap_cf:
   description: "Target a CF, creates an org, space, and targets them"
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 cats:
   description: Runs cats with local integration_config
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: testing
 cats_cleanup:
   description: Deletes builpacks, orgs, quotes, and service brokers in a targeted CF
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: testing
 commit_with_shortlog:
   description: Git commit with a staged_shortlog
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: git
 compare_db_rows:
   description: Compares counts of two db's rows to validate backup & restore
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: backup-restore
 create_and_deploy:
   description: Create a capi release, upload to current bosh target, and deploy with default ops files (interactive)
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-deploy
 create_and_upload:
   description: Create a capi release and upload to current bosh target
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-deploy
 deploy:
   description: Create a capi release, upload to current bosh target, and deploy with default ops files (non interactive)
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-deploy
 fixcommitter:
   description: Cleans up committer/author after a rebase
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: git
+gcs_to_claimed:
+  description: Convert bosh-lite environment files stored in gcs to a claimed bosh-lite
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
 mysql_bosh_lite:
   description: Connect to current bosh target's MySQL DB
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 print_env_info:
   description: List all the claimed bosh-lites in the pool
-  location: capi-env-pool/scripts
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 psql_bosh_lite:
   description: Connect to current bosh target's MySQL DB
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 run_bridge_tests:
   description: Run Bridge unit tests
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: testing
 sits:
   description: Runs sits against a bosh lite
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: testing
 staged_shortlog:
   description: Get commit shortlogs and authors from submodule changes
@@ -69,11 +72,11 @@ sync_submodule_config:
   group: capi-release-author
 target_cf:
   description: "Change cf cli target to the cloud foundry deployed on currently targeted bosh (hint: use \"target_bosh\" first)."
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 target_uaa:
   description: Change uaac target to currently targeted bosh and login as admin
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 unused_blobs:
   description: Detects unused blobs from the blobs.yml file
@@ -118,16 +121,16 @@ gi:
   group: ruby-dev
 set_capi_pipeline:
   description: Set the capi pipeline to your local config file (fly set-pipeline)
-  location: capi-ci/scripts
+  location: capi-workspace/scripts
   group: ci
 watch_cc_units:
   description: Watch CAPI CI unit tests. For a specific run, -b build_number (fly watch)
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: ci
 # functions
 cf_admin_password:
   description: Get the CF admin password for a current bosh target (requires credhub)
-  location: capi-release/scripts/cf_admin_password
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 claim_bosh_lite:
   description: Claim an available bosh lite CF
@@ -139,7 +142,7 @@ delete_orgs:
   group: testing
 deploy_only_new_capi:
   description: Deploy just the current CAPI to current bosh target
-  location: capi-release/scripts
+  location: capi-workspace/scripts
   group: bosh-deploy
 target_bosh:
   description: Target a bosh environment from the pool
@@ -149,9 +152,13 @@ unclaim_bosh_lite:
   description: Return a bosh lite CF back to the pool
   location: capi-workspace/custom-bash-it-plugins
   group: bosh-lite-pool
+which_capi:
+  description: Given a cloud_controller_ng commit, print which version of capi-release it first appears in
+  location: capi-workspace/scripts
+  group: git
 which_bosh:
   description: Print which bosh environment is currently targeted
-  location: capi-release/scripts/which_bosh
+  location: capi-workspace/scripts
   group: bosh-lite-pool
 pullify:
   description: Pull down all PRs for current git repo as branches

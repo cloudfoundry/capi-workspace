@@ -1,10 +1,9 @@
 #!/bin/bash
 set -e
 
-current_directory=$PWD
-preferences_path="/Users/$(whoami)/Library/Preferences/com.divisiblebyzero.Spectacle.plist"
+desired_prefs="${HOME}/workspace/capi-workspace/assets/com.divisiblebyzero.Spectacle.plist"
+current_prefs="${HOME}/Library/Preferences/com.divisiblebyzero.Spectacle.plist"
 
-echo $current_directory
-echo $preferences_path
-
-cp -f "${current_directory}/assets/com.divisiblebyzero.Spectacle.plist" "${preferences_path}"
+if ! diff "${desired_prefs}" "${current_prefs}"; then
+	cp -f "${desired_prefs}" "${current_prefs}"
+fi

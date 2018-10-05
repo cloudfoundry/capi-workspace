@@ -1,0 +1,21 @@
+do_fixcommitter () 
+{ 
+    ( committer=$(git show HEAD -s --pretty="tformat:%b" | grep Signed-off | cut -d: -f2);
+    if git branch -a --contains=HEAD | grep --color=auto remotes; then
+        return;
+    fi;
+    if [ "x$committer" != "x" ]; then
+        GIT_COMMITTER_EMAIL=$(echo $committer | cut -d\< -f2 | cut -d\> -f1);
+        GIT_COMMITTER_NAME=$(echo $committer | cut -d\< -f1);
+        GIT_COMMITTER_NAME=${GIT_COMMITTER_NAME%% };
+        GIT_COMMITTER_NAME=${GIT_COMMITTER_NAME## };
+    else
+        GIT_COMMITTER_NAME=$(git show HEAD -s --pretty="tformat:%an");
+        GIT_COMMITTER_EMAIL=$(git show HEAD -s --pretty="tformat:%ae");
+    fi;
+    export GIT_COMMITTER_NAME;
+    export GIT_COMMITTER_EMAIL;
+    git commit -n --amend -CHEAD )
+}
+
+do_fixcommitter "$@"

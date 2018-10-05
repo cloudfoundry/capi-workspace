@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#CATS
+cf buildpacks | grep -E 'CATS|SMOKE|SITS' | awk '{ print $1 }' | xargs -n 1 -P 8 cf delete-buildpack -f
+cf orgs | grep -E 'WATS|CATS|SMOKE|SITS' | grep -v persistent | xargs -n 1 -P 8 cf delete-org -f
+cf quotas | grep -E 'WATS|CATS|SMOKE|SITS' | grep -v persistent | awk '{ print $1 }' | xargs -n 1 -P 8 cf delete-quota -f
+cf service-brokers | grep -E 'WATS|CATS|SMOKE|SITS' | grep -v persistent | awk '{ print $1 }' | xargs -n 1 -P 8 cf delete-service-broker -f
