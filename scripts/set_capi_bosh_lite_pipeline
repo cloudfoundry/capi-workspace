@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+echo "Pulling 'capi-ci-private'..."
+pushd ~/workspace/capi-ci-private > /dev/null
+  git pull -r
+popd > /dev/null
+
+fly -t capi \
+    set-pipeline \
+    -p bosh-lite \
+    -c ~/workspace/capi-ci/ci/pipeline-bosh-lite.yml \
+    -l ~/workspace/capi-ci-private/ci/credentials-bosh-lite.yml
