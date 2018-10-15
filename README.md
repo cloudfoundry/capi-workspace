@@ -29,6 +29,8 @@ Hello there! This repo is meant to replace the CAPI team [sprout-wrap](https://w
 * Open System Preferences / Users & Groups / <user> / Login Items
     * Add `flycut` from Applications
     * Add `spectacle` from Applications
+* Log out/Log in
+    * This will cause Flycut and Spectacle to run and ask for permissions
 * Open up Rubymine manually and select `License Server` and copy in the the rubymine license from the labs license server (http://omaha.pivotallabs.com:8080/licenseServer in the SF office)
   - If you are not on a Pivotal Network, you need to VPN into one in order to access this server.
 * Install the `mine` cli shortcut (RubyMine -> Tools -> Create Command-line Launcher...)
