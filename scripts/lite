@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+target_cf
+cf rp test
