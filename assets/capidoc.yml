@@ -10,6 +10,10 @@ relite:
   description: "Delete the 'test' org then call lite. For cleaning the slate."
   location: capi-workspace/scripts
   group: bosh-lite-pool
+seed_users:
+  description: "Add users of every role to the current org and space"
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
 cats:
   description: Runs cats with local integration_config
   location: capi-workspace/scripts
@@ -135,6 +139,10 @@ watch_cc_units:
   description: Watch CAPI CI unit tests. For a specific run, -b build_number (fly watch)
   location: capi-workspace/scripts
   group: ci
+cfu:
+  description: Alias for seed_users
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
 # functions
 cf_admin_password:
   description: Get the CF admin password for a current bosh target (requires credhub)

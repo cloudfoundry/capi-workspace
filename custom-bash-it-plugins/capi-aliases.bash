@@ -21,3 +21,4 @@ function g() {
 
 # Misc aliases
 alias fl="fly -t ci login -c https://ci.cli.fun -n main -b"
+alias cfu="seed_users"
