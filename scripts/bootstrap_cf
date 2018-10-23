@@ -3,15 +3,17 @@
 set -ue
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+orgname=${1:-org}
+spacename=${2:-space}
 
 create_and_target_org() {
-  cf create-org org
-  cf target -o org
+  cf create-org ${orgname}
+  cf target -o ${orgname}
 }
 
 create_and_target_space() {
-  cf create-space space
-  cf target -s space
+  cf create-space ${spacename}
+  cf target -s ${spacename}
 }
 
 main() {
