@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-set -e
+set -ue
 
-target_cf
-cf rp retest
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+main() {
+  cf delete-org test -f
+  ${__dir}/lite
+}
+
+main

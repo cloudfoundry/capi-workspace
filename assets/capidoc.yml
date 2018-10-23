@@ -2,6 +2,14 @@ bootstrap_cf:
   description: "Target a CF, creates an org, space, and targets them"
   location: capi-workspace/scripts
   group: bosh-lite-pool
+lite:
+  description: "Just like bootstrap_cf but names org and space 'test'"
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
+relite:
+  description: "Delete the 'test' org then call lite. For cleaning the slate."
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
 cats:
   description: Runs cats with local integration_config
   location: capi-workspace/scripts
