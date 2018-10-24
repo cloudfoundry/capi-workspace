@@ -19,15 +19,23 @@ target_bosh() {
 
     if [ -f "$env_file" ]; then
       source "$env_file"
-      echo "$(tput setaf 2)Success!$(tput setaf 9)"
-      env_ssh_key_path="$HOME/workspace/capi-env-pool/${1}/bosh.pem"
+      env_ssh_key_path="${HOME}/workspace/capi-env-pool/${1}/bosh.pem"
+      env_integration_config_path="${HOME}/workspace/capi-env-pool/${1}/integration_config.json"
 
-      if [ ! -f "$env_ssh_key_path" ]; then
-        echo "$BOSH_GW_PRIVATE_KEY_CONTENTS" > "$env_ssh_key_path"
-        chmod 0600 "$env_ssh_key_path"
+      if [ ! -f "${env_ssh_key_path}" ]; then
+        echo "${BOSH_GW_PRIVATE_KEY_CONTENTS}" > "${env_ssh_key_path}"
+        chmod 0600 "${env_ssh_key_path}"
       fi
 
-      export BOSH_GW_PRIVATE_KEY="$env_ssh_key_path"
+      if [ ! -f "${env_integration_config_path}" ]; then
+        echo "writing ${1} a capi-specific integration_config.json..."
+        generate_integration_config > "${env_integration_config_path}"
+      fi
+
+      echo "$(tput setaf 2)Success!$(tput setaf 9)"
+
+      export BOSH_GW_PRIVATE_KEY="${env_ssh_key_path}"
+      export CONFIG="${env_integration_config_path}"
     else
       echo "$(tput setaf 1)Environment '${1}' does not exist. Valid environments are:$(tput setaf 9)"
       ls ${pool_dir}
