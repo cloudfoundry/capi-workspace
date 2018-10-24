@@ -58,7 +58,7 @@ function claim_bosh_lite() {
     }
 
     function create_env_dir() {
-      msg "Writing out .envrc and integration_config.json..."
+      msg "Writing out .envrc..."
       env_file="$1"
       env_name="$(basename "${env_file}")"
 
