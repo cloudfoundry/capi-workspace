@@ -155,7 +155,6 @@ EOF
     direnv allow "${env_dir}"
     echo "Changing directory to '${env_dir}'..."
     cd "${env_dir}"
-    write_integration_config
   fi
 }
 
