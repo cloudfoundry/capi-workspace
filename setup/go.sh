@@ -12,8 +12,6 @@ if [ -L ${go_src} ]; then
 fi
 
 GO_UTILS=(
-	code.cloudfoundry.org/perm/cmd/perm
-	github.com/rakyll/hey
   github.com/alecthomas/gometalinter
   github.com/jteeuwen/go-bindata/...
   github.com/maxbrunsfeld/counterfeiter
