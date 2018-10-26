@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'yaml'
+require 'rainbow/refinement'
+using Rainbow
+
+class Vat < Thor
+
+  package_name 'VAT'
+
+  def self.exit_on_failure?
+    true
+  end
+
+  desc 'list GROUP', 'List available helpful VAT commands'
+  def list(group = "all")
+    load_vatdoc
+    groups = group_and_sort_by_command
+
+    puts "Available VAT commands: (by group)".red
+
+    groups.each do |group, commands|
+      puts group.yellow.bright
+
+      commands.each do |cmd|
+        printf "    %-32s \t\t %s\n", cmd[:command].green.bright, cmd[:description]
+      end
+    end
+  end
+
+  desc 'which COMMAND', 'Show where command is defined'
+  def which(command)
+    load_vatdoc
+    commands = sorted_commands
+
+
+    if commands[command].nil?
+      puts "No command #{command} found".red
+      puts 'If you expect this command to exist, please update ' + 'capi-workspace/assets/vatdoc.yml'.yellow.bright
+      return
+    end
+
+    puts "#{command}".green.bright + ' is defined in ' + "#{commands[command]['location']}".yellow
+  end
+
+  default_task :list
+
+  private
+
+  def load_vatdoc
+    path_to_vatdoc_yml = File.expand_path(File.join(__FILE__, '..', '..', '/assets', 'vatdoc.yml'))
+    @yaml = YAML.load(File.open(path_to_vatdoc_yml))
+  end
+
+  def group_and_sort_by_command
+    groups = {}
+    @yaml.each do |command, command_info|
+      group = command_info["group"] || "None"
+      groups[group] = [] if groups[group].nil?
+
+      groups[group].push({
+        command: command,
+        description: command_info["description"],
+        location: command_info["location"]
+      })
+    end
+
+    groups = Hash[groups.sort_by {|group, cmd| group}]
+
+    groups.each do |group, command|
+      command.sort! {|x,y| x[:command] <=> y[:command]}
+    end
+  end
+
+  def sorted_commands
+    Hash[@yaml.sort_by { |command, command_info| command }]
+  end
+
+end
+
+Vat.start(ARGV)

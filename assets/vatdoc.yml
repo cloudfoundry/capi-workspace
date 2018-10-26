@@ -1,0 +1,50 @@
+bootstrap_cf:
+  description: "Target a CF, creates an org, space, and targets them"
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
+fixcommitter:
+  description: Cleans up committer/author after a rebase
+  location: capi-workspace/scripts
+  group: git
+print_env_info:
+  description: List all the claimed bosh-lites in the pool
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
+target_cf:
+  description: "Change cf cli target to the cloud foundry deployed on currently targeted bosh (hint: use \"target_bosh\" first)."
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
+# Aliases
+z:
+  description: "Change current directory to directory matching provided pattern (ex: z ng)"
+  location:
+  group: file-system
+fl:
+  description: logs into VAT/CLI's Concourse
+  location:
+  group: concourse
+# functions
+cf_admin_password:
+  description: Get the CF admin password for a current bosh target (requires credhub)
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
+claim_bosh_lite:
+  description: Claim an available bosh lite CF
+  location: capi-workspace/custom-bash-it-plugins
+  group: bosh-lite-pool
+int:
+  description: sets CLI integration ENV vars based on claimed bosh-lite
+  location: capi-workspace/custom-bash-it-plugins
+  group: CLI-dev
+target_bosh:
+  description: Target a bosh environment from the pool
+  location: capi-workspace/custom-bash-it-plugins
+  group: bosh-lite-pool
+unclaim_bosh_lite:
+  description: Return a bosh lite CF back to the pool
+  location: capi-workspace/custom-bash-it-plugins
+  group: bosh-lite-pool
+which_bosh:
+  description: Print which bosh environment is currently targeted
+  location: capi-workspace/scripts
+  group: bosh-lite-pool
