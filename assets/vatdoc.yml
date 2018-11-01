@@ -6,9 +6,9 @@ fixcommitter:
   description: Cleans up committer/author after a rebase
   location: capi-workspace/scripts
   group: git
-print_env_info:
+where_my_bosh_lites_at:
   description: List all the claimed bosh-lites in the pool
-  location: capi-workspace/scripts
+  location: capi-workspace/custom-bash-it-plugins
   group: bosh-lite-pool
 target_cf:
   description: "Change cf cli target to the cloud foundry deployed on currently targeted bosh (hint: use \"target_bosh\" first)."
