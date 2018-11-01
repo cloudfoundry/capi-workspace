@@ -19,6 +19,7 @@
   cp = cherry-pick
   ri = rebase --interactive
   rio = rebase --interactive origin/master
+  s = status --short --branch
 
 ## git-duet commands
 	amend = "duet-commit --amend"
