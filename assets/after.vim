@@ -17,7 +17,7 @@ set nolist  " list disables linebreak
 " Set up GoGuru to root of CLI
 autocmd BufRead ~/go/src/code.cloudfoundry.org/cli/**/*.go
       \ silent
-      \ :GoGuruScope code.cloudfoundry.org/cli
+      \ :GoGuruScope code.cloudfoundry.org/cli/...
 
 " Bind buffer next/previous
 nnoremap <silent> <localleader>x :bn<CR>
