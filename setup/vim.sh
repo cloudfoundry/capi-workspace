@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-# this is where new luan nvim installs to, so delete it to revert
-rm -rf ~/.config/nvim/ ~/.vim* ~/.local/share/nvim/
-
-git clone https://github.com/luan/nvim ~/.config/nvim
+# install luan's nvim config if it's not there
+grep -q "github.com/luan/nvim" ~/.config/nvim/.git/config ||
+	(rm -rf ~/.config/nvim/ ~/.vim* ~/.local/share/nvim/ &&
+	git clone https://github.com/luan/nvim ~/.config/nvim)
 
 echo "Update pip..."
 pip3 install --upgrade pip
