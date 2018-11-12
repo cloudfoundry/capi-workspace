@@ -43,6 +43,9 @@ source ./setup/go.sh
 # Depends on existence of GOPATH, created earlier on
 source ./clone-repos.sh
 
+source ./build-cli.sh
+source ./link-cf6.sh
+
 source ./setup/cats.sh
 
 source ./setup/fly.sh
