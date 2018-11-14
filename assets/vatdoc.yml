@@ -23,6 +23,10 @@ fl:
   description: logs into VAT/CLI's Concourse
   location:
   group: concourse
+lazy:
+  description: git pull -r && fixcommitter && make && git push
+  location:
+  group: git
 # functions
 cf_admin_password:
   description: Get the CF admin password for a current bosh target (requires credhub)
