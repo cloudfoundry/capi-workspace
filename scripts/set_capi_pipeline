@@ -7,6 +7,10 @@ pushd ~/workspace/capi-ci-private > /dev/null
   git pull -r
 popd > /dev/null
 
+if ! fly -t capi status ; then
+  fly -t capi login -b
+fi
+
 fly -t capi \
     set-pipeline \
     -p capi \

@@ -58,9 +58,4 @@ function unclaim_bosh_lite() {
 }
 
 
-_unclaim_bosh_lite_completions() {
-  COMPREPLY=($(compgen -W "$(ls ~/workspace/cli-pools/bosh-lites/claimed)" "${COMP_WORDS[1]}"))
-}
-
 export -f unclaim_bosh_lite
-complete -F _unclaim_bosh_lite_completions unclaim_bosh_lite

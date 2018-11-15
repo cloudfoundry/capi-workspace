@@ -9,6 +9,9 @@ source ./setup/brew.sh
 source ./setup/xcode.sh
 source ./brew-bundle.sh
 
+# Setup radar menu bar item to point at our concourse
+source ./setup/radar.sh
+
 # bash-it / terminal
 source ./setup/bash-it.sh
 source ./setup/custom-bash-it-plugins.sh

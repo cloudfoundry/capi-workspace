@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -ue
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+main() {
+  cf delete-org test -f
+  ${__dir}/lite
+}
+
+main

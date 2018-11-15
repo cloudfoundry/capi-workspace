@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -ue
+
+main() {
+  cf create-user space_developer password
+  cf set-space-role space_developer test test SpaceDeveloper
+  cf create-user space_manager password
+  cf set-space-role space_manager test test SpaceManager
+  cf create-user space_auditor password
+  cf set-space-role space_auditor test test SpaceAuditor
+  cf create-user billing_manager password
+  cf set-org-role billing_manager test BillingManager
+  cf create-user org_manager password
+  cf set-org-role org_manager test OrgManager
+  cf create-user org_auditor password
+  cf set-org-role org_auditor test OrgAuditor
+}
+
+main

@@ -94,6 +94,9 @@ echo "create_and_deploy -n"
 echo -e "${green}\n## Deploy changes only ##${nc}"
 echo "deploy_only_new_capi"
 
+echo -e "${green}\n## Run cats using the integration_config.json in this directory ##${nc}"
+echo "cats"
+
 echo -e "${green}\n## Connect to this environment mysql ##${nc}"
 echo "mysql_bosh_lite"
 
