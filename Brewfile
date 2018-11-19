@@ -26,7 +26,7 @@ brew 'fasd'
 brew 'git'
 brew 'git-duet'
 brew 'git-secrets'
-brew 'go@1.10', link: true, conflicts_with: ["go"]
+brew 'go'
 brew 'httpie'
 brew 'jq'
 brew 'lastpass-cli'
