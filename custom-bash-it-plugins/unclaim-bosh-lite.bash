@@ -1,12 +1,17 @@
 function unclaim_bosh_lite() {
 
+  local env_pool="$HOME/workspace/cli-pools"
+
   # ensures we don't remove the current working directory
+  if [[ "$PWD" == *cli-pools* ]]; then
+    cd "$HOME/workspace/cli-pools"
+  fi
   if [[ "$PWD" == *cli-pools* ]]; then
     cd "$HOME/workspace/cli-pools"
   fi
   (
     set -e
-    cd ~/workspace/cli-pools
+    cd "$env_pool"
 
     working_pool="bosh-lites"
     broken_pool="bosh-lites-to-be-deleted"
