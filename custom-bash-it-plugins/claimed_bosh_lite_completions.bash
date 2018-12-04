@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 _claimed_bosh_lite_completions() {
-  COMPREPLY=($(compgen -W "$(ls ~/workspace/capi-env-pool/bosh-lites/claimed)" "${COMP_WORDS[1]}"))
+	local env_pools="$HOME/workspace/capi-env-pool"
+  COMPREPLY=($(compgen -W "$(ls ${env_pools}/bosh-lites/claimed)" "${COMP_WORDS[1]}"))
 }
 
 complete -F _claimed_bosh_lite_completions target_bosh
