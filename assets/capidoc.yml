@@ -1,3 +1,7 @@
+baras:
+  description: Runs baras with local integration_config
+  location: capi-workspace/scripts
+  group: testing
 bootstrap_cf:
   description: "Target a CF, creates an org, space, and targets them"
   location: capi-workspace/scripts

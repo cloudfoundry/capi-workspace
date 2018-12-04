@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd ~/go/src/github.com/cloudfoundry/capi-bara-tests
+if [[ -n ${CONFIG} && -f ${CONFIG} ]] ; then
+    echo "Use CONFIG of ${CONFIG}"
+else
+    export CONFIG=${PWD}/integration_config.json
+fi
+
+bin/test --nodes=4
