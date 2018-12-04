@@ -9,4 +9,4 @@ else
     export CONFIG=${PWD}/integration_config.json
 fi
 
-bin/test --nodes=4
+bin/test --nodes=4 "$@"
