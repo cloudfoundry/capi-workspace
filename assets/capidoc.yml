@@ -66,6 +66,10 @@ psql_bosh_lite:
   description: Connect to current bosh target's MySQL DB
   location: capi-workspace/scripts
   group: bosh-lite-pool
+quick_deploy:
+  description: Quickly upload changes in cloud_controller_ng to relevant vms and restart"
+  location: capi-workspace/scripts
+  group: bosh-deploy
 run_bridge_tests:
   description: Run Bridge unit tests
   location: capi-workspace/scripts

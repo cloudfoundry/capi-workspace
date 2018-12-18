@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -exu
+
+TARFILE=$(mktemp -t qd)
+TARBASE=$(basename $TARFILE)
+SLEEP=15
+
+pushd ~/workspace/cloud_controller_ng
+  deletedFiles=$(git status -s | awk '$1 == "D" { print $2 }')
+  changedFiles=$(git status -s | awk '$1 != "D" { print $2 }')
+  tar cf $TARFILE $changedFiles
+popd
+
+SDIR=/var/vcap/packages/cloud_controller_ng/cloud_controller_ng
+
+for target in $(bosh is --json | jq -r '.Tables[0].Rows[] | select(.process_state="running") | select(.instance | test("\\A(?:api|cc-worker|scheduler)/")) | .instance')
+do 
+  bosh scp $TARFILE "${target}:/tmp/${TARBASE}"
+  for x in $deletedFiles ; do
+     bosh ssh $target "sudo rm -f $SDIR/$x"
+  done
+  bosh ssh $target "sudo tar -C $SDIR -xf /tmp/$TARBASE"
+done
+
+MONIT=/var/vcap/bosh/bin/monit
+bosh ssh api "sudo $MONIT restart cloud_controller_ng; sudo $MONIT restart cloud_controller_worker_local_1 ; sudo $MONIT restart cloud_controller_worker_local_2"
+bosh ssh cc-worker "sudo $MONIT restart cloud_controller_worker_1"
+bosh ssh scheduler "sudo $MONIT restart cloud_controller_clock"
+
+echo "sleeping for $SLEEP seconds before checking status..."
+sleep $SLEEP
+
+for target in api cc-worker scheduler ; do
+    echo $target
+    bosh ssh $target "sudo $MONIT summary"
+done
