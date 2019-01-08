@@ -61,11 +61,11 @@ EOF
   echo "Running sits..."
 
   pushd ~/go/src/code.cloudfoundry.org/sync-integration-tests > /dev/null
-    ginkgo -r -nodes=3 -randomizeAllSpecs
+    ginkgo -r -nodes=3 -randomizeAllSpecs "$@"
   popd > /dev/null
 
   rm -r "${config_dir}"
   rm -r "${bosh_certs_dir}"
 }
 
-main
+main "$@"
