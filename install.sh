@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
 function install {
+
+cd "$(dirname "$0")"
 
 # install brew and its packages
 source ./setup/brew.sh
@@ -50,7 +52,7 @@ source ./setup/cats.sh
 
 source ./setup/fly.sh
 
-source ./setup/cron.sh
+source ./setup/launchagent-daily-install.sh
 
 source ./setup/misc.sh
 
@@ -71,8 +73,17 @@ function open_picklecat() {
   open http://dn.ht/picklecat/
 }
 
+function exit_successfully() {
+  # clean up autoinstall logs on autoinstall success
+  if [ ! -t 1 ] ; then
+    echo -n > $HOME/workspace/capi-workspace/launchagent-daily-install.log
+  fi
+
+  echo "Successfully installed!"
+}
+
 trap '{ case $? in
-   0) echo "Success!" ;;
+   0) exit_successfully; exit 0;;
    *) open_picklecat ; exit 0;;
  esac ; }' EXIT
 
