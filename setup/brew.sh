@@ -10,6 +10,7 @@ function install_brew {
 			</dev/null
 	fi
 	# to avoid ttyless complaints on brew update
+	sudo mkdir -p /usr/local/sbin
 	sudo chown -R $(whoami) /usr/local/sbin
 }
 
