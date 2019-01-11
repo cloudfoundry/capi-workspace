@@ -22,3 +22,5 @@ export PATH="$PATH:$HOME/workspace/capi-workspace/scripts"
 
 # always use postgres for tests
 export DB=postgres
+
+launchctl setenv PATH $PATH
