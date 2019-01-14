@@ -2,6 +2,6 @@
 set -e
 
 pushd ~/workspace/capi-env-pool > /dev/null
-  git pull > /dev/null
+  git pull -n > /dev/null
   ~/workspace/capi-ci/ci/bosh-lite/src/print_env_info
 popd > /dev/null

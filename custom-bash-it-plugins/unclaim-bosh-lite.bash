@@ -21,7 +21,7 @@ function unclaim_bosh_lite() {
       return 1
     fi
 
-    git pull -r --quiet --no-verify
+    git pull -n -r --quiet --no-verify
 
     function mark_broken {
       env=$1
