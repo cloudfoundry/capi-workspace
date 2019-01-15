@@ -33,5 +33,5 @@ done
 
 for gopkg in "${GO_UTILS_USING_MODULES[@]}"; do
   echo "Getting/Updating $gopkg"
-  GOPATH=$HOME/go GO111MODULE=yes go get -u $gopkg
+  GOPATH=$HOME/go GO111MODULE=on go get -u $gopkg
 done
