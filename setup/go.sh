@@ -13,7 +13,6 @@ fi
 
 GO_UTILS=(
 	code.cloudfoundry.org/perm/cmd/perm
-	github.com/rakyll/hey
   github.com/alecthomas/gometalinter
   github.com/jteeuwen/go-bindata/...
   github.com/maxbrunsfeld/counterfeiter
@@ -22,8 +21,17 @@ GO_UTILS=(
   github.com/XenoPhex/i18n4go/i18n4go
 )
 
+GO_UTILS_USING_MODULES=(
+  github.com/rakyll/hey
+)
+
 echo "Running $(go version)"
 for gopkg in "${GO_UTILS[@]}"; do
   echo "Getting/Updating $gopkg"
   GOPATH=$HOME/go go get -u $gopkg
+done
+
+for gopkg in "${GO_UTILS_USING_MODULES[@]}"; do
+  echo "Getting/Updating $gopkg"
+  GOPATH=$HOME/go GO111MODULE=yes go get -u $gopkg
 done
