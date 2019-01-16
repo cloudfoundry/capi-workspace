@@ -6,6 +6,9 @@ function install {
 
 cd "$(dirname "$0")"
 
+# nightly autoinstall setup
+source ./setup/launchagent-daily-install.sh
+
 # install brew and its packages
 source ./setup/brew.sh
 source ./setup/xcode.sh
@@ -51,8 +54,6 @@ source ./clone-repos.sh
 source ./setup/cats.sh
 
 source ./setup/fly.sh
-
-source ./setup/launchagent-daily-install.sh
 
 source ./setup/misc.sh
 
