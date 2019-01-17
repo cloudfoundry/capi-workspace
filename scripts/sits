@@ -54,7 +54,8 @@ main() {
   "bosh_environment": "$BOSH_ENVIRONMENT",
   "bosh_gw_user": "$BOSH_GW_USER",
   "bosh_gw_host": "$BOSH_GW_HOST",
-  "bosh_gw_private_key": "$BOSH_GW_PRIVATE_KEY"
+  "bosh_gw_private_key": "$BOSH_GW_PRIVATE_KEY",
+  "run_revisions_tests": true
 }
 EOF
 

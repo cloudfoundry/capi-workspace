@@ -22,10 +22,8 @@ pushd ~/workspace > /dev/null
 		ln -s	$HOME/go/src/github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
 	fi
 
-	clone git@github.com:cloudfoundry/sync-integration-tests.git ~/go/src/github.com/cloudfoundry/sync-integration-tests
-	if [ ! -L ~/workspace/sync-integration-tests ]; then
-		ln -s	$HOME/go/src/github.com/cloudfoundry/sync-integration-tests ~/workspace/sync-integration-tests
-	fi
+	clone git@github.com:cloudfoundry/sync-integration-tests.git ~/go/src/code.cloudfoundry.org/sync-integration-tests
+  ln -sfn $HOME/go/src/code.cloudfoundry.org/sync-integration-tests ~/workspace/sync-integration-tests
 
 	# clone git@github.com:cloudfoundry/capi-bara-tests.git ~/go/src/github.com/cloudfoundry/capi-bara-tests
 	# if [ ! -L ~/workspace/capi-bara-tests ]; then
