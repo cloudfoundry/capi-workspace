@@ -3,7 +3,7 @@
 function disable_cred_hook {
   mkdir -p "${1}/.git/hooks"
   cat > "${1}/.git/hooks/post-merge" << EOT
-#!/usr/bin/env/bash
+#!/usr/bin/env bash
 
 # Override the default hook that complains about credentials
 EOT
