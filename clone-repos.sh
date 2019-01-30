@@ -3,15 +3,18 @@
 set -e
 
 source ./helpers/clone.sh
+source ./helpers/disable-cred-hook.sh
 
 pushd ~/workspace > /dev/null
 
 	clone git@github.com:pivotal/pivotal_ide_prefs.git ~/workspace/pivotal_ide_prefs
 	clone git@github.com:cloudfoundry/capi-release.git ~/workspace/capi-release develop
 	clone git@github.com:cloudfoundry/capi-env-pool.git ~/workspace/capi-env-pool
+	disable_cred_hook ~/workspace/capi-env-pool
 	clone git@github.com:cloudfoundry/capi-ci.git ~/workspace/capi-ci
 	clone git@github.com:cloudfoundry/capi-dockerfiles.git ~/workspace/capi-dockerfiles
 	clone git@github.com:cloudfoundry/capi-ci-private.git ~/workspace/capi-ci-private
+	disable_cred_hook ~/workspace/capi-ci-private
 	clone git@github.com:cloudfoundry/cf-deployment.git ~/workspace/cf-deployment
 	clone git@github.com:cloudfoundry/cli-private.git ~/workspace/cli-private
 	clone git@github.com:cloudfoundry/cli-pools.git ~/workspace/cli-pools
