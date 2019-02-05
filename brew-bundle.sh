@@ -12,5 +12,5 @@ fi
 echo "Installing from the Brewfile..."
 brew update
 brew tap Homebrew/bundle
-brew bundle --global
+brew bundle --global || true
 brew cleanup
