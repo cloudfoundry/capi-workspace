@@ -8,11 +8,10 @@ require 'inifile'
 source_path = ARGV[0]
 target_path = ARGV[1]
 
-source = IniFile.load(source_path)
-target = IniFile.load(target_path)
+source = IniFile.load(source_path, force_array: true)
+target = IniFile.load(target_path, force_array: true)
 
 source.sections.each do |section_name|
   target[section_name] = source[section_name]
 end
 target.write
-  
