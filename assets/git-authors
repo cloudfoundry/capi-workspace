@@ -21,6 +21,7 @@ authors:
   wp: Will Pragnell; wpragnell
   zr: Zach Robinson; zrobinson
   ss: Scott Sisil; ssisil
+  bot: CAPI CI; cf-capi-eng+ci
 email:
   domain: pivotal.io
 email_addresses:
