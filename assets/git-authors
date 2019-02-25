@@ -1,28 +1,23 @@
-# This file is managed by sprout
-
-authors:
-  ab: Andy Brown; anbrown
-  ag: Anand Gaitonde; agaitonde
-  am: Andres Medina; amedina
-  cb: Connor Braa; cbraa
-  ch: Charles Hansen; chansen
-  cs: Chris Selzo; cselzo
-  dwf: Davis W. Frank; dwfrank
-  ep: Eric Promislow
-  ew: Eli Wrenn; ewrenn
-  gc: Greg Cobb; gcobb
-  jp: Joseph Palermo; jpalermo
-  mk: Mike Kenyon; mkenyon
-  mm: Mona Mohebbi; mmohebbi
-  pb: Piyali Banerjee; pbanerjee
-  sb: Seth Boyles; sboyles
-  sh: Spencer Hawley; shawley
-  td: Tim Downey; tdowney
-  wp: Will Pragnell; wpragnell
-  zr: Zach Robinson; zrobinson
-  ss: Scott Sisil; ssisil
-  bot: CAPI CI; cf-capi-eng+ci
-email:
-  domain: pivotal.io
-email_addresses:
-  ep: eric.promislow@suse.com
+[git-together]
+  domain = pivotal.io
+[git-together "authors"]
+  ab =  "Andy Brown; anbrown"
+  ag =  "Anand Gaitonde; agaitonde"
+  am =  "Andres Medina; amedina"
+  cb =  "Connor Braa; cbraa"
+  ch =  "Charles Hansen; chansen"
+  cs =  "Chris Selzo; cselzo"
+  ep =  "Eric Promislow; eric.promislow@suse.com"
+  ew =  "Eli Wrenn; ewrenn"
+  gc =  "Greg Cobb; gcobb"
+  jp =  "Joseph Palermo; jpalermo"
+  mk =  "Mike Kenyon; mkenyon"
+  mm =  "Mona Mohebbi; mmohebbi"
+  pb =  "Piyali Banerjee; pbanerjee"
+  sb =  "Seth Boyles; sboyles"
+  sh =  "Spencer Hawley; shawley"
+  ss =  "Scott Sisil; ssisil"
+  td =  "Tim Downey; tdowney"
+  wp =  "Will Pragnell; wpragnell"
+  zr =  "Zach Robinson; zrobinson"
+  bot = "CAPI CI; cf-capi-eng+ci"

@@ -2,9 +2,11 @@
 	blog = "loga origin/master... --left-right"
 	br = branch
 	co = checkout
+  ci = commit
+  duet = author --global
+  author = author --global
 	di = diff
 	ds = "diff --staged"
-  commit = duet-commit
 	fixup = "commit --fixup"
 	flog = "log --pretty=fuller --decorate"
 	lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
@@ -21,10 +23,8 @@
   rio = rebase --interactive origin/master
   s = status --short --branch
 
-## git-duet commands
-	amend = "duet-commit --amend"
-	ci = duet-commit --verbose
-	drb = rebase --exec 'fixcommitter'
+[git-together]
+  aliases = ci
 
 [core]
 	hooksPath = ~/workspace/git-hooks-core
