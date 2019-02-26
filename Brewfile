@@ -3,7 +3,6 @@ tap 'cloudfoundry/tap'
 tap 'git-duet/tap'
 tap 'universal-ctags/universal-ctags'
 tap 'neovim/neovim'
-tap 'caskroom/fonts'
 
 brew 'ack'
 brew 'adr-tools'
