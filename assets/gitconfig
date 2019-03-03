@@ -2,7 +2,7 @@
   author = author
   blog = "loga origin/master... --left-right"
   br = branch
-  ci = commit
+  ci = commit --verbose
   co = checkout
   cp = cherry-pick
   di = diff
