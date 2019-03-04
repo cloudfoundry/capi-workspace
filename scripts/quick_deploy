@@ -7,8 +7,7 @@ TARBASE=$(basename $TARFILE)
 SLEEP=15
 QUICK_DEPLOY=$HOME/.cf/last_quick_deploy
 
-
-pushd ~/workspace/cloud_controller_ng
+pushd ~/workspace/capi-release/src/cloud_controller_ng
   deletedFiles=$(git status -s | awk '$1 == "D" { print $2 }')
   if [ -f $QUICK_DEPLOY ] ; then
       changedFiles=$(find . -type f -newer $QUICK_DEPLOY \! -name '*.log' \! -name '*.txt' \! -name workspace.xml | grep -v -e spec/ -e docs/ ) || true

@@ -1,39 +1,40 @@
 [alias]
-	blog = "loga origin/master... --left-right"
-	br = branch
-	co = checkout
-	di = diff
-	ds = "diff --staged"
-  commit = duet-commit
-	fixup = "commit --fixup"
-	flog = "log --pretty=fuller --decorate"
-	lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
-	llog = "log --date=local"
-	lol = "log --graph --decorate --oneline"
-	lola = "log --graph --decorate --oneline --all"
-	rum = "rebase master@{u}"
-	squash = "commit --squash"
-	st = status
-	sta = stash
-	unstage = "reset HEAD"
+  author = author
+  blog = "loga origin/master... --left-right"
+  br = branch
+  ci = commit --verbose
+  co = checkout
   cp = cherry-pick
+  di = diff
+  ds = "diff --staged"
+  duet = author
+  fixup = "commit --fixup"
+  flog = "log --pretty=fuller --decorate"
+  lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
+  llog = "log --date=local"
+  lol = "log --graph --decorate --oneline"
+  lola = "log --graph --decorate --oneline --all"
   ri = rebase --interactive
   rio = rebase --interactive origin/master
+  rum = "rebase master@{u}"
   s = status --short --branch
+  solo = author
+  squash = "commit --squash"
+  st = status
+  sta = stash
+  unstage = "reset HEAD"
 
-## git-duet commands
-	amend = "duet-commit --amend"
-	ci = duet-commit --verbose
-	drb = rebase --exec 'fixcommitter'
+[git-together]
+  aliases = ci
 
 [core]
-	hooksPath = ~/workspace/git-hooks-core
-	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+  hooksPath = ~/workspace/git-hooks-core
+  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [merge]
-	# Display common-ancestor blocks in conflict hunks
-	conflictStyle = diff3
+  # Display common-ancestor blocks in conflict hunks
+  conflictStyle = diff3
 [url "git@github.com:"]
-	pushInsteadOf = https://github.com/
-	pushInsteadOf = git://github.com/
+  pushInsteadOf = https://github.com/
+  pushInsteadOf = git://github.com/
 [interactive]
-	diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
+  diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
