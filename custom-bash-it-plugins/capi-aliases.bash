@@ -23,3 +23,5 @@ function g() {
 # Misc aliases
 alias fl="fly -t ci login -c https://ci.cli.fun -n main -b"
 alias cfu="seed_users"
+alias where_my_bosh_lites_at="print_env_info"
+alias bosh_lites="print_env_info"
