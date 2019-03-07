@@ -3,8 +3,8 @@ alias v='fasd -e vim'
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 alias b='bundle exec'
-alias bake='DB=postgres bundle exec rake'
-alias slowbake='DB=mysql bundle exec rake'
+alias bake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=postgres bundle exec rake'
+alias slowbake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=mysql bundle exec rake'
 
 # Git aliases
 alias gd='git diff'
