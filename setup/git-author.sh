@@ -17,6 +17,9 @@ function uninstall_git_duet {
 	set -e
 }
 
+pushd ~/workspace/git-hooks-core
+  git pull -r
+popd
 uninstall_git_duet
 
 capi_authors="${PWD}/assets/git-authors"

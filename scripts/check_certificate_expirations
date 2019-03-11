@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'open3'
+require 'date'
+
+class CertChecker
+  
+  def check_file(input_file)
+    puts "Checking #{File.basename(input_file)}..."
+    certs = YAML::load(File.open(input_file))
+
+    @found_certs = {}
+    find_certs(certs, [])
+
+    status = true
+    @found_certs.each do |k, cert|
+      #puts "CERTIFICATE START"
+      puts k
+      #puts cert
+      #puts "CERTIFICATE END"
+      stdin, stdout, stderr = Open3.popen3('openssl x509 -text')
+
+      stdin.puts cert
+      stdin.close
+
+      output = stdout.read
+      errors = stderr.read
+
+      if errors.size > 0
+        puts "Error in cert: #{errors}"
+        next
+      end
+      validity_index = output.index("Validity")
+      if !validity_index
+        puts "Error in cert: no validity section #(output)"
+        next
+      end
+      date_before = output[validity_index..validity_index+120].match(/Not Before\s*:\s*(.*)$/)
+      date_after = output[validity_index..validity_index+120].match(/Not After\s*:\s*(.*)$/)
+      if Date.parse(date_before[1]) > Date.today
+        puts "!! Cert #{k} isn't ready yet"
+        status = false
+      end
+      if Date.parse(date_after[1]) < Date.today
+        puts "!! Cert #{k} has expired"
+        status = false
+      end
+      puts date_before
+      puts date_after
+
+      return status
+    end
+  end
+
+  private
+
+  def find_certs(value, path)
+    if value.is_a?(Array)
+      value.each_with_index {|v, i| find_certs(v, path + [i.to_s]) }
+    elsif value.is_a?(Hash)
+      value.each { |k, v| find_certs(v, path + [k]) }
+    elsif value.to_s["BEGIN CERTIFICATE"]
+      @found_certs[path.join('.')] = value
+    end
+  end
+  
+end
+
+status = true
+ARGV.each do |input_file|
+  new_status = CertChecker.new.check_file(input_file)
+  status &&= new_status
+end
+
+exit status ? 0 : 1

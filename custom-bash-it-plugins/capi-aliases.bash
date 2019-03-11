@@ -3,8 +3,8 @@ alias v='fasd -e vim'
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 alias b='bundle exec'
-alias bake='DB=postgres bundle exec rake'
-alias slowbake='DB=mysql bundle exec rake'
+alias bake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=postgres bundle exec rake'
+alias slowbake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=mysql bundle exec rake'
 
 # Git aliases
 alias gd='git diff'
@@ -24,4 +24,5 @@ function g() {
 alias fl="fly -t ci login -c https://ci.cli.fun -n main -b"
 alias lazy="git pull -r && fixcommitter && make && git push"
 alias cfu="seed_users"
-
+alias where_my_bosh_lites_at="print_env_info"
+alias bosh_lites="print_env_info"
