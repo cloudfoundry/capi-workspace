@@ -9,3 +9,5 @@ SOURCE=$HOME/workspace/capi-release/scripts # notice this NOT capi-workspace, if
 if [ ! -h $TARGET/fixcommitter ] && [ ! -f $TARGET/fixcommitter ]; then
 	ln -s $SOURCE/fixcommitter $TARGET/fixcommitter
 fi
+
+export SINATRA_ACTIVESUPPORT_WARNING=false
