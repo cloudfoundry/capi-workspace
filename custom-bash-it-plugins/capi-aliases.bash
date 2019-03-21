@@ -24,5 +24,5 @@ function g() {
 alias fl="fly -t ci login -c https://ci.cli.fun -n main -b"
 alias lazy="git pull -r && fixcommitter && make && git push"
 alias cfu="seed_users"
-alias where_my_bosh_lites_at="print_env_info"
+alias print_env_info="where_my_bosh_lites_at"
 alias bosh_lites="print_env_info"
