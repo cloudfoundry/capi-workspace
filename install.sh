@@ -8,6 +8,7 @@ cd "$(dirname "$0")"
 
 # nightly autoinstall setup
 source ./setup/launchagent-daily-install.sh
+source ./setup/local_connections.sh
 
 # install brew and its packages
 source ./setup/brew.sh

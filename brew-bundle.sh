@@ -10,7 +10,7 @@ if [ ! -L "${brewfile_link}" ]; then
 fi
 
 echo "Installing from the Brewfile..."
-brew update
+brew update || echo "brew update failed, but continuing"
 brew tap Homebrew/bundle
 brew bundle --global || true
 brew cleanup
