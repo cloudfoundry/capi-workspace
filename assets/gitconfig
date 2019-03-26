@@ -28,6 +28,9 @@
 [git-together]
   aliases = ci
 
+[commit]
+	template = /tmp/.git-author-template
+
 [core]
   hooksPath = ~/workspace/git-hooks-core
   pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
