@@ -11,6 +11,7 @@
   fixup = "commit --fixup"
   flog = "log --pretty=fuller --decorate"
   lg = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an & %cn%Creset'"
+  lgf = "log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)%an & %cn%Creset'"
   llog = "log --date=local"
   lol = "log --graph --decorate --oneline"
   lola = "log --graph --decorate --oneline --all"
@@ -26,6 +27,9 @@
 
 [git-together]
   aliases = ci
+
+[commit]
+	template = /tmp/.git-author-template
 
 [core]
   hooksPath = ~/workspace/git-hooks-core
