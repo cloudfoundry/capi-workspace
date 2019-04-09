@@ -1,5 +1,4 @@
 [alias]
-  author = author
   blog = "loga origin/master... --left-right"
   br = branch
   ci = commit --verbose
@@ -20,6 +19,7 @@
   rum = "rebase master@{u}"
   s = status --short --branch
   solo = author
+  pair = author
   squash = "commit --squash"
   st = status
   sta = stash
