@@ -13,7 +13,7 @@ fi
 
 GO_UTILS=(
   github.com/alecthomas/gometalinter
-  github.com/jteeuwen/go-bindata/...
+  github.com/shuLhan/go-bindata/...
   github.com/rakyll/hey
   code.cloudfoundry.org/perm/cmd/perm
   github.com/maxbrunsfeld/counterfeiter
