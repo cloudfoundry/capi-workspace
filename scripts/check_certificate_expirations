@@ -55,7 +55,6 @@ class CertChecker
       end
       puts date_before
       puts date_after
-
     end
     return status
   end
@@ -79,8 +78,8 @@ ARGV.each do |input_file|
   checker = CertChecker.new
   new_status = checker.check_file(input_file)
   if !new_status
-	  puts "Bad certs in file #{input_file}: " + ([""] + checker.bad_certs).join("\n  ")
-	  status = false
+    puts "\n\n#{'*' * 60}\nBad certs in file #{input_file}: " + ([""] + checker.bad_certs).join("\n  ")
+    status = false
   end
 end
 
