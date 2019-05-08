@@ -6,6 +6,12 @@ require 'date'
 
 class CertChecker
   
+  attr_accessor :bad_certs
+  def initialize
+	  @bad_certs = []
+	  super
+  end
+
   def check_file(input_file)
     puts "Checking #{File.basename(input_file)}..."
     certs = YAML::load(File.open(input_file))
@@ -45,12 +51,12 @@ class CertChecker
       if Date.parse(date_after[1]) < Date.today
         puts "!! Cert #{k} has expired"
         status = false
+	bad_certs << k
       end
       puts date_before
       puts date_after
-
-      return status
     end
+    return status
   end
 
   private
@@ -69,8 +75,12 @@ end
 
 status = true
 ARGV.each do |input_file|
-  new_status = CertChecker.new.check_file(input_file)
-  status &&= new_status
+  checker = CertChecker.new
+  new_status = checker.check_file(input_file)
+  if !new_status
+    puts "\n\n#{'*' * 60}\nBad certs in file #{input_file}: " + ([""] + checker.bad_certs).join("\n  ")
+    status = false
+  end
 end
 
 exit status ? 0 : 1
