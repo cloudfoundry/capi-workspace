@@ -17,6 +17,6 @@ ruby -e 'if (`gem --version`.chomp.split(".").map(&:to_i) <=> [2, 6, 14]) == -1 
 end'
 enable_bash_it_plugin chruby-auto
 set +e
-source ~/.bash_profile
+source /usr/local/share/chruby/chruby.sh
 set -e
 chruby ${RUBY_VERSION}
