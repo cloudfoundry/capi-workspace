@@ -31,6 +31,7 @@ if ! which golangci-lint 2>&1 > /dev/null ; then
     if [[ -z "$version_name" ]] ; then
 	echo "Can't get the golangci github repo latest release info"
     else
-	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin $version_name
+	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh |
+	    sh -s -- -b $(go env GOPATH)/bin $version_name
     fi
 fi
