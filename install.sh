@@ -5,6 +5,7 @@ set -e
 function install {
 
 cd "$(dirname "$0")"
+git pull
 
 # nightly autoinstall setup
 source ./setup/launchagent-daily-install.sh
