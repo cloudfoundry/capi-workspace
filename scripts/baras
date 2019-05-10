@@ -2,11 +2,20 @@
 
 set -e
 
-cd ~/go/src/github.com/cloudfoundry/capi-bara-tests
-if [[ -n ${CONFIG} && -f ${CONFIG} ]] ; then
+TARGET=$HOME/go/src/github.com/cloudfoundry/capi-bara-tests
+ICJ=integration_config.json
+
+if [[ -z "$CONFIG" && -f "$ICJ" ]] ; then
+    export CONFIG="$PWD/$ICJ"
+elif [[ -n "$CONFIG" && -z "${CONFIG##*/*}" ]] ; then
+    export CONFIG="$PWD/$CONFIG"
+fi
+cd "$TARGET"
+
+if [[ -n "$CONFIG" && -f "$CONFIG" ]] ; then
     echo "Use CONFIG of ${CONFIG}"
 else
-    export CONFIG=${PWD}/integration_config.json
+    export CONFIG="$PWD/$ICJ"
 fi
 
 bin/test --nodes=4 "$@"

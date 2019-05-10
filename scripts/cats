@@ -2,7 +2,15 @@
 
 set -e
 
-cd ~/go/src/github.com/cloudfoundry/cf-acceptance-tests
+TARGET=$HOME/go/src/github.com/cloudfoundry/cf-acceptance-tests
+ICJ=integration_config.json
+
+if [[ -z "$CONFIG" && -f "$ICJ" ]] ; then
+    export CONFIG="$PWD/$ICJ"
+elif [[ -n "$CONFIG" && -z "${CONFIG##*/*}" ]] ; then
+    export CONFIG="$PWD/$CONFIG"
+fi
+cd "$TARGET"
 FLAGS=$(cf feature-flags  | awk '/disabled/ { print $1 }')
 if [[ -n "${FLAGS}" ]] ; then
   echo "The following feature-flags are disabled!:"
@@ -18,7 +26,7 @@ fi
 if [[ -n ${CONFIG} && -f ${CONFIG} ]] ; then
     echo "Use CONFIG of ${CONFIG}"
 else
-    export CONFIG=${PWD}/integration_config.json
+    export CONFIG="$PWD/$ICJ"
 fi
 
 bin/test --nodes=4 "$@"
