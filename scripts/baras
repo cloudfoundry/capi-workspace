@@ -7,13 +7,13 @@ ICJ=integration_config.json
 
 if [[ -z "$CONFIG" && -f "$ICJ" ]] ; then
     export CONFIG="$PWD/$ICJ"
-elif [[ -n "$CONFIG" && -z "${CONFIG##*/*}" ]] ; then
-    export CONFIG="$PWD/$CONFIG"
+elif [[ -n "$CONFIG" && "$CONFIG" =~ "/" ]] ; then
+    export CONFIG="$PWD/$(basename $CONFIG)"
 fi
 cd "$TARGET"
 
 if [[ -n "$CONFIG" && -f "$CONFIG" ]] ; then
-    echo "Use CONFIG of ${CONFIG}"
+    echo "Use CONFIG file ${CONFIG}"
 else
     export CONFIG="$PWD/$ICJ"
 fi
