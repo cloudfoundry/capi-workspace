@@ -7,8 +7,8 @@ ICJ=integration_config.json
 
 if [[ -z "$CONFIG" && -f "$ICJ" ]] ; then
     export CONFIG="$PWD/$ICJ"
-elif [[ -n "$CONFIG" && -z "${CONFIG##*/*}" ]] ; then
-    export CONFIG="$PWD/$CONFIG"
+elif [[ -n "$CONFIG" && "$CONFIG" =~ "/" ]] ; then
+    export CONFIG="$PWD/$(basename $CONFIG)"
 fi
 cd "$TARGET"
 FLAGS=$(cf feature-flags  | awk '/disabled/ { print $1 }')
