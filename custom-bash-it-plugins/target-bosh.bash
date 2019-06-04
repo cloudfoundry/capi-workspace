@@ -36,6 +36,7 @@ target_bosh() {
       echo "$(tput setaf 2)Success!$(tput setaf 9)"
 
       export BOSH_GW_PRIVATE_KEY="${env_ssh_key_path}"
+      export BOSH_ALL_PROXY=ssh+socks5://${BOSH_GW_USER}@${BOSH_ENVIRONMENT}:22?private-key=${BOSH_GW_PRIVATE_KEY}
       export CONFIG="${env_integration_config_path}"
     else
       echo "$(tput setaf 1)Environment '${1}' does not exist. Valid environments are:$(tput setaf 9)"
