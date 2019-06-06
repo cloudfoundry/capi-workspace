@@ -26,3 +26,14 @@ nnoremap <silent> <localleader>z :bp<CR>
 " Enable toggling for autopairs
 " let g:AutoPairsShortcutToggle = '<M-t>'
 
+function! CFCLIIntegrationTransform(cmd) abort
+  if getcwd() =~# 'cli' && a:cmd =~# 'integration'
+    return 'make build && '.a:cmd
+  endif
+
+  return a:cmd
+endfunction
+
+let g:test#custom_transformations = { 'cfcli': function('CFCLIIntegrationTransform') }
+let g:test#transformation = 'cfcli'
+
