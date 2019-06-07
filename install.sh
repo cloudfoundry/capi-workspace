@@ -76,7 +76,7 @@ source ./setup/snyk.sh
 bundle
 
 # Add bbr functionality
-source ./setup/bbr
+source ./setup/bbr.sh
 
 echo "Please set your computer name using \"./setup/system-name.sh <name>\" if you have not already. Thanks!"
 }
