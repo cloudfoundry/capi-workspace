@@ -23,8 +23,14 @@ autocmd BufRead ~/go/src/code.cloudfoundry.org/cli/**/*.go
 nnoremap <silent> <localleader>x :bn<CR>
 nnoremap <silent> <localleader>z :bp<CR>
 
-" Enable toggling for autopairs
-" let g:AutoPairsShortcutToggle = '<M-t>'
+function! SaveIfUnsaved()
+  if &modified
+    :silent! w
+  endif
+endfunction
+au CursorHold * :call SaveIfUnsaved()
+" Read the file on focus/buffer enter
+au FocusGained,BufEnter * :silent! !
 
 function! CFCLIIntegrationTransform(cmd) abort
   if getcwd() =~# 'cli' && a:cmd =~# 'integration'
