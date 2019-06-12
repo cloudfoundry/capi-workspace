@@ -46,7 +46,7 @@ kill_tree() {
 {
 	get_database_password &&
 	ssh_tunnel &&
-	sleep 3 &&
+	sleep 5 &&
 	connect_to_db &&
 	kill_tree $ssh_pid
 } || {
