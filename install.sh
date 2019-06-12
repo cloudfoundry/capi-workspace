@@ -75,9 +75,6 @@ source ./setup/snyk.sh
 # Add gem dependencies for CAPI-Workspace
 bundle
 
-# Add bbr functionality
-source ./setup/bbr.sh
-
 echo "Please set your computer name using \"./setup/system-name.sh <name>\" if you have not already. Thanks!"
 }
 
