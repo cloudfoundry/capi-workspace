@@ -4,7 +4,7 @@ set -e
 
 source ./helpers/bash-it-helpers.sh
 
-RUBY_VERSION="2.4.5"
+RUBY_VERSION="2.5.5"
 
 if [ ! -e ~/.rubies/ruby-${RUBY_VERSION} ]; then
 	ruby-install ruby ${RUBY_VERSION}
