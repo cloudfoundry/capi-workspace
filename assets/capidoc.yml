@@ -172,6 +172,10 @@ deploy_only_new_capi:
   description: Deploy just the current CAPI to current bosh target
   location: capi-workspace/scripts
   group: bosh-deploy
+deploy_only_new_capi_with_bbr:
+  description: Deploy just the current CAPI to current bosh target (with BBR jumpbox)
+  location: capi-workspace/scripts
+  group: bosh-deploy
 target_bosh:
   description: Target a bosh environment from the pool
   location: capi-workspace/custom-bash-it-plugins

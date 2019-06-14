@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 
 # you provide your own capi-release directory via the first positional argument
-if [[ -n "$1" ]] ; then
-  CAPI_RELEASE_DIR="$1" ; shift
-else
-  CAPI_RELEASE_DIR="$HOME/workspace/capi-release"
-fi
+CAPI_RELEASE_DIR="${1:-$HOME/workspace/capi-release}"
 
 bosh -n deploy <(bosh manifest) \
   -o ~/workspace/capi-ci/cf-deployment-operations/use-created-capi.yml \
-  -v capi_release_dir="${CAPI_RELEASE_DIR}" \
-  "$@"
+  -o ~/workspace/cf-deployment/operations/backup-and-restore/enable-backup-restore.yml \
+  -v capi_release_dir="${CAPI_RELEASE_DIR}"
