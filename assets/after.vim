@@ -33,12 +33,19 @@ au CursorHold * :call SaveIfUnsaved()
 au FocusGained,BufEnter * :silent! !
 
 function! CFCLIIntegrationTransform(cmd) abort
-  if getcwd() =~# 'cli' && a:cmd =~# 'integration'
-    return 'make build && '.a:cmd
+  let l:cmd = a:cmd
+
+  if $TARGET_V7 ==# 'true' && l:cmd =~# 'ginkgo'
+    let l:cmd = l:cmd.' --tags V7'
   endif
 
-  return a:cmd
+  if getcwd() =~# 'cli' && l:cmd =~# 'integration'
+    return 'make build && '.l:cmd
+  endif
+
+  return l:cmd
 endfunction
+
 
 let g:test#custom_transformations = { 'cfcli': function('CFCLIIntegrationTransform') }
 let g:test#transformation = 'cfcli'
