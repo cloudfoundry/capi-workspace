@@ -37,6 +37,7 @@ brew 'postgresql@9.6', restart_service: true, link: true
 brew 'proxychains-ng'
 brew 'pstree'
 brew 'python'
+brew 'python-yq'
 brew 'qt'
 brew 'ruby-install'
 brew 's3cmd'
@@ -51,6 +52,7 @@ brew 'tree'
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 brew 'watch'
 brew 'wget'
+brew 'yarn'
 
 cask 'docker'
 cask 'flycut'
