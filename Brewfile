@@ -3,6 +3,7 @@ tap 'cloudfoundry/tap'
 tap 'neovim/neovim'
 tap 'pivotal/tap'
 tap 'universal-ctags/universal-ctags'
+tap "homebrew/cask-fonts"
 
 brew 'ack'
 brew 'adr-tools'

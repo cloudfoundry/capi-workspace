@@ -8,6 +8,7 @@ source ./helpers/disable-cred-hook.sh
 pushd ~/workspace > /dev/null
 
 	clone git@github.com:pivotal/pivotal_ide_prefs.git ~/workspace/pivotal_ide_prefs
+	clone git@github.com:pivotal-cf/git-hooks-core.git ~/workspace/git-hooks-core
 	clone git@github.com:cloudfoundry/capi-release.git ~/workspace/capi-release develop
 	clone git@github.com:cloudfoundry/capi-env-pool.git ~/workspace/capi-env-pool
 	disable_cred_hook ~/workspace/capi-env-pool
