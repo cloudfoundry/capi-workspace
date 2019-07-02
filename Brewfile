@@ -2,6 +2,7 @@ tap 'businesscritical/tap'
 tap 'cloudfoundry/tap'
 tap 'neovim/neovim'
 tap 'pivotal/tap'
+tap 'homebrew/cask-fonts'
 tap 'universal-ctags/universal-ctags'
 
 brew 'ack'

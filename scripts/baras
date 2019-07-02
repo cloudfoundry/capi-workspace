@@ -2,7 +2,7 @@
 
 set -e
 
-TARGET=$HOME/go/src/github.com/cloudfoundry/capi-bara-tests
+TARGET=${HOME}/go/src/github.com/cloudfoundry/capi-bara-tests
 ICJ=integration_config.json
 
 if [[ -z "$CONFIG" && -f "$ICJ" ]] ; then
