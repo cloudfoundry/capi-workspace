@@ -2,7 +2,15 @@
 
 set -e
 
+LOGFILE=$HOME/workspace/capi-workspace/launchagent-daily-install.log
+
 function install {
+
+if [ ! -t 1 ] ; then
+  echo '=================================================================='
+  date
+  echo '=================================================================='
+fi >> $LOGFILE
 
 cd "$(dirname "$0")"
 
@@ -87,7 +95,7 @@ function open_picklecat() {
 function exit_successfully() {
   # clean up autoinstall logs on autoinstall success
   if [ ! -t 1 ] ; then
-    echo -n > $HOME/workspace/capi-workspace/launchagent-daily-install.log
+    echo -n > $LOGFILE
   fi
 
   echo "Successfully installed!"
