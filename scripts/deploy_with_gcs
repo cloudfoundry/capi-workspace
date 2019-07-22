@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+bosh -n deploy <(bosh manifest) \
+  --vars-store=~/workspace/capi-ci-private/rey-gcs-storage/gcs-storage-vars.yml \
+  -o ~/workspace/cf-deployment/operations/use-external-blobstore.yml \
+  -o ~/workspace/cf-deployment/operations/use-gcs-blobstore-service-account.yml \
