@@ -2,6 +2,7 @@ tap 'businesscritical/tap'
 tap 'cloudfoundry/tap'
 tap 'neovim/neovim'
 tap 'pivotal/tap'
+tap 'homebrew/cask-fonts'
 tap 'universal-ctags/universal-ctags'
 tap "homebrew/cask-fonts"
 
@@ -38,6 +39,7 @@ brew 'postgresql@9.6', restart_service: true, link: true
 brew 'proxychains-ng'
 brew 'pstree'
 brew 'python'
+brew 'python-yq'
 brew 'qt'
 brew 'ruby-install'
 brew 's3cmd'
@@ -52,6 +54,7 @@ brew 'tree'
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 brew 'watch'
 brew 'wget'
+brew 'yarn'
 
 cask 'docker'
 cask 'flycut'

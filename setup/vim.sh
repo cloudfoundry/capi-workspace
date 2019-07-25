@@ -1,11 +1,6 @@
 #!/bin/bash
 set -e
 
-# install luan's nvim config if it's not there
-grep -q "github.com/luan/nvim" ~/.config/nvim/.git/config ||
-	(rm -rf ~/.config/nvim/ ~/.vim* ~/.local/share/nvim/ &&
-	git clone https://github.com/luan/nvim ~/.config/nvim)
-
 echo "Update pip..."
 pip3 install --upgrade pip
 
