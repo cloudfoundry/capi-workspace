@@ -6,6 +6,8 @@
   aj  = "Ankit Jain; anjain"
   am  = "Andres Medina; amedina"
   bc  = "Brian Cunnie; bcunnie"
+  bot = "CAPI CI; cf-capi-eng+ci"
+  bs  = "Brendan Smith; brsmith"
   cb  = "Connor Braa; cbraa"
   ch  = "Charles Hansen; chansen"
   cs  = "Chris Selzo; cselzo"
@@ -28,4 +30,3 @@
   td  = "Tim Downey; tdowney"
   wp  = "Will Pragnell; wpragnell"
   zr  = "Zach Robinson; zrobinson"
-  bot = "CAPI CI; cf-capi-eng+ci"
