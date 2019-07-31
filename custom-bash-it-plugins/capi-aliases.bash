@@ -5,7 +5,7 @@ alias v='fasd -e vim'
 alias b='bundle exec'
 alias bake='echo "bundling..." && bundle install --quiet && echo "done bundling" && bundle exec rake'
 alias fastbake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=postgres bundle exec rake'
-alias slowbake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=mysql bundle exec rake
+alias slowbake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=mysql bundle exec rake'
 
 # Git aliases
 alias gd='git diff'
