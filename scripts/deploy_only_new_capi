@@ -9,5 +9,6 @@ fi
 
 bosh -n deploy <(bosh manifest) \
   -o ~/workspace/capi-ci/cf-deployment-operations/use-created-capi.yml \
+  -o ~/workspace/capi-ci/cf-deployment-operations/increase-route-registration-interval.yml \
   -v capi_release_dir="${CAPI_RELEASE_DIR}" \
   "$@"
