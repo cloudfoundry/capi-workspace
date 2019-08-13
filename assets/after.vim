@@ -35,10 +35,6 @@ au FocusGained,BufEnter * :silent! !
 function! CFCLIIntegrationTransform(cmd) abort
   let l:cmd = a:cmd
 
-  if $TARGET_V7 ==# 'true' && l:cmd =~# 'ginkgo'
-    let l:cmd = substitute(l:cmd, 'ginkgo', 'ginkgo --tags V7', '')
-  endif
-
   if getcwd() =~# 'cli' && l:cmd =~# 'integration'
     return 'make build && '.l:cmd
   endif
