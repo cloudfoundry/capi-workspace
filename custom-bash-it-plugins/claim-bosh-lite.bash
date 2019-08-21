@@ -1,7 +1,8 @@
 env_pool="$HOME/workspace/capi-env-pool"
 
 function claim_bosh_lite() {
-  if ! git config --get git-together.active >/dev/null; then
+  git_authors=$(git config --get git-together.active)
+  if [ -z "$git_authors" ]; then
     echo "please set your git authors before running this!"
     echo "maybe run 'story' while you're at it."
     return
