@@ -17,4 +17,7 @@ export PATH="$PATH:$HOME/workspace/capi-workspace/scripts"
 # Must go at the beginning so that it's prioritized over the system installation.
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
+# specify locale so vim will stop shouting
+export LC_ALL=en_US.UTF-8
+
 launchctl setenv PATH $PATH
