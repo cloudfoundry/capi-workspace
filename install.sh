@@ -49,8 +49,8 @@ source ./setup/uaac.sh
 
 # git setup
 source ./setup/git-config.sh
-source ./setup/git-author.sh
 source ./setup/git-hooks.sh
+source ./setup/git-author.sh
 
 # update cred-alert-cli
 source ./setup/update-cred-alert.sh
