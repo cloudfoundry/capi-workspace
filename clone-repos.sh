@@ -20,7 +20,7 @@ pushd ~/workspace > /dev/null
 	# clone golang repos and symlink them into the GOPATH
 	clone git@github.com:cloudfoundry/cf-acceptance-tests.git ~/go/src/github.com/cloudfoundry/cf-acceptance-tests
 	if [ ! -L ~/workspace/cf-acceptance-tests ]; then
-		ln -s	$HOME/go/src/github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
+		ln -sf	$HOME/go/src/github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
 	fi
 
 	clone git@github.com:cloudfoundry/sync-integration-tests.git ~/go/src/code.cloudfoundry.org/sync-integration-tests
@@ -28,12 +28,12 @@ pushd ~/workspace > /dev/null
 
 	clone git@github.com:cloudfoundry/capi-bara-tests.git ~/go/src/github.com/cloudfoundry/capi-bara-tests
 	if [ ! -L ~/workspace/capi-bara-tests ]; then
-		ln -s	$HOME/go/src/github.com/cloudfoundry/capi-bara-tests ~/workspace/capi-bara-tests
+		ln -sf	$HOME/go/src/github.com/cloudfoundry/capi-bara-tests ~/workspace/capi-bara-tests
 	fi
 
 	clone git@github.com:cloudfoundry/cli.git ~/go/src/code.cloudfoundry.org/cli
 	if [ ! -L ~/workspace/cli ]; then
-		ln -s	$HOME/go/src/code.cloudfoundry.org/cli/ ~/workspace/cli
+		ln -sf	$HOME/go/src/code.cloudfoundry.org/cli/ ~/workspace/cli
 	fi
 
 popd > /dev/null
