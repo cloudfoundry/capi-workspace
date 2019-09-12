@@ -1,5 +1,28 @@
 env_pool="$HOME/workspace/capi-env-pool"
 
+project_id=966314;
+
+function get_stories() {
+	story_json="$(curl -s -H "Content-Type: application/json" \
+	  "https://www.pivotaltracker.com/services/v5/projects/$project_id/stories?with_state=started" | tr '**' ' ')"
+	echo $story_json | tr '\n' ' ' | jq -r '.[] | "#\(.id) \(.name)"'
+	echo "No story"
+
+}
+
+function story_selector() {
+  stories="$(get_stories | sed 's/#//g')"
+
+  PS3="Select a story or 'q' to quit: "
+  OLD_IFS=$IFS
+  IFS=$'\n'
+  select story in $stories; do
+    echo $story
+    break
+  done
+  IFS=$OLD_IFS
+}
+
 function claim_bosh_lite() {
   git_authors=$(git config --get git-together.active)
   if [ -z "$git_authors" ]; then
@@ -9,11 +32,22 @@ function claim_bosh_lite() {
   fi
 
   if [ -n "$1" ] ; then
-    STORY="$1"
+    STORY=$1
     shift
   else
-    STORY=nostory
+    echo "Please select a story for your bosh lite"
+
+    STORY=$(story_selector)
   fi
+
+  if [ -z "${STORY}" ]; then
+    echo "Canceling bosh lite claim. Goodbye."
+    return
+  fi
+
+  STORY=$(echo $STORY | cut -c 1-20)...
+  echo Selected story \"${STORY}\"
+
   env_dir=$(
     set -e
 
