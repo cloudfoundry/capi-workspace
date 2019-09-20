@@ -49,6 +49,8 @@ source ./setup/uaac.sh
 
 # git setup
 source ./setup/git-config.sh
+ # comment-out troubling `gst` alias; `git stash` vs. `git status`
+sed  -e 's/^alias gst="git stash"$/# &/' -i ''  $HOME/.bash_it/aliases/available/git.aliases.bash
 source ./setup/git-hooks.sh
 source ./setup/git-author.sh
 
