@@ -90,9 +90,8 @@ echo "Please set your computer name using \"./setup/system-name.sh <name>\" if y
 }
 
 
-
-function open_picklecat() {
-  open http://dn.ht/picklecat/
+function open_log() {
+  open $HOME/workspace/capi-workspace/launchagent-daily-install.log
 }
 
 function exit_successfully() {
@@ -106,7 +105,7 @@ function exit_successfully() {
 
 trap '{ case $? in
    0) exit_successfully; exit 0;;
-   *) open_picklecat ; exit 0;;
+   *) open_log ; exit 0;;
  esac ; }' EXIT
 
 install
