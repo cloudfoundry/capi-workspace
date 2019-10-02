@@ -36,6 +36,7 @@ source ./brew-bundle.sh
 source ./setup/radar.sh
 
 # bash-it / terminal
+source ./setup/bash.sh
 source ./setup/bash-it.sh
 source ./setup/custom-bash-it-plugins.sh
 source ./setup/iterm2.sh
