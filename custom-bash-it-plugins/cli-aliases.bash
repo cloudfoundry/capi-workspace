@@ -1,6 +1,11 @@
 function int() {
-	export CF_INT_API=https://api.$BOSH_LITE_DOMAIN
+  if [ -z "$BOSH_ENVIRONMENT" ]; then
+    echo "No bosh targeted. Use \"target_bosh\" before trying again"
+    exit 1
+  fi
 
-	credhub login --skip-tls-validation
-	export CF_INT_PASSWORD=$(credhub get --name '/bosh-lite/cf/cf_admin_password' --output-json | jq -r '.value')
+	TARGETED_BOSH_LITE_NAME=$(echo $BOSH_LITE_DOMAIN | grep lite.cli.fun | cut -d. -f1)
+  echo "Loading integration environment variables for $TARGETED_BOSH_LITE_NAME..."
+
+  source ~/workspace/cli-private/set_int_test_lite.sh $TARGETED_BOSH_LITE_NAME
 }
