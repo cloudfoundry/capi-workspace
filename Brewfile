@@ -28,7 +28,7 @@ brew 'git'
 brew 'git-author'
 brew 'git-secrets'
 brew 'git-together'
-brew 'go'
+brew 'go@1.12', link: true, conflicts_with: ['go']
 brew 'httpie'
 brew 'jq'
 brew 'lastpass-cli'
