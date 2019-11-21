@@ -26,6 +26,7 @@ alias fl="fly -t ci login -c https://ci.cli.fun -n main -b"
 alias cfu="seed_users"
 alias where_my_bosh_lites_at="print_env_info"
 alias bosh_lites="print_env_info"
+alias yamlvim="vim -c 'set syntax=yaml'"
 
 function int() {
 	export CF_INT_API=https://api.$BOSH_LITE_DOMAIN
