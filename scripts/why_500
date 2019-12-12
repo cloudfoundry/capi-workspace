@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ -z "$BOSH_LITE_DOMAIN" ]; then
+  echo "No bosh-lite targeted!"
+  exit 1
+fi
+
+log_file_name="${1:-cloud_controller_ng.log}"
+tempfile=$(mktemp)
+unknown_errors=0
+
+echo "Fetching $log_file_name from $BOSH_LITE_DOMAIN..."
+bosh scp "api:/var/vcap/sys/log/cloud_controller_ng/$log_file_name" "$tempfile" > /dev/null
+
+while read -r line ; do
+
+  unknown_errors=$((unknown_errors + 1))
+  timestamp=$(echo "$line" | jq '.timestamp' | cut -d'.' -f1)
+  message=$(echo "$line" | jq -r '.message' \
+    | sed "s/^Request failed: 500: //; s/=>/:/g" \
+    | sed -e "s/\/var\/vcap\/data\/packages\///g")
+
+  echo ""
+  echo "Unknown error at approximately $(date -j -f %s "$timestamp"):"
+  echo "$message" | jq
+
+done < <(grep "Request failed: 500" $tempfile)
+
+echo ""
+echo "$unknown_errors unknown errors found in $log_file_name"
