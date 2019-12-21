@@ -34,7 +34,7 @@ function build_bosh_lite_output {
   fi
 }
 
-function where_my_bosh_lites_at() {
+function roundup_bosh_lites() {
   # Colors
   local red blue
   red='\033[0;31m'
@@ -70,5 +70,5 @@ function where_my_bosh_lites_at() {
   echo -e "$output" | column -t -s $'\t'
 }
 
-export -f where_my_bosh_lites_at
+export -f roundup_bosh_lites
 

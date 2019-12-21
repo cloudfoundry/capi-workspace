@@ -6,7 +6,7 @@ fixcommitter:
   description: Cleans up committer/author after a rebase
   location: capi-workspace/scripts
   group: git
-where_my_bosh_lites_at:
+roundup_bosh_lites:
   description: List all the claimed bosh-lites in the pool
   location: capi-workspace/custom-bash-it-plugins
   group: bosh-lite-pool
