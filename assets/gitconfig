@@ -29,7 +29,7 @@
   aliases = ci
 
 [commit]
-	template = /tmp/.git-author-template
+	template = ~/.git-author-template
 
 [core]
   hooksPath = ~/workspace/git-hooks-core
