@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 " Called after everything just before setting a default colorscheme
 " Configure you own bindings or other preferences. e.g.:
 
@@ -45,4 +46,3 @@ endfunction
 
 let g:test#custom_transformations = { 'cfcli': function('CFCLIIntegrationTransform') }
 let g:test#transformation = 'cfcli'
-

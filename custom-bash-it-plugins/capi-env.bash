@@ -23,4 +23,7 @@ export PATH="$PATH:$HOME/workspace/capi-workspace/scripts"
 # always use postgres for tests
 export DB=postgres
 
+# specify locale so vim will stop shouting
+export LC_ALL=en_US.UTF-8
+
 launchctl setenv PATH $PATH

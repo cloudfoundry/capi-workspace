@@ -8,9 +8,6 @@ function install_bash_it {
 		if [ ! -e ~/.bash_it ] ; then
 			git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 		fi
-		if grep -q "alias q='exit'" ~/.bash_it/aliases/enabled/general.aliases.bash ; then
-			sed -i -e '/alias q=.exit./d' ~/.bash_it/aliases/enabled/general.aliases.bash 
-		fi
 		~/.bash_it/install.sh --silent
 	else
 		echo "bash_it already installed"
@@ -18,6 +15,14 @@ function install_bash_it {
 }
 
 install_bash_it
+
+# remove annoying aliases
+if grep -q "alias q='exit'" ~/.bash_it/aliases/available/general.aliases.bash ; then
+	sed -i -e '/alias q=.exit./d' ~/.bash_it/aliases/available/general.aliases.bash
+fi
+if grep -q "alias k='clear'" ~/.bash_it/aliases/available/general.aliases.bash ; then
+	sed -i -e '/alias k=.clear./d' ~/.bash_it/aliases/available/general.aliases.bash
+fi
 
 source ./helpers/bash-it-helpers.sh
 

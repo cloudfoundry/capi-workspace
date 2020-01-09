@@ -27,3 +27,11 @@ alias lazy="git pull -r && fixcommitter && make && git push"
 alias cfu="seed_users"
 alias print_env_info="roundup_bosh_lites"
 alias bosh_lites="print_env_info"
+alias yamlvim="vim -c 'set syntax=yaml'"
+
+function int() {
+	export CF_INT_API=https://api.$BOSH_LITE_DOMAIN
+
+	credhub login --skip-tls-validation
+	export CF_INT_PASSWORD=$(credhub get --name '/bosh-lite/cf/cf_admin_password' --output-json | jq -r '.value')
+}

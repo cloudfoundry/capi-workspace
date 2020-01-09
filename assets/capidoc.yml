@@ -127,6 +127,14 @@ bake:
   description: bundle exec rake
   location: capi-workspace/custom-bash-it-plugins
   group: ruby-dev
+mybake:
+  description: DB=mysql bundle exec rake
+  location: capi-workspace/custom-bash-it-plugins/capi-aliases.bash
+  group: ruby-dev
+pgbake:
+  description: DB=postgres bundle exec rake
+  location: capi-workspace/custom-bash-it-plugins/capi-aliases.bash
+  group: ruby-dev
 gd:
   description: git diff
   location: capi-workspace/custom-bash-it-plugins
