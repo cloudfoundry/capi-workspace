@@ -26,6 +26,7 @@ alias fl="fly -t ci login -c https://ci.cli.fun -n main -b"
 alias cfu="seed_users"
 alias where_my_bosh_lites_at="print_env_info"
 alias bosh_lites="print_env_info"
+alias cf_auth_config="cf api $(jq -r .api cats_integration_config.json) --skip-ssl-validation && cf auth admin $(jq -r .admin_password cats_integration_config.json)"
 alias yamlvim="vim -c 'set syntax=yaml'"
 
 function int() {
