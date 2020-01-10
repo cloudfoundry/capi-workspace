@@ -2,4 +2,4 @@
 set -e
 
 echo "Adding jarg..."
-pip3 install -q jarg
+pip install -q jarg
