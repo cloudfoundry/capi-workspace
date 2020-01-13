@@ -23,7 +23,7 @@ story_selector() {
 }
 
 story() {
-    project_id=966314;
+    project_id=2196383
 
     story_selection="$(story_selector)"
     story_id="$(echo "$story_selection" | awk '{print $1;}' | sed s/\"//)"
