@@ -67,6 +67,7 @@ brew 'wget'
 brew 'yarn'
 brew 'ytt'
 
+cask 'tuple'
 cask 'docker'
 cask 'flycut'
 cask 'font-hack-nerd-font'
