@@ -10,6 +10,7 @@ alias mybake='echo "bundling..." && bundle install --quiet && echo "done bundlin
 # Git aliases
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gst='git status'
 
 # capi likes `alias g="git status"`, other teams like `alias g=git`, so do both:
 alias g  >/dev/null 2>&1 && unalias g
