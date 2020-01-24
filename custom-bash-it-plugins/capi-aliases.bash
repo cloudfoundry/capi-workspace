@@ -40,3 +40,18 @@ function int() {
 	credhub login --skip-tls-validation
 	export CF_INT_PASSWORD=$(credhub get --name '/bosh-lite/cf/cf_admin_password' --output-json | jq -r '.value')
 }
+
+function let_me_pull() {
+    local ssh_url="$(git remote get-url --push origin)"
+    local https_url="$(echo $ssh_url | awk '{gsub(/git@github.com:/,"https://github.com/")}1')"
+    if ! echo ${ssh_url} | grep 'git@' > /dev/null; then
+	echo 'push url doesnt seem to be ssh... exiting without changing anything'
+	return
+    fi
+
+    echo 'setting fetch to https and push to ssh'
+    git remote set-url origin "${https_url}"
+    git remote set-url origin --push "${ssh_url}"
+    git remote -v
+    echo 'success!'
+}
