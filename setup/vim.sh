@@ -5,9 +5,6 @@ grep -q "github.com/luan/nvim" ~/.config/nvim/.git/config ||
 	((chmod -f -R +w $HOME/.vim/gopath/pkg/mod/golang.org/x || true) ; rm -rf ${HOME}/.config/nvim ${HOME}/.vim* ${HOME}/.local/share/nvim &&
 	git clone https://github.com/luan/nvim ~/.config/nvim)
 
-echo "Update pip..."
-pip install --upgrade pip
-
 echo "Install python-client for neovim..."
 pip install --upgrade neovim
 
