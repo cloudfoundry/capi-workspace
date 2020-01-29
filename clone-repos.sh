@@ -16,6 +16,7 @@ pushd ~/workspace > /dev/null
 	clone git@github.com:cloudfoundry/capi-ci-private.git ~/workspace/capi-ci-private
 	disable_cred_hook ~/workspace/capi-ci-private
 	clone git@github.com:cloudfoundry/cf-deployment.git ~/workspace/cf-deployment
+	clone git@github.com:cloudfoundry/cf-for-k8s.git ~/workspace/cf-for-k8s
 
 	# clone golang repos and symlink them into the GOPATH
 	clone git@github.com:cloudfoundry/cf-acceptance-tests.git ~/go/src/github.com/cloudfoundry/cf-acceptance-tests
