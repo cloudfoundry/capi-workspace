@@ -5,26 +5,40 @@ if [ -z "$BOSH_LITE_DOMAIN" ]; then
   exit 1
 fi
 
-log_file_name="${1:-cloud_controller_ng.log}"
-tempfile=$(mktemp)
-unknown_errors=0
+if [ $# -eq 1 ]; then
+  set -- "api"       $1                            "/var/vcap/sys/log/cloud_controller_ng"
+else
+  set -- "api"       "cloud_controller_ng.log"     "/var/vcap/sys/log/cloud_controller_ng" \
+         "cc-worker" "cloud_controller_worker.log" "/var/vcap/sys/log/cloud_controller_worker"
+fi
 
-echo "Fetching $log_file_name from $BOSH_LITE_DOMAIN..."
-bosh scp "api:/var/vcap/sys/log/cloud_controller_ng/$log_file_name" "$tempfile" > /dev/null
+tempdir=$(mktemp -d)
 
-while read -r line ; do
+while [ $# -gt 1 ]; do
+  vm_name=$1
+  log_file_name=$2
+  path=$3
+  unknown_errors=0
 
-  unknown_errors=$((unknown_errors + 1))
-  timestamp=$(echo "$line" | jq '.timestamp' | cut -d'.' -f1)
-  message=$(echo "$line" | jq -r '.message' \
-    | sed "s/^Request failed: 500: //; s/=>/:/g" \
-    | sed -e "s/\/var\/vcap\/data\/packages\///g")
+  echo "Fetching $vm_name:$path/$log_file_name on $BOSH_LITE_DOMAIN..."
+  bosh scp "$vm_name:$path/$log_file_name" "$tempdir/$log_file_name" > /dev/null
+
+  while read -r line ; do
+
+    unknown_errors=$((unknown_errors + 1))
+    timestamp=$(echo "$line" | jq '.timestamp' | cut -d'.' -f1)
+    message=$(echo "$line" | jq -r '.message' \
+      | sed "s/^Request failed: 500: //; s/=>/:/g" \
+      | sed -e "s/\/var\/vcap\/data\/packages\///g")
+
+    echo ""
+    echo "Unknown error at approximately $(date -j -f %s "$timestamp"):"
+    echo "$message" | jq
+
+  done < <(grep "Request failed: 500" $tempdir/$log_file_name)
 
   echo ""
-  echo "Unknown error at approximately $(date -j -f %s "$timestamp"):"
-  echo "$message" | jq
+  echo "$unknown_errors unknown errors found on VM $vm_name in $log_file_name"
 
-done < <(grep "Request failed: 500" $tempfile)
-
-echo ""
-echo "$unknown_errors unknown errors found in $log_file_name"
+  shift 3
+done
