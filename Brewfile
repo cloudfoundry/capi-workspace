@@ -62,6 +62,7 @@ brew 'tldr'
 brew 'tmux'
 brew 'tree'
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
+brew 'vendir'
 brew 'watch'
 brew 'wget'
 brew 'yarn'
