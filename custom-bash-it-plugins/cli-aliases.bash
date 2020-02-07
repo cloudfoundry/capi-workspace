@@ -6,5 +6,6 @@ function int() {
     echo "Loading integration environment variables for $TARGETED_BOSH_LITE_NAME..."
 
     source ~/workspace/cli-private/set_int_test_lite.sh $TARGETED_BOSH_LITE_NAME
+    export SKIP_SSL_VALIDATION=true
   fi
 }
