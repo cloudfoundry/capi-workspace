@@ -23,3 +23,4 @@ if ! git config --global --get core.hookspath; then
   git config --global --add core.hooksPath ~/workspace/git-hooks-core
 fi
 
+${HOME}/workspace/capi-release/src/cloud_controller_ng/scripts/install-pre-commit.sh
