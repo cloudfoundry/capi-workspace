@@ -13,7 +13,6 @@ fi
 
 GO_UTILS=(
   github.com/rakyll/hey
-  code.cloudfoundry.org/perm/cmd/perm
   github.com/maxbrunsfeld/counterfeiter
   github.com/onsi/ginkgo/ginkgo
   github.com/onsi/gomega
