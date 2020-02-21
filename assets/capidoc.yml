@@ -46,6 +46,10 @@ create_and_upload:
   description: Create a capi release and upload to current bosh target
   location: capi-workspace/scripts
   group: bosh-deploy
+create_gke_cluster:
+  description: Create a GKE cluster and target it
+  location: capi-workspace/scripts
+  group: kube
 deploy:
   description: Create a capi release, upload to current bosh target, and deploy with default ops files (non interactive)
   location: capi-workspace/scripts

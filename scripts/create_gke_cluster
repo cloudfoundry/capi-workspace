@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [ "$#" -lt 1 ]; then
+  echo "plz give your cluster a name"
+  exit 1
+fi
+CLUSTER_NAME="${1}-cluster-1"
+
+CURRENT_GCP_PROJECT="$(gcloud config get-value project)"
+if [ $CURRENT_GCP_PROJECT != "cf-capi-arya" ]; then
+  echo "plz target the 'cf-capi-arya' GCP project"
+  exit 1
+fi
+
+gcloud container clusters create "${CLUSTER_NAME}" --machine-type=n1-standard-2 --zone us-central1-a
+
