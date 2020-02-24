@@ -16,6 +16,7 @@ fi
 gcloud container clusters create "${CLUSTER_NAME}" \
   --cluster-version="1.14.10-gke.22" \
   --machine-type=n1-standard-2 \
+  --num-nodes=5 \
   --zone us-central1-a \
   --project=cf-capi-arya
 
