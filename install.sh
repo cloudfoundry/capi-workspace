@@ -42,6 +42,7 @@ source ./setup/custom-bash-it-plugins.sh
 source ./setup/iterm2.sh
 source ./setup/vim.sh
 source ./setup/jarg.sh
+source ./setup/tmux.sh
 
 # ruby setup
 source ./setup/ruby.sh
