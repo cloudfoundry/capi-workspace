@@ -1,0 +1,9 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"kind": "VirtualService", "metadata": {"name": "docker-registry-external-virtual-service"}})
+---
+spec:
+  hosts:
+  #@overlay/append
+  - #@ "internal.registry.{}".format(data.values.system_domain)

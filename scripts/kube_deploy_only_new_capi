@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -ex
+
+if [ "$#" -lt 1 ]; then
+  echo "plz give path to values file"
+  exit 1
+fi
+
+CF_FOR_K8S_DIR="${HOME}/workspace/cf-for-k8s"
+CAPI_K8S_RELEASE_DIR="${HOME}/workspace/capi-k8s-release"
+
+# make values dir with values file and necessary overlays
+SYSTEM_DOMAIN=$(bosh int --path /system_domain "$1")
+VALUES_DIR="/tmp/${SYSTEM_DOMAIN}"
+mkdir -p "${VALUES_DIR}"
+cp "$1" "${VALUES_DIR}/values.yml"
+cp "${HOME}/workspace/capi-workspace/assets/enable-internal-dev-registry.yml" "${VALUES_DIR}/"
+
+# TODO: call bump-cf-for-k8s.sh too
+${CAPI_K8S_RELEASE_DIR}/scripts/build.sh -t "registry.${SYSTEM_DOMAIN}/capi"
+docker push "registry.${SYSTEM_DOMAIN}/capi"
+
+# TODO: use `kbld`?
+# update values file to use our dev image
+yq ".images.capi = \"internal.registry.${SYSTEM_DOMAIN}\"" "${VALUES_DIR}/values.yml" --in-place --yaml-output
+
+# deploy CF
+${CF_FOR_K8S_DIR}/bin/install-cf.sh "${VALUES_DIR}"
+
+# TODO: delete tmp dir
