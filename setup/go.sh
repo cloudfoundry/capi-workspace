@@ -17,6 +17,7 @@ GO_UTILS=(
   github.com/onsi/ginkgo/ginkgo
   github.com/onsi/gomega
   github.com/XenoPhex/i18n4go/i18n4go
+  github.com/sgreben/yeetgif/cmd/gif
 )
 
 echo "Running $(go version)"
