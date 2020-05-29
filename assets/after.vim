@@ -2,7 +2,7 @@ scriptencoding utf-8
 
 let g:ale_yaml_yamllint_options = '-d relaxed'
 
-let g:leader_key_map.w = {
+let g:leader_key_map.a = {
       \ 'name': '+tabs',
       \ 'n': [':tabnew',            'Create new tab'],
       \ ',': [':tabprevious',       'Switch to tab left of current'],
