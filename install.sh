@@ -2,6 +2,8 @@
 
 set -e
 
+: "${FULL_CAPI_INSTALL:=true}"
+
 LOGFILE=$HOME/workspace/capi-workspace/launchagent-daily-install.log
 
 function install {
@@ -27,10 +29,7 @@ git remote set-url origin git@github.com:cloudfoundry/capi-workspace
 source ./setup/launchagent-daily-install.sh
 source ./setup/local_connections.sh
 
-# install brew and its packages
-source ./setup/brew.sh
-source ./setup/xcode.sh
-source ./brew-bundle.sh
+source ./install-core.sh
 
 # Setup radar menu bar item to point at our concourse
 source ./setup/radar.sh
