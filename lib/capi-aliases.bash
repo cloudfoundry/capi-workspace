@@ -6,6 +6,7 @@ alias b='bundle exec'
 alias bake='echo "bundling..." && bundle install --quiet && echo "done bundling" && bundle exec rake'
 alias pgbake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=postgres bundle exec rake'
 alias mybake='echo "bundling..." && bundle install --quiet && echo "done bundling" && DB=mysql bundle exec rake'
+alias k=kubectl
 
 # Git aliases
 alias gd='git diff'
