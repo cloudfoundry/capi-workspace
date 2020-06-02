@@ -28,8 +28,11 @@ source ./helpers/bash-it-helpers.sh
 
 enable_bash_it_plugin fasd
 enable_bash_it_plugin history
+enable_bash_it_plugin chruby-auto
+
 enable_bash_it_completion defaults
 enable_bash_it_completion git
 enable_bash_it_completion ssh
+
 enable_bash_it_alias bundler
 enable_bash_it_alias git

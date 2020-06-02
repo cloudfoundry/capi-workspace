@@ -43,11 +43,6 @@ source ./setup/vim.sh
 source ./setup/jarg.sh
 source ./setup/tmux.sh
 
-# ruby setup
-source ./setup/ruby.sh
-source ./setup/bundler.sh
-source ./setup/uaac.sh
-
 # git setup
 source ./setup/git-config.sh
 source ./setup/git-hooks.sh
