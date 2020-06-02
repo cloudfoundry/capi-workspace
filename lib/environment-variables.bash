@@ -1,6 +1,4 @@
-# shell prompt settings
-export HISTTIMEFORMAT="%F %T "
-export THEME_CLOCK_CHAR="⛅️ "
+export BOSH_SHA2=true
 
 # Set nvim as default editor
 export GIT_EDITOR=nvim
