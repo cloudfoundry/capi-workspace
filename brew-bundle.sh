@@ -8,10 +8,14 @@ extra_capi_brewfile="${PWD}/Brewfile-extra"
 echo "Installing from the Brewfile..."
 brew update || echo "brew update failed, but continuing"
 brew tap Homebrew/bundle
-brew bundle --file "$core_capi_brewfile" || true
+if ! brew bundle check --file "$core_capi_brewfile"; then
+    brew bundle --file "$core_capi_brewfile" || true
+fi
 
 if [ "$FULL_CAPI_INSTALL" = true ]; then
-    brew bundle --file "$extra_capi_brewfile" || true
+    if ! brew bundle check --file "$extra_capi_brewfile"; then
+        brew bundle --file "$extra_capi_brewfile" || true
+    fi
 fi
 
 brew cleanup
