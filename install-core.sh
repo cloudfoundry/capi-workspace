@@ -21,4 +21,3 @@ source ./brew-bundle.sh
 # ruby setup
 source ./setup/ruby.sh
 source ./setup/bundler.sh
-source ./setup/uaac.sh

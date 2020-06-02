@@ -25,14 +25,7 @@ git pull
 # restore remote to ssh
 git remote set-url origin git@github.com:cloudfoundry/capi-workspace
 
-# nightly autoinstall setup
-source ./setup/launchagent-daily-install.sh
-source ./setup/local_connections.sh
-
 source ./install-core.sh
-
-# Setup radar menu bar item to point at our concourse
-source ./setup/radar.sh
 
 # bash-it / terminal
 source ./setup/bash.sh
@@ -40,7 +33,6 @@ source ./setup/bash-it.sh
 source ./setup/custom-bash-it-plugins.sh
 source ./setup/iterm2.sh
 source ./setup/vim.sh
-source ./setup/jarg.sh
 source ./setup/tmux.sh
 
 # git setup
@@ -68,14 +60,9 @@ source ./setup/go.sh
 # Depends on existence of GOPATH, created earlier on
 source ./clone-repos.sh
 
-source ./setup/cats.sh
-
 source ./setup/fly.sh
 
 source ./setup/misc.sh
-
-# Instal CLI cf-httpie plugin
-source ./setup/httpie.sh
 
 # Add gem dependencies for CAPI-Workspace
 bundle
