@@ -21,3 +21,22 @@ source ./brew-bundle.sh
 # ruby setup
 source ./setup/ruby.sh
 source ./setup/bundler.sh
+
+# core git setup
+source ./setup/git-hooks.sh
+
+# update cred-alert-cli
+source ./setup/update-cred-alert.sh
+
+# daemons to launch databases at startup
+source ./setup/mysql.sh
+source ./setup/postgres.sh
+
+# Golang setup
+source ./setup/go.sh
+
+# Depends on existence of GOPATH, created earlier on
+source ./clone-repos.sh
+
+# Concourse "fly"
+source ./setup/fly.sh

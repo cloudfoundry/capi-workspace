@@ -37,11 +37,7 @@ source ./setup/tmux.sh
 
 # git setup
 source ./setup/git-config.sh
-source ./setup/git-hooks.sh
 source ./setup/git-author.sh
-
-# update cred-alert-cli
-source ./setup/update-cred-alert.sh
 
 # ide prefs
 source ./setup/ide-prefs.sh
@@ -49,18 +45,6 @@ source ./setup/ide-prefs.sh
 source ./setup/keyboard.sh
 source ./setup/dock.sh
 source ./setup/spectacle.sh
-
-# daemons to launch databases at startup
-source ./setup/mysql.sh
-source ./setup/postgres.sh
-
-# Golang setup
-source ./setup/go.sh
-
-# Depends on existence of GOPATH, created earlier on
-source ./clone-repos.sh
-
-source ./setup/fly.sh
 
 source ./setup/misc.sh
 
