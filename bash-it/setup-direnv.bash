@@ -1,3 +1,1 @@
-if [ -n "$BASH" ]; then
-    eval "$(direnv hook bash)"
-fi
+eval "$(direnv hook bash)"
