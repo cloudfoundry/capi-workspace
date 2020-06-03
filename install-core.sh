@@ -16,7 +16,7 @@
 # install brew and its packages
 source ./setup/brew.sh
 source ./setup/xcode.sh
-source ./brew-bundle.sh
+source ./setup/brew-bundle.sh
 
 # ruby setup
 source ./setup/ruby.sh
@@ -36,7 +36,7 @@ source ./setup/postgres.sh
 source ./setup/go.sh
 
 # Depends on existence of GOPATH, created earlier on
-source ./clone-repos.sh
+source ./setup/clone-repos.sh
 
 # Concourse "fly"
 source ./setup/fly.sh
