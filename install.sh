@@ -18,7 +18,7 @@ cd "$(dirname "$0")"
 git remote set-url origin https://github.com/cloudfoundry/capi-workspace
 
 # make sure we're up to date
-git pull
+git pull -r
 
 # restore remote to ssh
 git remote set-url origin git@github.com:cloudfoundry/capi-workspace

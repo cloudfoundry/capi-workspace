@@ -9,7 +9,7 @@ target_bosh() {
   local claimed_dir="$env_pool/bosh-lites/claimed"
 
   pushd ${claimed_dir} >/dev/null
-    git pull
+    git pull -r
   popd >/dev/null
 
   if [ -z "$1" ]; then
