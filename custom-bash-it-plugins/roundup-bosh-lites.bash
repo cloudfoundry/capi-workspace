@@ -43,7 +43,7 @@ function roundup_bosh_lites() {
 
   pool_dir=$HOME/workspace/cli-pools/bosh-lites
   pushd $pool_dir >/dev/null
-    git pull
+    git pull -r
   popd
 
   echo -e "${blue}Rounding up claimed environments...${nc}"
