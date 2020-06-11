@@ -13,3 +13,7 @@ let g:leader_key_map.a = {
       \ '4': ['4gt',             'Switch to tab 4'],
       \ '5': ['5gt',             'Switch to tab 5'],
       \ }
+
+let g:coc_filetype_map = {
+      \ 'rspec.ruby': 'ruby',
+      \ }
