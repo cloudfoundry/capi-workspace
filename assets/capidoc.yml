@@ -204,3 +204,7 @@ pullify:
   description: Pull down all PRs for current git repo as branches
   location: capi-workspace/custom-bash-it-plugins
   group: git
+attach_debugger:
+  description: Attaches the rubymine debugger to your bosh lite 
+  location: capi-release/src/cloud_controller_ng/scripts/short-circuit-cc
+  group: bosh-lite-pool
