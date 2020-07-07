@@ -14,23 +14,23 @@
 : "${FULL_CAPI_INSTALL:=false}"
 
 # install brew and its packages
-source ./setup/brew.sh
-source ./setup/xcode.sh
-source ./setup/brew-bundle.sh
+source ./install-scripts/brew.sh
+source ./install-scripts/xcode.sh
+source ./install-scripts/brew-bundle.sh
 
 # ruby setup
-source ./setup/ruby.sh
-source ./setup/bundler.sh
+source ./install-scripts/ruby.sh
+source ./install-scripts/bundler.sh
 
 # daemons to launch databases at startup
-source ./setup/mysql.sh
-source ./setup/postgres.sh
+source ./install-scripts/mysql.sh
+source ./install-scripts/postgres.sh
 
 # Golang setup
-source ./setup/go.sh
+source ./install-scripts/go.sh
 
 # Depends on existence of GOPATH, created earlier on
-source ./setup/clone-repos.sh
+source ./install-scripts/clone-repos.sh
 
 # Concourse "fly"
-source ./setup/fly.sh
+source ./install-scripts/fly.sh

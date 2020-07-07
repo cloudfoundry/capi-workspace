@@ -28,33 +28,33 @@ git remote set-url origin git@github.com:cloudfoundry/capi-workspace
 source ./install-core.sh
 
 # bash-it / terminal
-source ./setup/bash.sh
-source ./setup/bash-it.sh
-source ./setup/iterm2.sh
-source ./setup/vim.sh
-source ./setup/tmux.sh
+source ./install-scripts/bash.sh
+source ./install-scripts/bash-it.sh
+source ./install-scripts/iterm2.sh
+source ./install-scripts/vim.sh
+source ./install-scripts/tmux.sh
 
 # git setup
-source ./setup/git-config.sh
-source ./setup/git-author.sh
-source ./setup/git-hooks.sh
+source ./install-scripts/git-config.sh
+source ./install-scripts/git-author.sh
+source ./install-scripts/git-hooks.sh
 
 # update cred-alert-cli
-source ./setup/update-cred-alert.sh
+source ./install-scripts/update-cred-alert.sh
 
 # ide prefs
-source ./setup/ide-prefs.sh
+source ./install-scripts/ide-prefs.sh
 
-source ./setup/keyboard.sh
-source ./setup/dock.sh
-source ./setup/spectacle.sh
+source ./install-scripts/keyboard.sh
+source ./install-scripts/dock.sh
+source ./install-scripts/spectacle.sh
 
-source ./setup/misc.sh
+source ./install-scripts/misc.sh
 
 # Add gem dependencies for CAPI-Workspace
 bundle
 
-echo "Please set your computer name using \"./setup/system-name.sh <name>\" if you have not already. Thanks!"
+echo "Please set your computer name using \"./install-scripts/system-name.sh <name>\" if you have not already. Thanks!"
 }
 
 
