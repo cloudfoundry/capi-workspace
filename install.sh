@@ -36,8 +36,8 @@ source ./install-scripts/tmux.sh
 
 # git setup
 source ./install-scripts/git-config.sh
-source ./install-scripts/git-author.sh
 source ./install-scripts/git-hooks.sh
+source ./install-scripts/git-author.sh
 
 # update cred-alert-cli
 source ./install-scripts/update-cred-alert.sh
