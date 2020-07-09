@@ -40,3 +40,7 @@ enable_bash_it_alias git
 for filepath in ~/workspace/capi-workspace/bash-it/*; do
 	enable_custom_bash_it_plugin $filepath
 done
+
+for filepath in ~/workspace/capi-workspace/lib/*; do
+	enable_custom_bash_it_plugin $filepath
+done
