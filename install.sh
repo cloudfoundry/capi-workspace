@@ -2,6 +2,8 @@
 
 set -e
 
+: "${FULL_CAPI_INSTALL:=true}"
+
 LOGFILE=$HOME/workspace/capi-workspace/launchagent-daily-install.log
 
 function install {
@@ -23,70 +25,36 @@ git pull
 # restore remote to ssh
 git remote set-url origin git@github.com:cloudfoundry/capi-workspace
 
-# nightly autoinstall setup
-source ./setup/launchagent-daily-install.sh
-source ./setup/local_connections.sh
-
-# install brew and its packages
-source ./setup/brew.sh
-source ./setup/xcode.sh
-source ./brew-bundle.sh
-
-# Setup radar menu bar item to point at our concourse
-source ./setup/radar.sh
+source ./install-core.sh
 
 # bash-it / terminal
-source ./setup/bash.sh
-source ./setup/bash-it.sh
-source ./setup/custom-bash-it-plugins.sh
-source ./setup/iterm2.sh
-source ./setup/vim.sh
-source ./setup/jarg.sh
-source ./setup/tmux.sh
-
-# ruby setup
-source ./setup/ruby.sh
-source ./setup/bundler.sh
-source ./setup/uaac.sh
+source ./install-scripts/bash.sh
+source ./install-scripts/bash-it.sh
+source ./install-scripts/iterm2.sh
+source ./install-scripts/vim.sh
+source ./install-scripts/tmux.sh
 
 # git setup
-source ./setup/git-config.sh
-source ./setup/git-hooks.sh
-source ./setup/git-author.sh
+source ./install-scripts/git-config.sh
+source ./install-scripts/git-hooks.sh
+source ./install-scripts/git-author.sh
 
 # update cred-alert-cli
-source ./setup/update-cred-alert.sh
+source ./install-scripts/update-cred-alert.sh
 
 # ide prefs
-source ./setup/ide-prefs.sh
+source ./install-scripts/ide-prefs.sh
 
-source ./setup/keyboard.sh
-source ./setup/dock.sh
-source ./setup/spectacle.sh
+source ./install-scripts/keyboard.sh
+source ./install-scripts/dock.sh
+source ./install-scripts/spectacle.sh
 
-# daemons to launch databases at startup
-source ./setup/mysql.sh
-source ./setup/postgres.sh
-
-# Golang setup
-source ./setup/go.sh
-
-# Depends on existence of GOPATH, created earlier on
-source ./clone-repos.sh
-
-source ./setup/cats.sh
-
-source ./setup/fly.sh
-
-source ./setup/misc.sh
-
-# Instal CLI cf-httpie plugin
-source ./setup/httpie.sh
+source ./install-scripts/misc.sh
 
 # Add gem dependencies for CAPI-Workspace
 bundle
 
-echo "Please set your computer name using \"./setup/system-name.sh <name>\" if you have not already. Thanks!"
+echo "Please set your computer name using \"./install-scripts/system-name.sh <name>\" if you have not already. Thanks!"
 }
 
 

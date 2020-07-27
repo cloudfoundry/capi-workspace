@@ -1,0 +1,44 @@
+tap 'cloudfoundry/tap'
+tap 'k14s/tap'
+tap 'pivotal/tap'
+tap 'buildpack/tap'
+
+# Core utilities
+brew 'git'
+brew 'lastpass-cli'
+brew 'wget'
+brew 'coreutils'
+brew 'direnv'
+
+# Core services
+brew 'docker'
+brew 'mysql'
+brew 'postgresql@9.6', restart_service: true, link: true
+
+# CloudFoundry binaries
+brew 'bbr'
+brew 'buildpack/tap/pack'
+brew 'cf-cli'
+brew 'cf7-cli'
+brew 'cloudfoundry/tap/bbl'
+brew 'cloudfoundry/tap/bosh-cli'
+brew 'cloudfoundry/tap/credhub-cli'
+brew 'ytt'
+brew 'vendir'
+brew 'kapp'
+brew 'kbld'
+
+# Kubernetes binaries
+brew 'kubernetes-cli'
+
+# Language support
+brew 'go'
+brew 'ruby-install'
+brew 'chruby'
+brew 'node'
+brew 'python'
+brew 'shellcheck'
+brew 'yarn'
+cask 'java'
+
+cask 'docker'

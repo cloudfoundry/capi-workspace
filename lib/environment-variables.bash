@@ -1,6 +1,4 @@
-# shell prompt settings
-export HISTTIMEFORMAT="%F %T "
-export THEME_CLOCK_CHAR="⛅️ "
+export BOSH_SHA2=true
 
 # Set nvim as default editor
 export GIT_EDITOR=nvim
@@ -11,7 +9,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # Add capi-workspace/scripts to PATH
-export PATH="$PATH:$HOME/workspace/capi-workspace/scripts"
+export PATH="$PATH:$HOME/workspace/capi-workspace/bin"
 
 # Add brew-installed python to the path.
 # Must go at the beginning so that it's prioritized over the system installation.
