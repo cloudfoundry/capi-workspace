@@ -37,6 +37,7 @@ enable_bash_it_completion ssh
 enable_bash_it_alias bundler
 enable_bash_it_alias git
 
+rm -rf "${BASH_IT}/custom/"
 for filepath in ~/workspace/capi-workspace/bash-it/*; do
 	enable_custom_bash_it_plugin $filepath
 done

@@ -1,7 +1,7 @@
 tap 'cloudfoundry/tap'
 tap 'k14s/tap'
 tap 'pivotal/tap'
-tap 'buildpack/tap'
+tap 'buildpacks/tap'
 
 # Core utilities
 brew 'git'
@@ -11,13 +11,13 @@ brew 'coreutils'
 brew 'direnv'
 
 # Core services
-brew 'docker'
+brew 'docker', overwrite: true, link: true
 brew 'mysql'
 brew 'postgresql@9.6', restart_service: true, link: true
 
 # CloudFoundry binaries
 brew 'bbr'
-brew 'buildpack/tap/pack'
+brew 'buildpacks/tap/pack'
 brew 'cf-cli'
 brew 'cf7-cli'
 brew 'cloudfoundry/tap/bbl'
@@ -36,7 +36,7 @@ brew 'go'
 brew 'ruby-install'
 brew 'chruby'
 brew 'node'
-brew 'python'
+brew 'python', link: true, overwrite: true
 brew 'shellcheck'
 brew 'yarn'
 cask 'java'

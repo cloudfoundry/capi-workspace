@@ -4,15 +4,7 @@ set -e
 
 : "${FULL_CAPI_INSTALL:=true}"
 
-LOGFILE=$HOME/workspace/capi-workspace/launchagent-daily-install.log
-
 function install {
-
-if [ ! -t 1 ] ; then
-  echo '=================================================================='
-  date
-  echo '=================================================================='
-fi >> $LOGFILE
 
 cd "$(dirname "$0")"
 
@@ -56,24 +48,5 @@ bundle
 
 echo "Please set your computer name using \"./install-scripts/system-name.sh <name>\" if you have not already. Thanks!"
 }
-
-
-function open_log() {
-  open $HOME/workspace/capi-workspace/launchagent-daily-install.log
-}
-
-function exit_successfully() {
-  # clean up autoinstall logs on autoinstall success
-  if [ ! -t 1 ] ; then
-    echo -n > $LOGFILE
-  fi
-
-  echo "Successfully installed!"
-}
-
-trap '{ case $? in
-   0) exit_successfully; exit 0;;
-   *) open_log ; exit 0;;
- esac ; }' EXIT
 
 install
