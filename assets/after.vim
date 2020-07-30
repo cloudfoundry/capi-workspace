@@ -17,3 +17,7 @@ let g:leader_key_map.a = {
 let g:coc_filetype_map = {
       \ 'rspec.ruby': 'ruby',
       \ }
+
+" vim setup keeps trying to use 2 spaces, so let `rustfmt` fix that for us on
+" save for Rust source files
+let g:rustfmt_autosave = 1

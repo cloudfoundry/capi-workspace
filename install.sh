@@ -24,9 +24,9 @@ git pull
 git remote set-url origin git@github.com:cloudfoundry/capi-workspace
 
 # install brew and its packages
-source ./setup/brew.sh
-source ./setup/xcode.sh
-source ./brew-bundle.sh
+# source ./setup/brew.sh
+# source ./setup/xcode.sh
+# source ./brew-bundle.sh
 
 # bash-it / terminal
 source ./setup/bash.sh
@@ -47,9 +47,6 @@ source ./setup/git-author.sh
 
 # update cred-alert-cli
 source ./setup/update-cred-alert.sh
-
-# ide prefs
-source ./setup/ide-prefs.sh
 
 source ./setup/keyboard.sh
 source ./setup/spectacle.sh

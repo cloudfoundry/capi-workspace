@@ -6,8 +6,6 @@ source ./helpers/clone.sh
 source ./helpers/disable-cred-hook.sh
 
 pushd ~/workspace > /dev/null
-
-	clone git@github.com:pivotal/pivotal_ide_prefs.git ~/workspace/pivotal_ide_prefs
 	clone git@github.com:cloudfoundry/capi-release.git ~/workspace/capi-release develop
 	clone git@github.com:cloudfoundry/capi-env-pool.git ~/workspace/capi-env-pool
 	disable_cred_hook ~/workspace/capi-env-pool
@@ -24,17 +22,8 @@ pushd ~/workspace > /dev/null
 		ln -sf	$HOME/go/src/github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
 	fi
 
-	clone git@github.com:cloudfoundry/sync-integration-tests.git ~/go/src/code.cloudfoundry.org/sync-integration-tests
-  ln -sfn $HOME/go/src/code.cloudfoundry.org/sync-integration-tests ~/workspace/sync-integration-tests
-
 	clone git@github.com:cloudfoundry/capi-bara-tests.git ~/go/src/github.com/cloudfoundry/capi-bara-tests
 	if [ ! -L ~/workspace/capi-bara-tests ]; then
 		ln -sf	$HOME/go/src/github.com/cloudfoundry/capi-bara-tests ~/workspace/capi-bara-tests
 	fi
-
-	clone git@github.com:cloudfoundry/cli.git ~/go/src/code.cloudfoundry.org/cli
-	if [ ! -L ~/workspace/cli ]; then
-		ln -sf	$HOME/go/src/code.cloudfoundry.org/cli/ ~/workspace/cli
-	fi
-
 popd > /dev/null
