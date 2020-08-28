@@ -15,11 +15,13 @@ brew 'docker', overwrite: true, link: true
 brew 'mysql'
 brew 'postgresql@9.6', restart_service: true, link: true
 
+# Kubernetes binaries
+brew 'kubernetes-cli'
+
 # CloudFoundry binaries
 brew 'bbr'
-brew 'buildpacks/tap/pack'
-brew 'cf-cli'
-brew 'cf7-cli'
+brew 'cloudfoundry/tap/cf-cli@7', link: true, overwrite: true
+brew 'cloudfoundry/tap/cf-cli@6'
 brew 'cloudfoundry/tap/bbl'
 brew 'cloudfoundry/tap/bosh-cli'
 brew 'cloudfoundry/tap/credhub-cli'
@@ -27,9 +29,7 @@ brew 'ytt'
 brew 'vendir'
 brew 'kapp'
 brew 'kbld'
-
-# Kubernetes binaries
-brew 'kubernetes-cli'
+brew 'buildpacks/tap/pack'
 
 # Language support
 brew 'go'
