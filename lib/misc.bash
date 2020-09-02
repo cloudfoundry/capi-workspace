@@ -22,8 +22,13 @@ alias bosh_lites="print_env_info"
 alias yamlvim="vim -c 'set syntax=yaml'"
 
 function cf_auth_config() {
-	cf api "$(jq -r .api cats_integration_config.json)" --skip-ssl-validation
-	cf auth admin "$(jq -r .admin_password cats_integration_config.json)"
+	if [ -f cats_integration_config.json ]; then
+	    CONFIG=$(pwd)/cats_integration_config.json
+	elif [ -f integration_config.json ]; then
+	    CONFIG=$(pwd)/integration_config.json
+	fi
+	cf api "$(jq -r .api ${CONFIG})" --skip-ssl-validation
+	cf auth admin "$(jq -r .admin_password ${CONFIG})"
 }
 
 function int() {
