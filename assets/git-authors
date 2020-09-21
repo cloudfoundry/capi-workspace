@@ -1,11 +1,8 @@
 [git-together]
   domain = pivotal.io
 [git-together "authors"]
-  bc  = "Brian Cunnie; bcunnie"
   cb  = "Connor Braa; cbraa"
   cs  = "Chris Selzo; cselzo"
-  ep  = "Eric Promislow; eric.promislow@suse.com"
-  ew  = "Eli Wrenn; ewrenn"
   gc  = "Greg Cobb; gcobb"
   hn  = "Harsha Nandiwada; hnandiwada@vmware.com"
   jp  = "Jaskanwal Pawar; jpawar"
@@ -18,7 +15,6 @@
   rm  = "Reid Mitchell; rmitchell"
   sb  = "Seth Boyles; sboyles"
   sj  = "Sannidhi Jalukar; sjalukar"
-  sn  = "Supraja Narasimhan; snarasimhan"
   sw  = "Sarah Weinstein; sweinstein"
   td  = "Tim Downey; tdowney@vmware.com"
   ts  = "Teal Stannard; tstannard"
