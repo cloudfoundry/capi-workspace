@@ -5,7 +5,7 @@ target_bosh() {
   # tput setaf 2 = green
   # tput setaf 9 = reset color
 
-  local env_pool="$HOME/workspace/cli-pools"
+  local env_pool="$HOME/workspace/capi-env-pool"
   local claimed_dir="$env_pool/bosh-lites/claimed"
 
   pushd ${claimed_dir} >/dev/null
@@ -34,7 +34,7 @@ target_bosh() {
       fi
 
       echo "$(tput setaf 2)Success!$(tput setaf 9)"
-      env_ssh_key_path="$HOME/workspace/cli-pools/${1}/bosh.pem"
+      env_ssh_key_path="$HOME/workspace/capi-env-pool/${1}/bosh.pem"
 
       export BOSH_GW_PRIVATE_KEY="${env_ssh_key_path}"
       export BOSH_ALL_PROXY=ssh+socks5://${BOSH_GW_USER}@${BOSH_ENVIRONMENT}:22?private-key=${BOSH_GW_PRIVATE_KEY}

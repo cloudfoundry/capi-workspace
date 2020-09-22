@@ -5,14 +5,11 @@ function unclaim_bosh_lite() {
     return
   fi
 
-  local env_pool="$HOME/workspace/cli-pools"
+  local env_pool="$HOME/workspace/capi-env-pool"
 
   # ensures we don't remove the current working directory
-  if [[ "$PWD" == *cli-pools* ]]; then
-    cd "$HOME/workspace/cli-pools"
-  fi
-  if [[ "$PWD" == *cli-pools* ]]; then
-    cd "$HOME/workspace/cli-pools"
+  if [[ "$PWD" == *capi-env-pool* ]]; then
+    cd "$HOME/workspace/capi-env-pool"
   fi
   (
     set -e

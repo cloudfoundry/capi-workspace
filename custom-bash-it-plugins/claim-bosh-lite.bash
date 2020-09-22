@@ -1,4 +1,4 @@
-env_pool="$HOME/workspace/cli-pools"
+env_pool="$HOME/workspace/capi-env-pool"
 
 project_id=2196383;
 

@@ -41,7 +41,7 @@ function roundup_bosh_lites() {
   blue='\033[0;34m'
   nc='\033[0m'
 
-  pool_dir=$HOME/workspace/cli-pools/bosh-lites
+  pool_dir="$HOME/workspace/capi-env-pool/bosh-lites"
   pushd $pool_dir >/dev/null
     git pull -r
   popd
