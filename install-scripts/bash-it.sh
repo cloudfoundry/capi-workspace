@@ -9,6 +9,8 @@ function install_bash_it {
 	else	
 		echo "Updating bash_it"
 		pushd ~/.bash_it > /dev/null
+                        # We remove some "annoying aliases" later which leaves
+                        # our local branch in a dirty state
 			git checkout .
 			git pull -r
 		popd > /dev/null
