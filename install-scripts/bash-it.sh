@@ -3,17 +3,18 @@
 set -e
 
 function install_bash_it {
-	if [ -z "$BASH_IT" ] ; then
+	if [ ! -e ~/.bash_it ] ; then
 		echo "Installing bash_it"
-		if [ ! -e ~/.bash_it ] ; then
-			git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-		fi
-		~/.bash_it/install.sh --silent
-	else
-		echo "bash_it already installed"
+		git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+	else	
+		echo "Updating bash_it"
+		pushd ~/.bash_it > /dev/null
+			git checkout .
+			git pull -r
+		popd > /dev/null
 	fi
+	~/.bash_it/install.sh --silent
 }
-
 install_bash_it
 
 # remove annoying aliases
