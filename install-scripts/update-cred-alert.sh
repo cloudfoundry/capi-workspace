@@ -2,4 +2,4 @@
 
 set -e
 
-cred-alert-cli update
+sudo cred-alert-cli update

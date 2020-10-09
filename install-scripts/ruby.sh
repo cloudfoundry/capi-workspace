@@ -2,7 +2,7 @@
 
 set -e
 
-source /usr/local/share/chruby/chruby.sh
+source "$(brew --prefix)/share/chruby/chruby.sh"
 
 RUBY_VERSION="2.5.5"
 
@@ -18,5 +18,5 @@ ruby -e 'if (`gem --version`.chomp.split(".").map(&:to_i) <=> [2, 6, 14]) == -1 
 	system("gem update --system 2.6.14") \
 end'
 
-source /usr/local/share/chruby/chruby.sh
+source "$(brew --prefix)/share/chruby/chruby.sh"
 chruby ${RUBY_VERSION}

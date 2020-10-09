@@ -5,15 +5,12 @@ tap 'buildpacks/tap'
 
 # Core utilities
 brew 'git'
-brew 'lastpass-cli'
 brew 'wget'
 brew 'coreutils'
 brew 'direnv'
 
 # Core services
 brew 'docker', overwrite: true, link: true
-brew 'mysql'
-brew 'postgresql@9.6', restart_service: true, link: true
 
 # Kubernetes binaries
 brew 'kubernetes-cli'

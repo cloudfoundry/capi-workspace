@@ -1,5 +1,6 @@
 env_pool="$HOME/workspace/capi-env-pool"
 
+# TODO:  have this script choose Tracker ID like our "story" script
 project_id=966314;
 
 function get_stories() {
@@ -7,7 +8,6 @@ function get_stories() {
 	  "https://www.pivotaltracker.com/services/v5/projects/$project_id/stories?with_state=started" | tr '**' ' ')"
 	echo $story_json | tr '\n' ' ' | jq -r '.[] | "#\(.id) \(.name)"'
 	echo "No story"
-
 }
 
 function story_selector() {

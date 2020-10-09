@@ -6,11 +6,10 @@ grep -q "github.com/luan/nvim" ~/.config/nvim/.git/config ||
 	git clone https://github.com/luan/nvim ~/.config/nvim)
 
 echo "Install python-client for neovim..."
-pip install --upgrade neovim
-pip install --upgrade pynvim
+python3 -m pip install --user --upgrade pynvim
 
 echo "Add yamllint for neomake..."
-pip install -q yamllint
+pip3 install -q yamllint
 
 mkdir -p ~/.config/nvim/user
 pushd ~/.config/nvim/user

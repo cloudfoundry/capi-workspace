@@ -13,15 +13,25 @@
 
 : "${FULL_CAPI_INSTALL:=false}"
 
+if [ "$(uname)" = "Darwin" ]; then
+	IS_OSX=true
+else
+	IS_OSX=false
+	./install-scripts/ubuntu.sh
+fi
 # install brew and its packages
 source ./install-scripts/brew.sh
-source ./install-scripts/xcode.sh
+if [ "$IS_OSX" = true ]; then
+	source ./install-scripts/xcode.sh
+else
+	echo "Skipping Xcode installation for non OSX install"
+fi
 source ./install-scripts/brew-bundle.sh
-
+echo "Installing ruby"
 # ruby setup
 source ./install-scripts/ruby.sh
 source ./install-scripts/bundler.sh
-
+echo "Installing databases"
 # daemons to launch databases at startup
 source ./install-scripts/mysql.sh
 source ./install-scripts/postgres.sh
