@@ -1,0 +1,14 @@
+#TODO: move the following to be extra-only install?
+tap 'universal-ctags/universal-ctags'
+brew 'git-author'
+brew 'git-together'
+brew 'lastpass-cli'
+
+
+
+brew 'mysql'
+brew 'docker', overwrite: true, link: true
+brew 'postgresql@9.6', restart_service: true, link: true
+brew 'autojump'
+
+brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']

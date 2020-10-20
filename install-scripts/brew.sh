@@ -12,6 +12,12 @@ function install_brew {
 	# to avoid ttyless complaints on brew update
 	sudo mkdir -p /usr/local/sbin
 	sudo chown -R $(whoami) /usr/local/sbin
+	if [ "$(uname)" = "Linux" ]; then
+		if ! brew; then
+			echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/pivotal/.profile
+			eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+		fi
+	fi
 }
 
 # do not run in non-interactive contexts
