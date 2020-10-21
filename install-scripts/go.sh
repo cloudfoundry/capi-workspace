@@ -26,6 +26,10 @@ for gopkg in "${GO_UTILS[@]}"; do
   GOPATH=$HOME/go go get -u $gopkg
 done
 
+if [ "$(uname)" = "Linux" ]; then
+  go env -w CC=gcc
+fi
+
 if ! which golangci-lint 2>&1 > /dev/null ; then
     curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh |
 	    sh -s -- -b $(go env GOPATH)/bin 
