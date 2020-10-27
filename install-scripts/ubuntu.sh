@@ -9,6 +9,9 @@ sudo apt install -y \
   python-setuptools \
   mysql-server \
   postgresql \
+  libffi-dev \
+  build-essential \
+  lib-tools \
   ruby \
   ruby-bundler
 # install linux only dependencies here

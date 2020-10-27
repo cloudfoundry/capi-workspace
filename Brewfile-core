@@ -31,7 +31,6 @@ brew 'buildpacks/tap/pack'
 # Language support
 brew 'go'
 brew 'ruby-install'
-brew 'chruby'
 brew 'node'
 brew 'python', link: true, overwrite: true
 brew 'shellcheck'
