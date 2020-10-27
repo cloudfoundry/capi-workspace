@@ -24,8 +24,9 @@ if [ "$(uname)" = "Darwin" ]; then
 		echo "postgres user already created"
 	fi
 else
+	sudo sed -i 's/peer/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
+	sudo sed -i 's/md5/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 	sudo service postgresql start
-
 fi
 
 
