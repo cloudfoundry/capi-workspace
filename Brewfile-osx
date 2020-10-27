@@ -4,6 +4,7 @@ brew 'git-author'
 brew 'git-together'
 brew 'lastpass-cli'
 
+brew 'chruby'
 
 
 brew 'mysql'
