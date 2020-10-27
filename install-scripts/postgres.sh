@@ -26,7 +26,7 @@ if [ "$(uname)" = "Darwin" ]; then
 else
 	sudo sed -i 's/peer/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 	sudo sed -i 's/md5/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
-	sudo service postgresql start
+	sudo service postgresql restart
 fi
 
 
