@@ -5,14 +5,13 @@ echo "Upgrading Linux distribution"
 sudo apt dist-upgrade -y
 
 sudo apt install -y \
+  ruby \
   python-pip \
   python-setuptools \
   mysql-server \
   postgresql \
   libffi-dev \
   build-essential \
-  lib-tools \
-  ruby \
   ruby-bundler
 # install linux only dependencies here
 # Install lastpass-cli from source (the Ubuntu package is broken)
