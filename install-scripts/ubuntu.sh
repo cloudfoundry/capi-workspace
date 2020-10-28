@@ -9,9 +9,12 @@ sudo apt install -y \
   python-pip \
   python-setuptools \
   mysql-server \
+  libmysqlclient-dev \
   postgresql \
+  libpq-dev \
   libffi-dev \
   build-essential \
+  libxslt-dev \
   ruby-bundler
 # install linux only dependencies here
 # Install lastpass-cli from source (the Ubuntu package is broken)
