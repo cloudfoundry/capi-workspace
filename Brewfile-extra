@@ -36,7 +36,6 @@ brew 'tig'
 brew 'tldr'
 brew 'tmux'
 brew 'tree'
-brew 'vault'
 brew 'watch'
 
 cask 'tuple'

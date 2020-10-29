@@ -6,6 +6,7 @@ brew 'lastpass-cli'
 
 brew 'chruby'
 
+brew 'vault'
 
 brew 'mysql'
 brew 'docker', overwrite: true, link: true
