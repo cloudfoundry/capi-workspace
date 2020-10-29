@@ -11,11 +11,8 @@ fi
 
 echo "ruby-${RUBY_VERSION}" > ~/.ruby-version
 
-ruby -e 'if (`gem --version`.chomp.split(".").map(&:to_i) <=> [2, 6, 14]) == -1 ; \
-	system("gem install rubygems-update") ; \
-	system("update_rubygems"); \
-	system("gem update --system 2.6.14") \
-end'
 #seems like we need to source twice to get the new ruby?
-source "/usr/local/share/chruby/chruby.sh"
+source "$(brew --prefix)/share/chruby/chruby.sh"
+
 chruby ${RUBY_VERSION}
+gem update --system
