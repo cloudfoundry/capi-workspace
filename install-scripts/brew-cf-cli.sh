@@ -7,4 +7,8 @@ brew install cf-cli@7
 # this will exit 1 since v7 already has the link
 brew install cf-cli@6 
 cli6_version="$(brew list --versions | grep cf-cli@6 | cut -d' ' -f2)"
+
+# Remove any old aliases for cf6 in favor of a symlink to the brew-controlled version
+unalias cf6 || true
+
 sudo ln -snf  "$(brew --cellar cf-cli@6)/$cli6_version/bin/cf" /usr/local/bin/cf6
