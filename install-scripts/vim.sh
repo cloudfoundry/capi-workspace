@@ -15,3 +15,6 @@ mkdir -p ~/.config/nvim/user
 pushd ~/.config/nvim/user
 	ln -sf ~/workspace/capi-workspace/assets/*.vim .
 popd
+
+nvim +UpdateRemotePlugins +qall
+nvim +GoInstallBinaries +qall
