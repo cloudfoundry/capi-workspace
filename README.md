@@ -17,6 +17,13 @@ Hello there! This repo is intended to provide light-weight setup to developing o
 
 You can now either install via `./install.sh` or `./install-core.sh`.
 
+Or curl the bootstrap script, which will create the `workspace` directory and clone this repo for you.
+This is primarily intended for quickly setting up virtual workstations.
+
+```
+bash <(curl -s https://raw.githubusercontent.com/cloudfoundry/capi-workspace/master/bootstrap.sh)
+```
+
 ## Manual steps (to be automated later)
 * Open System Preferences / Users & Groups / <user> / Login Items
     * Add `flycut` from Applications
