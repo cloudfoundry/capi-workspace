@@ -2,6 +2,7 @@
   domain = pivotal.io
 [git-together "authors"]
   cb  = "Connor Braa; cbraa"
+  cl  = "Carson Long; lcarson@vmware.com"
   cs  = "Chris Selzo; cselzo"
   gc  = "Greg Cobb; gcobb"
   hn  = "Harsha Nandiwada; hnandiwada@vmware.com"
