@@ -30,4 +30,3 @@ if [ "$FULL_CAPI_INSTALL" = true ]; then
     fi
 fi
 
-source "${PWD}/install-scripts/brew-cf-cli.sh"
