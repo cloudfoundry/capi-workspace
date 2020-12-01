@@ -23,6 +23,7 @@ This is primarily intended for quickly setting up virtual workstations.
 ```
 bash <(curl -s https://raw.githubusercontent.com/cloudfoundry/capi-workspace/master/bootstrap.sh)
 ```
+**Make sure you ssh in as the "pivotal" user** 
 
 ## Manual steps (to be automated later)
 * Open System Preferences / Users & Groups / <user> / Login Items
