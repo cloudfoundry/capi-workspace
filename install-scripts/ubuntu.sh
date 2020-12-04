@@ -15,9 +15,7 @@ sudo apt install -y \
   libffi-dev \
   build-essential \
   libxslt-dev \
-  ruby-bundler \
-  ripgrep \
-  fd-find
+  ruby-bundler 
 # install linux only dependencies here
 # Install lastpass-cli from source (the Ubuntu package is broken)
 echo "Installing lastpass-cli from source"
