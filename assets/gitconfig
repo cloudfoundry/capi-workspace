@@ -1,5 +1,5 @@
 [alias]
-  blog = "loga origin/master... --left-right"
+  blog = "loga origin/main... --left-right"
   br = branch
   ci = commit --verbose
   co = checkout
@@ -15,8 +15,8 @@
   lol = "log --graph --decorate --oneline"
   lola = "log --graph --decorate --oneline --all"
   ri = rebase --interactive
-  rio = rebase --interactive origin/master
-  rum = "rebase master@{u}"
+  rio = rebase --interactive origin/main
+  rum = "rebase main@{u}"
   s = status --short --branch
   solo = author
   pair = author

@@ -1,6 +1,6 @@
 #!/bin/bash
 # run this script on newly provisions VMs to create remote workstations
-# bash <(curl -s https://raw.githubusercontent.com/cloudfoundry/capi-workspace/master/bootstrap.sh)
+# bash <(curl -s https://raw.githubusercontent.com/cloudfoundry/capi-workspace/main/bootstrap.sh)
 
 mkdir -p ~/workspace
 cd ~/workspace

@@ -21,7 +21,7 @@ Or curl the bootstrap script, which will create the `workspace` directory and cl
 This is primarily intended for quickly setting up virtual workstations.
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/cloudfoundry/capi-workspace/master/bootstrap.sh)
+bash <(curl -s https://raw.githubusercontent.com/cloudfoundry/capi-workspace/main/bootstrap.sh)
 ```
 **Make sure you ssh in as the "pivotal" user** 
 
