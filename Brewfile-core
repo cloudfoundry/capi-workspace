@@ -27,6 +27,9 @@ brew 'kapp'
 brew 'kbld'
 brew 'buildpacks/tap/pack'
 
+# Fun CLI gizmos
+brew 'gti'
+
 # Language support
 brew 'go'
 brew 'ruby-install'

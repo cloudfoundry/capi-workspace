@@ -14,6 +14,13 @@ sudo apt install -y \
   libffi-dev \
   build-essential \
   libxslt-dev 
+
+# fun dependencies
+sudo apt install -y \
+  cowsay \
+  figlet \
+  sl
+
 # install linux only dependencies here
 # Install lastpass-cli from source (the Ubuntu package is broken)
 echo "Installing lastpass-cli from source"
