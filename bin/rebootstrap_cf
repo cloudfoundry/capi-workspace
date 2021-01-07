@@ -5,8 +5,8 @@ set -ue
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 main() {
-
-  ${__dir}/bootstrap_cf test test
+  cf delete-org org -f
+  ${__dir}/bootstrap_cf
 }
 
 main
