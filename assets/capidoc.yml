@@ -197,6 +197,10 @@ pullify:
   location: capi-workspace/custom-bash-it-plugins
   group: git
 attach_debugger:
-  description: Attaches the rubymine debugger to your bosh lite 
+  description: Attaches the rubymine debugger to your bosh lite
   location: capi-release/src/cloud_controller_ng/scripts/short-circuit-cc
   group: bosh-lite-pool
+load-key:
+  description: Loads the an ssh key in the currently logged in lastpass called "github-private-key".  Run eval $(ssh-agent) if it fails
+  location: capi-workspace/bin
+  group: auth
