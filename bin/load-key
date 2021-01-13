@@ -5,7 +5,7 @@ set -e
 HOURS=$1
 KEY="/tmp/id_rsa"
 trap "rm -f $KEY" EXIT
-lpass show --notes "github-private-key" > $KEY
+lpass show "github-private-key" --field="Private Key" > $KEY
 chmod 600 $KEY
 if [ -z $HOURS ]; then
   HOURS=12
