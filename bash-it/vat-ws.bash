@@ -7,3 +7,4 @@ alias capi-ws-1='gcloud beta compute ssh --zone "us-central1-a" "pivotal@capi-ws
 alias capi-ws-2='gcloud beta compute ssh --zone "us-central1-a" "pivotal@capi-ws-2" --project "cf-capi-arya"  --ssh-flag="-A"'
 alias capi-ws-3='gcloud beta compute ssh --zone "us-central1-a" "pivotal@capi-ws-3" --project "cf-capi-arya"  --ssh-flag="-A"'
 alias capi-ws-4='gcloud beta compute ssh --zone "us-central1-a" "pivotal@capi-ws-4" --project "cf-capi-arya"  --ssh-flag="-A"'
+alias capi-ws-5='gcloud beta compute ssh --zone "us-central1-a" "pivotal@capi-ws-5" --project "cf-capi-arya"  --ssh-flag="-A"'
