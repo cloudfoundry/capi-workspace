@@ -5,15 +5,16 @@ echo "Upgrading Linux distribution"
 sudo apt dist-upgrade -y
 
 sudo apt install -y \
-  python-pip \
-  python-setuptools \
-  mysql-server \
-  libmysqlclient-dev \
-  postgresql \
-  libpq-dev \
-  libffi-dev \
   build-essential \
-  libxslt-dev 
+  docker.io \
+  libffi-dev \
+  libmysqlclient-dev \
+  libpq-dev \
+  libxslt-dev \
+  mysql-server \
+  postgresql \
+  python-pip \
+  python-setuptools
 
 # fun dependencies
 sudo apt install -y \
