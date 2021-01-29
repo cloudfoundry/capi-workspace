@@ -20,9 +20,4 @@ function install_brew {
 	fi
 }
 
-# do not run in non-interactive contexts
-if [ ! -t 1 ] ; then
-  return
-fi
-
 install_brew
