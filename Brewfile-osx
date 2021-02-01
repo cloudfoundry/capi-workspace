@@ -3,7 +3,6 @@ tap 'universal-ctags/universal-ctags'
 brew 'ripgrep'
 brew 'fd'
 brew 'git-author'
-brew 'git-together'
 brew 'lastpass-cli'
 
 brew 'chruby'
