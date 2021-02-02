@@ -3,11 +3,12 @@ echo "Updating apt packages"
 sudo apt update
 echo "Upgrading Linux distribution"
 sudo apt dist-upgrade -y
+sudo apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ focal main'
 
 sudo apt install -y \
   build-essential \
   docker.io \
-  libffi-dev \
+  libffi7 \
   libmysqlclient-dev \
   libpq-dev \
   libxslt-dev \
