@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -ex
+
 echo "Updating apt packages"
 sudo apt update
 echo "Upgrading Linux distribution"
@@ -10,6 +13,7 @@ sudo apt install -y \
   docker.io \
   libffi7 \
   libmysqlclient-dev \
+  libpq5=12.2-4 \
   libpq-dev \
   libxslt-dev \
   mysql-server \
