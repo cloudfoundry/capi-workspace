@@ -2,24 +2,26 @@
 
 set -ex
 
+sudo apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse'
 echo "Updating apt packages"
 sudo apt update
 echo "Upgrading Linux distribution"
 sudo apt dist-upgrade -y
-sudo apt-add-repository 'deb http://us.archive.ubuntu.com/ubuntu/ focal main'
 
 sudo apt install -y \
   build-essential \
   docker.io \
+  fd-find \
   libffi7 \
   libmysqlclient-dev \
-  libpq5=12.2-4 \
   libpq-dev \
+  libpq5=12.2-4 \
   libxslt-dev \
   mysql-server \
   postgresql \
   python-pip \
-  python-setuptools
+  python-setuptools \
+  ripgrep
 
 # fun dependencies
 sudo apt install -y \
