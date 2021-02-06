@@ -6,7 +6,7 @@ set -e
 function install_brew {
 	if ! which brew > /dev/null ; then
                 echo "Installing Homebrew"
-		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
 			</dev/null
 	fi
 	# to avoid ttyless complaints on brew update

@@ -19,6 +19,7 @@ else
 	IS_OSX=false
 	./install-scripts/ubuntu.sh
 fi
+
 # install brew and its packages
 source ./install-scripts/brew.sh
 if [ "$IS_OSX" = true ]; then
@@ -27,8 +28,8 @@ else
 	echo "Skipping Xcode installation for non OSX install"
 fi
 source ./install-scripts/brew-bundle.sh
-echo "Installing ruby"
 # ruby setup
+echo "Installing ruby"
 source ./install-scripts/ruby.sh
 source ./install-scripts/bundler.sh
 echo "Installing databases"

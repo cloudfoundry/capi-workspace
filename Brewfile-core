@@ -32,7 +32,6 @@ brew 'gti'
 
 # Language support
 brew 'go'
-brew 'ruby-install'
 brew 'node'
 brew 'python', link: true, overwrite: true
 brew 'shellcheck'

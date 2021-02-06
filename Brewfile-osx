@@ -5,6 +5,7 @@ brew 'fd'
 brew 'git-author'
 brew 'lastpass-cli'
 
+brew 'awscli'
 brew 'chruby'
 
 brew 'vault'
@@ -13,5 +14,8 @@ brew 'mysql'
 brew 'docker', overwrite: true, link: true
 brew 'postgresql@9.6', restart_service: true, link: true
 brew 'autojump'
+
+
+brew 'ruby-install'
 
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
