@@ -60,6 +60,9 @@ RUN useradd -rm -d /home/capi -s /bin/bash -g root -G sudo -u 1001 capi -p capi
 USER capi
 WORKDIR /home/capi
 
+RUN mkdir /home/capi/tmp
+ENV TMUX_TMPDIR=/home/capi/tmp
+
 RUN git clone https://github.com/luan/nvim ~/.config/nvim
 
 RUN nvim +UpdateRemotePlugins +qall && \
