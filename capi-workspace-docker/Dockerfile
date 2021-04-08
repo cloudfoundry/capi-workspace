@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ruby:2.7-buster
 
 
 RUN apt-get update
@@ -12,8 +12,7 @@ RUN apt-get install -y \
      apt-utils \
      tmux \
      ruby \
-     mysql-server \
-     libmysqlclient-dev \
+     default-mysql-server \
      ruby-dev \
      postgresql-contrib \
      postgresql \
@@ -25,7 +24,10 @@ RUN apt-get install -y \
      npm \
      sudo \
      neovim \
-     lastpass-cli
+     lastpass-cli \
+     software-properties-common \
+     apt-transport-https \ 
+     openssh-server
 
 
 #Luan's nvim deps
@@ -34,7 +36,8 @@ RUN apt-get install -y \
 
 RUN gem install bundler
 RUN service mysql start && \
-    mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
+    echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections && \ 
+    echo 'mysql-server mysql-server/root_password_again password password' | debconf-set-selections
 
 #Install Credhub CLI
 RUN mkdir tmp -p && \
@@ -46,14 +49,19 @@ RUN mkdir tmp -p && \
     cd .. && \
     rm -rf tmp
 
+RUN service ssh restart
+
 #Install Bosh CLI
 
 RUN wget https://github.com/cloudfoundry/bosh-cli/releases/download/v6.4.1/bosh-cli-6.4.1-linux-amd64 && \
     mv bosh-cli-6.4.1-linux-amd64 /usr/bin/bosh && \
     chmod +x /usr/bin/bosh
-RUN useradd -rm -d /home/capi -s /bin/bash -g root -G sudo -u 1001 capi
+RUN useradd -rm -d /home/capi -s /bin/bash -g root -G sudo -u 1001 capi -p capi
 USER capi
 WORKDIR /home/capi
+
+RUN mkdir /home/capi/tmp
+ENV TMUX_TMPDIR=/home/capi/tmp
 
 RUN git clone https://github.com/luan/nvim ~/.config/nvim
 
@@ -63,7 +71,15 @@ RUN nvim +UpdateRemotePlugins +qall && \
 # The command to update plugins keeps exiting 0 on docker build, even though it still installs the plugins, swallowing error for now
 RUN nvim +'PlugInstall --sync' +qa; exit 0
 
-RUN mkdir ~/workspace
-RUN git clone
+RUN set -ex && \
+    bundle config path ~/.gem/ruby && \
+    mkdir ~/workspace && \
+    cd workspace && \
+    git clone https://github.com/cloudfoundry/capi-release.git && \
+    cd capi-release && \
+    ./scripts/update
 
-CMD sleep infinity:
+RUN cd ~/workspace/capi-release/src/cloud_controller_ng && \
+    bundle install
+
+CMD sleep infinity
