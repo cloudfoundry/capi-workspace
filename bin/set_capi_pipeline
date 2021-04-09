@@ -14,5 +14,4 @@ fi
 fly -t capi \
     set-pipeline \
     -p capi \
-    -c ~/workspace/capi-ci/ci/pipeline.yml \
-    -l ~/workspace/capi-ci-private/ci/credentials.yml
+    -c ~/workspace/capi-ci/ci/pipeline.yml

@@ -14,5 +14,4 @@ fi
 fly -t capi \
     set-pipeline \
     -p bosh-lite \
-    -c ~/workspace/capi-ci/ci/pipeline-bosh-lite.yml \
-    -l ~/workspace/capi-ci-private/ci/credentials-bosh-lite.yml
+    -c ~/workspace/capi-ci/ci/pipeline-bosh-lite.yml

@@ -16,5 +16,4 @@ fi
 fly -t capi set-pipeline \
 		--check-creds \
 		--pipeline backup-metadata \
-		--config "${HOME}/workspace/capi-ci/ci/pipeline-backup-metadata.yml" \
-		--load-vars-from "${HOME}/workspace/capi-ci-private/ci/credentials.yml"
+		--config "${HOME}/workspace/capi-ci/ci/pipeline-backup-metadata.yml"
