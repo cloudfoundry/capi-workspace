@@ -40,22 +40,25 @@ RUN service mysql start && \
     echo 'mysql-server mysql-server/root_password_again password password' | debconf-set-selections
 
 #Install Credhub CLI
-RUN mkdir tmp -p && \
-    cd tmp && \
+RUN mkdir /tmp/credhub -p && \
+    cd /tmp/credhub && \
     wget https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/2.9.0/credhub-linux-2.9.0.tgz && \
     tar xf credhub*tgz && \
     chmod +x credhub && \
     mv credhub /usr/bin && \
-    cd .. && \
-    rm -rf tmp
+    cd / && \
+    rm -rf /tmp/credhub
 
 RUN service ssh restart
 
 #Install Bosh CLI
-
 RUN wget https://github.com/cloudfoundry/bosh-cli/releases/download/v6.4.1/bosh-cli-6.4.1-linux-amd64 && \
     mv bosh-cli-6.4.1-linux-amd64 /usr/bin/bosh && \
     chmod +x /usr/bin/bosh
+
+# Capi user section
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 RUN useradd -rm -d /home/capi -s /bin/bash -g root -G sudo -u 1001 capi -p capi
 USER capi
 WORKDIR /home/capi
