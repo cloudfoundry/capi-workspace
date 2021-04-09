@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 # bash-it / terminal
 source ./install-scripts/bash.sh
