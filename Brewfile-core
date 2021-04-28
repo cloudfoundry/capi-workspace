@@ -36,6 +36,6 @@ brew 'node'
 brew 'python', link: true, overwrite: true
 brew 'shellcheck'
 brew 'yarn'
-cask 'java'
+brew 'java'
 
 cask 'docker'

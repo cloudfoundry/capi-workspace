@@ -47,4 +47,4 @@ cask 'spectacle'
 cask 'visual-studio-code'
 # slack cask intentionally removed for bad behavior - hijacking slack links, memory bloat.
 
-cask 'zoomus'
+cask 'zoom'
