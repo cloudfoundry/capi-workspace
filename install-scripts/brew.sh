@@ -14,7 +14,7 @@ function install_brew {
 	sudo chown -R $(whoami) /usr/local/sbin
 	if [ "$(uname)" = "Linux" ]; then
 		if ! brew; then
-			echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/pivotal/.profile
+			echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> $HOME/.profile
 			eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 		fi
 	fi
