@@ -1,6 +1,5 @@
 FROM ruby:2.7-buster
 
-
 RUN apt-get update
 
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
@@ -27,14 +26,17 @@ RUN apt-get install -y \
      lastpass-cli \
      software-properties-common \
      apt-transport-https \ 
-     openssh-server
+     openssh-server \ 
+     python3-pip \
+     build-essential \
+     procps \
+     file
 
 
 #Luan's nvim deps
 RUN apt-get install -y \
      golang
 
-RUN gem install bundler
 RUN service mysql start && \
     echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections && \ 
     echo 'mysql-server mysql-server/root_password_again password password' | debconf-set-selections
@@ -63,6 +65,8 @@ RUN useradd -rm -d /home/capi -s /bin/bash -g root -G sudo -u 1001 capi -p capi
 USER capi
 WORKDIR /home/capi
 
+RUN gem install bundler
+
 RUN mkdir /home/capi/tmp
 ENV TMUX_TMPDIR=/home/capi/tmp
 
@@ -81,6 +85,14 @@ RUN set -ex && \
     git clone https://github.com/cloudfoundry/capi-release.git && \
     cd capi-release && \
     ./scripts/update
+
+RUN git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew && \
+    mkdir ~/.linuxbrew/bin && \
+    ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin && \
+    eval $(~/.linuxbrew/bin/brew shellenv) && \
+    brew --version && \
+    brew tap pivotal/tap && \
+    brew install git-author
 
 RUN cd ~/workspace/capi-release/src/cloud_controller_ng && \
     bundle install
