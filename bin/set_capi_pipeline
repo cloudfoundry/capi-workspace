@@ -2,11 +2,6 @@
 
 set -e
 
-echo "Pulling 'capi-ci-private'..."
-pushd ~/workspace/capi-ci-private > /dev/null
-  git pull -r
-popd > /dev/null
-
 if ! fly -t capi status ; then
   fly -t capi login -b
 fi
