@@ -1,6 +1,6 @@
 #/bin/bash
 
-if [[ ! $(which bundle) ]] || [[ "$(bundle -v)" != "Bundler version 1.17.3" ]]; then
+if [[ ! $(which bundle) ]] || [[ "$(bundle -v)" != "Bundler version 2.1.4" ]]; then
 	echo "Installing bundler"
-	gem install bundler -v 1.17.3
+	gem install bundler -v 2.1.4
 fi
