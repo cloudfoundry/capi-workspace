@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+pods=$(kubectl get pods -l workstation=true -o name | cut -d / -f 2)
+PS3="Please select your workstation pod or press 'q' to quit: "
+OLD_IFS=$IFS
+IFS=$'\n'
+select pod in $pods; do
+	POD=$pod
+	break
+done
+
+IFS=$OLD_IFS
+
+if [ -z "${POD}" ]; then
+	echo "No pod selected. Goodbye"
+	exit
+fi
+echo "Running 'kubectl exec --stdin --tty $pod -- /bin/bash'"
+echo ""
+echo ""
+kubectl exec --stdin --tty "$pod" -- /bin/bash

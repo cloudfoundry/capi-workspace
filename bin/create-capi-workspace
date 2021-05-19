@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -x
+
+CURRENT_CONTEXT=$(kubectl config current-context)
+HAS_CONTEXT=$?
+if [ $HAS_CONTEXT -ne 0 ] || [ $CURRENT_CONTEXT != "gke_cf-capi-arya_us-central1-c_capi-workstation" ]
+then
+	echo "The current Kubernetes context is not set to CAPI's cluster."
+	echo "Please run: gcloud container clusters get-credentials capi-workstation --zone us-central1-c"
+	exit "1"
+fi
+
+set -ex
+
+echo "What would you like to call your workstation?"
+
+read -r STORY_ID
+
+kubectl create deployment $STORY_ID --image=cloudfoundry/capi:capi-workstation-test
+
+#if the above is successful
+kubectl label pods -l app="$STORY_ID" workstation=true
+
+POD_NAME=$(kubectl get pod -l app=$STORY_ID -o name | cut -f 2 -d /)
+
+echo "Please connect to your workstation via the following command:"
+echo "kubectl exec --stdin --tty $POD_NAME -- /bin/bash"
