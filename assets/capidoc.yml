@@ -204,3 +204,11 @@ load-key:
   description: Loads the an ssh key in the currently logged in lastpass called "github-private-key".  Run eval $(ssh-agent) if it fails
   location: capi-workspace/bin
   group: auth
+capi-workspaces:
+  description: List and connect to existing K8s CAPI workspaces
+  location: capi-workspace/bin
+  group: workspaces
+create-capi-workspace:
+  description: Create a CAPI workspace in K8s cluster
+  location: capi-workspace/bin
+  group: workspaces
