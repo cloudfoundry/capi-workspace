@@ -19,4 +19,4 @@ fi
 echo "Running 'kubectl exec --stdin --tty $pod -- /bin/bash'"
 echo ""
 echo ""
-kubectl exec --stdin --tty "$pod" -- /bin/bash
+kubectl exec --stdin --tty "$pod" -- tmux attach

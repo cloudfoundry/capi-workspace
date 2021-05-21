@@ -85,4 +85,7 @@ RUN set -ex && \
 RUN cd ~/workspace/capi-release/src/cloud_controller_ng && \
     bundle install
 
+# Allow tmux to create a tmux session when attaching
+RUN echo 'new-session -n $HOST' > ~/.tmux.conf
+
 CMD sleep infinity
