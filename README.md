@@ -35,6 +35,7 @@ bash <(curl -s https://raw.githubusercontent.com/cloudfoundry/capi-workspace/mai
   - If you are not on a Pivotal Network, you need to VPN into one in order to access this server.
 * Install the `mine` cli shortcut (RubyMine -> Tools -> Create Command-line Launcher...)
 * If you are using Goland do the same two previous steps for Goland
+* If you have access to the private CAPI backlog, add a secure note called `tracker_api_token` to LastPass with your Pivotal Tracker API token. This token will be used in scripts such as `claim_bosh_lite` to pull story titles currently in flight.
 
 ## Contributing to this repo
 
