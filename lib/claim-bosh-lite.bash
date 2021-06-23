@@ -1,13 +1,25 @@
 env_pool="$HOME/workspace/capi-env-pool"
+readonly LASTPASS_API_KEY_LABEL='tracker_api_token'
 
 # TODO:  have this script choose Tracker ID like our "story" script
-project_id=966314;
+project_id=1945579;
+
+function fetch_tracker_api_token() {
+  set +x
+  API_TOKEN=$(lpass show "$LASTPASS_API_KEY_LABEL" --notes 2> /dev/null)
+  return $?
+}
 
 function get_stories() {
-	story_json="$(curl -s -H "Content-Type: application/json" \
-	  "https://www.pivotaltracker.com/services/v5/projects/$project_id/stories?with_state=started" | tr '**' ' ')"
-	echo $story_json | tr '\n' ' ' | jq -r '.[] | "#\(.id) \(.name)"'
-	echo "No story"
+    if [ -z "$API_TOKEN" ]; then
+      story_json="$(curl -s -H "Content-Type: application/json" \
+        "https://www.pivotaltracker.com/services/v5/projects/$project_id/stories?with_state=started" | tr '**' ' ')"
+    else
+      story_json="$(curl -s -H "Content-Type: application/json" -H "X-TrackerToken: $API_TOKEN" \
+        "https://www.pivotaltracker.com/services/v5/projects/$project_id/stories?with_state=started" | tr '**' ' ')"
+    fi
+    echo "$story_json" | tr '\n' ' ' | jq -r '.[] | "#\(.id) \(.name)"'
+    echo "No story"
 }
 
 function story_selector() {
@@ -29,6 +41,12 @@ function claim_bosh_lite() {
     echo "please set your git authors before running this!"
     echo "maybe run 'story' while you're at it."
     return
+  fi
+
+  fetch_tracker_api_token
+  if [ -z "$API_TOKEN" ]; then
+    echo "Could not find tracker API token in your lastpass vault as a note under \"$LASTPASS_API_KEY_LABEL\""
+    echo -e 'Attempting to pull stories without token \n'
   fi
 
   if [ -n "$1" ] ; then
