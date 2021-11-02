@@ -17,7 +17,6 @@ brew 'kubernetes-cli'
 
 # CloudFoundry binaries
 brew 'bbr'
-brew 'cloudfoundry/tap/cf-cli@7', link: true, overwrite: true
 brew 'cloudfoundry/tap/bbl'
 brew 'cloudfoundry/tap/bosh-cli'
 brew 'cloudfoundry/tap/credhub-cli'
