@@ -1,6 +1,7 @@
 [git-together]
   domain = pivotal.io
 [git-together "authors"]
+  ar  = "Alex Rocha; alexr1@vmware.com"
   bl  = "Belinda Liu; bliu"
   cl  = "Carson Long; lcarson@vmware.com"
   cs  = "Chris Selzo; cselzo"
