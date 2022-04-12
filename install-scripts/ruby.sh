@@ -3,7 +3,7 @@
 set -e
 
 source "/usr/local/share/chruby/chruby.sh"
-RUBY_VERSION="2.7.2"
+RUBY_VERSION="2.7.5"
 
 if [ ! -e ~/.rubies/ruby-${RUBY_VERSION} ]; then 
 	ruby-install --no-reinstall ruby ${RUBY_VERSION}
