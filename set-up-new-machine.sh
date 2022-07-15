@@ -64,11 +64,9 @@ cat >> ~/.$(basename $SHELL)rc <<EOF
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 EOF
-exec $SHELL
 cat >> ~/.ruby-version <<EOF
 3.1
 EOF
-chruby
 
 # clone things into workspace
 cd ~/workspace
@@ -76,3 +74,5 @@ git clone git@github.com:cloudfoundry/capi-release.git
 cd capi-release
 ./scripts/update
 cd ..
+
+exec $SHELL
