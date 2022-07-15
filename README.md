@@ -14,7 +14,11 @@ Hello there! This repo is intended to provide light-weight setup to developing o
     git clone git@github.com:cloudfoundry/capi-workspace.git && cd capi-workspace
 ```
 
-You can now either install via some command I'll put here later.
+You can now set up by doing the following:
+1. create gcp machine `gcloud compute instances create capi-ws-michael --zone "us-central1-a" --project "cf-capi-arya" --boot-disk-size=50GB --machine-type=e2-standard-8 --tags=workstations --image-family=ubuntu-2204-lts --image-project=ubuntu-os-cloud`
+1. ssh onto said machine `gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-michael" --project "cf-capi-arya"  --ssh-flag="-A"`
+1. babysiting `set-up-new-machine.sh` while it maybe runs
+1. when you're done delete you gcp machine `gcloud compute instances delete capi-ws-michael --zone "us-central1-a" --project "cf-capi-arya" -q`
 
 **Make sure you ssh in as the "pivotal" user** 
 
