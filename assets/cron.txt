@@ -1,1 +1,0 @@
-0 23 * * * (trap 'open http://dn.ht/picklecat/' ERR; cd ~/workspace/capi-workspace && ./install.sh) &> /tmp/capi-workspace.log
