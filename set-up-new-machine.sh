@@ -9,7 +9,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev lib
 # install golang for things we use golang for
 sudo DEBIAN_FRONTEND=noninteractive apt install golang -y
 # install dependencies for luan's neovim config
-sudo apt install ripgrep fd-find -y
+sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
 # clean up anything not needed
 sudo apt autoremove -y
 
