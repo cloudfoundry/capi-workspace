@@ -8,13 +8,14 @@ sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq
 sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
 # install golang for things we use golang for
 sudo DEBIAN_FRONTEND=noninteractive apt install golang -y
+go version
 # install dependencies for luan's neovim config
 sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
 # clean up anything not needed
 sudo apt autoremove -y
 
 # make workspace
-mkdir ~/workspace
+mkdir -p ~/workspace
 
 # tmux setup with luan
 cd ~/workspace
@@ -23,11 +24,11 @@ cd tmuxfiles
 ./install
 cd ../..
 
-# neovim (there is no vim) need at least 7.0 neovim for luan vim config
-wget https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb
-sudo apt install ./nvim-linux64.deb -y
-rm nvim-linux64.deb
-git clone https://github.com/luan/nvim ~/.config/nvim
+# # neovim (there is no vim) need at least 7.0 neovim for luan vim config
+# wget https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb
+# sudo DEBIAN_FRONTEND=noninteractive apt install ./nvim-linux64.deb -y
+# rm nvim-linux64.deb
+# git clone https://github.com/luan/nvim ~/.config/nvim
 
 # setup mysql
 sudo service mysql start
@@ -67,12 +68,43 @@ EOF
 cat >> ~/.ruby-version <<EOF
 3.1
 EOF
+source ~/.$(basename $SHELL)rc
+chruby
+ruby -v
+
+# install bosh cli
+wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.0.1/bosh-cli-7.0.1-linux-amd64
+mv bosh-cli-*-linux-amd64 /usr/bin/bosh
+chmod +x /usr/bin/bosh
+bosh --version
+
+# install credhub cli
+mkdir -p /tmp/credhub
+cd /tmp/credhub
+wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.3/credhub-linux-2.9.3.tgz
+tar xf credhub*tgz
+chmod +x credhub
+mv credhub /usr/bin
+rm -rf /tmp/credhub
+credhub --version
+
+# set up cf cli
+cd ~/workspace
+git clone https://github.com/cloudfoundry/cli.git
+cat >> ~/.$(basename $SHELL)rc <<EOF
+PATH="$PATH:$HOME/go/src/code.cloudfoundry.org/cli/out"
+EOF
+cd cli
+git switch v8
+make build
+source ~/.$(basename $SHELL)rc
+cf --version
+
+# helper bash functions (deploy only new capi, claim bosh ite)
 
 # clone things into workspace
 cd ~/workspace
-git clone git@github.com:cloudfoundry/capi-release.git
+git clone https://github.com/cloudfoundry/capi-release.git
 cd capi-release
 ./scripts/update
 cd ..
-
-exec $SHELL
