@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
@@ -6,11 +6,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq-dev mysql-server libmysqlclient-dev zip unzip nodejs npm -y
 # ruby dependencies - this is to keep noninteractive mode on ruby-install command
 sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
-# install golang for things we use golang for
-sudo DEBIAN_FRONTEND=noninteractive apt install golang -y
-go version
 # install dependencies for luan's neovim config
-sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
+# sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
 # clean up anything not needed
 sudo apt autoremove -y
 
@@ -40,6 +37,15 @@ sudo sed -i 's/peer/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo sed -i 's/md5/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo service postgresql restart
 
+# install golang to get latest
+wget https://go.dev/dl/go1.18.4.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz
+# set go and cf cli on path
+cat >> ~/.$(basename $SHELL)rc <<EOF
+PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
+EOF
+rm go1.18.4.linux-amd64.tar.gz
+
 # ruby-install
 wget -O ruby-install-0.8.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.3.tar.gz
 tar -xzvf ruby-install-0.8.3.tar.gz
@@ -68,9 +74,6 @@ EOF
 cat >> ~/.ruby-version <<EOF
 3.1
 EOF
-source ~/.$(basename $SHELL)rc
-chruby
-ruby -v
 
 # install bosh cli
 wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.0.1/bosh-cli-7.0.1-linux-amd64
@@ -91,13 +94,10 @@ credhub --version
 # set up cf cli
 cd ~/workspace
 git clone https://github.com/cloudfoundry/cli.git
-cat >> ~/.$(basename $SHELL)rc <<EOF
-PATH="$PATH:$HOME/workspace/cli/out"
-EOF
 cd cli
 git switch v8
+PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
 make build
-source ~/.$(basename $SHELL)rc
 cf --version
 
 # helper bash functions (deploy only new capi, claim bosh ite)
