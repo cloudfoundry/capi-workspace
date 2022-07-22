@@ -74,8 +74,8 @@ ruby -v
 
 # install bosh cli
 wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.0.1/bosh-cli-7.0.1-linux-amd64
-mv bosh-cli-*-linux-amd64 /usr/bin/bosh
 chmod +x /usr/bin/bosh
+sudo mv bosh-cli-*-linux-amd64 /usr/bin/bosh
 bosh --version
 
 # install credhub cli
@@ -84,7 +84,7 @@ cd /tmp/credhub
 wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.3/credhub-linux-2.9.3.tgz
 tar xf credhub*tgz
 chmod +x credhub
-mv credhub /usr/bin
+sudo mv credhub /usr/bin
 rm -rf /tmp/credhub
 credhub --version
 
