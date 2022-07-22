@@ -74,7 +74,7 @@ ruby -v
 
 # install bosh cli
 wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.0.1/bosh-cli-7.0.1-linux-amd64
-chmod +x /usr/bin/bosh
+chmod +x bosh-cli-*-linux-amd64
 sudo mv bosh-cli-*-linux-amd64 /usr/bin/bosh
 bosh --version
 
