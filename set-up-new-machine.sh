@@ -92,7 +92,7 @@ credhub --version
 cd ~/workspace
 git clone https://github.com/cloudfoundry/cli.git
 cat >> ~/.$(basename $SHELL)rc <<EOF
-PATH="$PATH:$HOME/go/src/code.cloudfoundry.org/cli/out"
+PATH="$PATH:$HOME/workspace/cli/out"
 EOF
 cd cli
 git switch v8
