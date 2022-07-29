@@ -107,7 +107,6 @@ echo "source ~/workspace/capi-workspace/lib/target-bosh.bash >/dev/null" >> ~/.b
 echo "source ~/workspace/capi-workspace/lib/claim-bosh-lite.bash >/dev/null" >> ~/.bashrc
 echo "source ~/workspace/capi-workspace/lib/unclaim-bosh-lite.bash >/dev/null" >> ~/.bashrc
 echo 'PATH="$PATH:$HOME/workspace/capi-workspace/bin"' >> ~/.bashrc
-source ~/.bashrc
 
 # clone things into workspace
 cd ~/workspace
