@@ -38,25 +38,28 @@ sudo sed -i 's/md5/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo service postgresql restart
 
 # install golang to get latest
-wget https://go.dev/dl/go1.18.4.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz
+sudo snap install --classic --channel=1.18/stable go
+
+#wget https://go.dev/dl/go1.18.4.linux-amd64.tar.gz
+#sudo tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz
 # set go and cf cli on path
-cat >> ~/.$(basename $SHELL)rc <<EOF
-PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
-EOF
-rm go1.18.4.linux-amd64.tar.gz
+#cat >> ~/.$(basename $SHELL)rc <<EOF
+#PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
+#EOF
+#rm go1.18.4.linux-amd64.tar.gz
 
 # ruby-install
-wget -O ruby-install-0.8.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.3.tar.gz
-tar -xzvf ruby-install-0.8.3.tar.gz
-cd ruby-install-0.8.3/
-sudo make install
-ruby-install -V
-cd ..
-rm -rf ruby-install-*
+sudo snap install ruby --classic
+#wget -O ruby-install-0.8.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.3.tar.gz
+#tar -xzvf ruby-install-0.8.3.tar.gz
+#cd ruby-install-0.8.3/
+#sudo make install
+#ruby-install -V
+#cd ..
+#rm -rf ruby-install-*
 
 # install ruby 3.1
-ruby-install 3.1
+#ruby-install 3.1
 
 # chruby
 wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
@@ -82,21 +85,24 @@ sudo mv bosh-cli-*-linux-amd64 /usr/bin/bosh
 bosh --version
 
 # install credhub cli
-mkdir -p /tmp/credhub
-cd /tmp/credhub
-wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.3/credhub-linux-2.9.3.tgz
-tar xf credhub*tgz
-chmod +x credhub
-sudo mv credhub /usr/bin
-rm -rf /tmp/credhub
-credhub --version
+sudo snap install cf-ch
+echo "alias credhub='cf-ch'" >> ~/.bashrc
+
+#mkdir -p /tmp/credhub
+#cd /tmp/credhub
+#wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.3/credhub-linux-2.9.3.tgz
+#tar xf credhub*tgz
+#chmod +x credhub
+#sudo mv credhub /usr/bin
+#rm -rf /tmp/credhub
+#credhub --version
 
 # set up cf cli
 cd ~/workspace
 git clone https://github.com/cloudfoundry/cli.git
 cd cli
 git switch v8
-PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
+echo 'PATH="$PATH:$HOME/workspace/cli/out:/snap/bin/go"' >> ~/.bashrc
 make build
 cf --version
 
