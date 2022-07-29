@@ -15,7 +15,7 @@ Hello there! This repo is intended to provide light-weight setup to developing o
 ```
 
 You can now set up by doing the following:
-1. create gcp machine `gcloud compute instances create capi-ws-michael --zone "us-central1-a" --project "cf-capi-arya" --boot-disk-size=50GB --machine-type=e2-standard-8 --tags=workstations --image-family=ubuntu-2204-lts --image-project=ubuntu-os-cloud`
+1. create gcp machine `gcloud compute instances create capi-ws-michael --zone "us-central1-a" --project "cf-capi-arya" --boot-disk-size=50GB --boot-disk-type=pd-balanced --machine-type=e2-standard-8 --tags=workstations --image-family=ubuntu-2204-lts --image-project=ubuntu-os-cloud`
 1. ssh onto said machine `gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-michael" --project "cf-capi-arya"  --ssh-flag="-A"`
 1. babysiting `set-up-new-machine.sh` while it maybe runs
 1. run `source ~/.$(basename $SHELL)rc` if you don't bother to restart the shell in order to get the things added to it (chruby, cf cli that's built from source code)
