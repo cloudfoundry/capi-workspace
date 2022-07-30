@@ -6,6 +6,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq-dev mysql-server libmysqlclient-dev zip unzip nodejs npm -y
 # ruby dependencies - this is to keep noninteractive mode on ruby-install command
 sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
+# rust/git-together dependency
+sudo DEBIAN_FRONTEND=noninteractive apt install pkg-config
 # install dependencies for luan's neovim config
 # sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
 # clean up anything not needed
@@ -100,7 +102,22 @@ PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
 make build
 cf --version
 
-# helper bash functions (deploy only new capi, claim bosh ite)
+# set up git author
+# must install git together from source as latest release v0.1.0-alpha.24 doesn't work on jammy
+cd ~/workspace
+git clone https://github.com/kejadlen/git-together.git
+cd git-together
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+~/.cargo/bin/cargo build
+sudo mv target/debug/git-together /usr/local/bin
+
+# add git authors file and remove git together signoff
+git config --global --add include.path ~/workspace/capi-workspace/assets/git-authors
+cat >> ~/.$(basename $SHELL)rc <<EOF
+export GIT_TOGETHER_NO_SIGNOFF=1
+EOF
+
+# figure out how to install git-author
 
 # helper bash functions (deploy only new capi, claim bosh ite)
 cat >> ~/.$(basename $SHELL)rc <<EOF
