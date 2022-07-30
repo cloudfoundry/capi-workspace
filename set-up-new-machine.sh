@@ -102,11 +102,14 @@ cf --version
 
 # helper bash functions (deploy only new capi, claim bosh ite)
 
-echo "source ~/workspace/capi-workspace/lib/pullify.bash >/dev/null" >> ~/.bashrc
-echo "source ~/workspace/capi-workspace/lib/target-bosh.bash >/dev/null" >> ~/.bashrc
-echo "source ~/workspace/capi-workspace/lib/claim-bosh-lite.bash >/dev/null" >> ~/.bashrc
-echo "source ~/workspace/capi-workspace/lib/unclaim-bosh-lite.bash >/dev/null" >> ~/.bashrc
-echo 'PATH="$PATH:$HOME/workspace/capi-workspace/bin"' >> ~/.bashrc
+# helper bash functions (deploy only new capi, claim bosh ite)
+cat >> ~/.$(basename $SHELL)rc <<EOF
+source ~/workspace/capi-workspace/lib/pullify.bash
+source ~/workspace/capi-workspace/lib/target-bosh.bash
+source ~/workspace/capi-workspace/lib/claim-bosh-lite.bash
+source ~/workspace/capi-workspace/lib/unclaim-bosh-lite.bash
+PATH="$PATH:$HOME/workspace/capi-workspace/bin"
+EOF
 
 # clone things into workspace
 cd ~/workspace
