@@ -10,6 +10,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev lib
 sudo DEBIAN_FRONTEND=noninteractive apt install pkg-config
 # install dependencies for luan's neovim config
 # sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
+# install dependencies for target_cf helper
+sudo DEBIAN_FRONTEND=noninteractive apt install jq
 # clean up anything not needed
 sudo apt autoremove -y
 
@@ -119,18 +121,24 @@ EOF
 
 # figure out how to install git-author
 
-# helper bash functions (deploy only new capi, claim bosh ite)
+# helper bash functions (deploy only new capi, claim bosh lite)  manually alias roundup_bosh_lites cause don't know if we want all of lib/misc.bash yet
 cat >> ~/.$(basename $SHELL)rc <<EOF
 source ~/workspace/capi-workspace/lib/pullify.bash
 source ~/workspace/capi-workspace/lib/target-bosh.bash
 source ~/workspace/capi-workspace/lib/claim-bosh-lite.bash
 source ~/workspace/capi-workspace/lib/unclaim-bosh-lite.bash
 PATH="$PATH:$HOME/workspace/capi-workspace/bin"
+alias roundup_bosh_lites="print_env_info"
 EOF
+
+# git alias some of the above scripts use and we like
+git config --global alias.ci commit
+git config --global alias.st status
 
 # clone things into workspace
 cd ~/workspace
 git clone https://github.com/cloudfoundry/capi-release.git
+git clone https://github.com/cloudfoundry/capi-ci.git
 cd capi-release
 ./scripts/update
 cd ..
