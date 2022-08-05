@@ -7,11 +7,11 @@ sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq
 # ruby dependencies - this is to keep noninteractive mode on ruby-install command
 sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
 # rust/git-together dependency
-sudo DEBIAN_FRONTEND=noninteractive apt install pkg-config
+sudo DEBIAN_FRONTEND=noninteractive apt install pkg-config -y
 # install dependencies for luan's neovim config
 # sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
 # install dependencies for target_cf helper
-sudo DEBIAN_FRONTEND=noninteractive apt install jq
+sudo DEBIAN_FRONTEND=noninteractive apt install jq -y
 # clean up anything not needed
 sudo apt autoremove -y
 
