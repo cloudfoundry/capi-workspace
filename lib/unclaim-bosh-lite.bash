@@ -32,12 +32,13 @@ function unclaim_bosh_lite() {
       env=$1
       file="$(find "${working_pool}" -name "${env}")"
 
-      if [ "$file" == "" ]; then
+      if [[ "$file" == "" ]]; then
         echo "$env does not exist in ${working_pool}"
         return 1
       fi
 
-      read -r -p "Hit enter to release ${env} "
+      printf "Hit enter to release ${env} "
+      read -r
 
       git mv "${file}" "${broken_pool}/unclaimed/"
       if [ -d "${env}" ]; then

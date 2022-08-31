@@ -97,7 +97,7 @@ function claim_bosh_lite() {
 
       file=`find . -name $env`
 
-      if [ "$file" == "" ]; then
+      if [[ "$file" == "" ]]; then
         echo $env does not exist
         return 1
       fi
@@ -212,7 +212,7 @@ EOF
     echo "$PWD/$(basename "${env_file}")"
   )
 
-  if [ "$?" == 0 ]; then
+  if [[ "$?" == 0 ]]; then
     direnv allow "${env_dir}"
     echo "Changing directory to '${env_dir}'..."
     cd "${env_dir}"
