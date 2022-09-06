@@ -12,6 +12,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt install pkg-config -y
 # sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find -y
 # install dependencies for target_cf helper
 sudo DEBIAN_FRONTEND=noninteractive apt install jq -y
+# install dependencies for capi-team-playbook which apparently needs a config directory
+sudo DEBIAN_FRONTEND=noninteractive apt install lastpass-cli
+mkdir -p ~/.config
 # clean up anything not needed
 sudo apt autoremove -y
 
@@ -95,6 +98,18 @@ sudo mv credhub /usr/bin
 rm -rf /tmp/credhub
 credhub --version
 
+# install om cli
+wget https://github.com/pivotal-cf/om/releases/download/7.7.0/om-linux-7.7.0
+chmod +x om*
+sudo mv om* /usr/bin/om
+om --version
+
+# install bbl
+wget https://github.com/cloudfoundry/bosh-bootloader/releases/download/v8.4.110/bbl-v8.4.110_linux_x86-64
+chmod +x bbl*
+sudo mv bbl* /usr/bin/bbl
+bbl --version
+
 # set up cf cli
 cd ~/workspace
 git clone https://github.com/cloudfoundry/cli.git
@@ -134,6 +149,7 @@ EOF
 # git alias some of the above scripts use and we like
 git config --global alias.ci commit
 git config --global alias.st status
+git config --global alias.co checkout
 
 # clone things into workspace
 cd ~/workspace
