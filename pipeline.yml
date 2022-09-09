@@ -68,6 +68,14 @@ jobs:
               gcloud compute scp --recurse capi-workspace/ --zone "us-central1-a" "pivotal@capi-ws-vm-latest:~/workspace" --project "cf-capi-arya" -q
               echo "run set-up-new-machine.sh on workstation"
               gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command '~/workspace/capi-workspace/set-up-new-machine.sh'
+
+              gcloud compute machine-images describe capi-ws-image-latest --project "cf-capi-arya"
+              testVal=$?
+              if [[ $testVal -eq 0 ]]; then
+                  echo "Delete old capi-ws-image-latest"
+                  gcloud compute machine-images delete capi-ws-image-latest --project "cf-capi-arya" -q
+              fi
+
               echo "Create source image from vm - 'capi-ws-image-latest' "
               gcloud compute machine-images create capi-ws-image-latest  --project "cf-capi-arya" --source-instance "capi-ws-vm-latest" --source-instance-zone "us-central1-a"
               echo "Let's delete the source vm instance - use base image to create a workstation"
