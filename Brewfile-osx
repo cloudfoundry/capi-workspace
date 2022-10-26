@@ -4,7 +4,8 @@ brew 'ripgrep'
 brew 'fd'
 brew 'git-author'
 brew 'lastpass-cli'
-
+brew 'yarn'
+brew 'node'
 brew 'awscli'
 brew 'chruby'
 

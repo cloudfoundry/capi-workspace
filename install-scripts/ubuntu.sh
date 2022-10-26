@@ -17,7 +17,10 @@ sudo apt install -y \
   mysql-server \
   postgresql \
   python-pip \
-  python-setuptools
+  python-setuptools \
+  nodejs \
+  yarn
+
 
 # fun dependencies
 sudo apt install -y \
@@ -44,6 +47,7 @@ pushd ~/workspace/lastpass-cli
   make
   sudo make install
 popd
+
 
 pushd /tmp/
   if ! command -v fd &> /dev/null
