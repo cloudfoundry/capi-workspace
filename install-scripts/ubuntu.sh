@@ -20,8 +20,7 @@ sudo apt install -y \
   python-setuptools
 
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
-  sudo apt-get install -y nodejs yarn
-
+  sudo apt-get install -y nodejs nginx && npm install yarn -g
 
 # fun dependencies
 sudo apt install -y \
