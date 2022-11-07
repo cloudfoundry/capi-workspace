@@ -46,7 +46,8 @@ pushd ~/workspace/lastpass-cli
   cmake .
   make
   sudo make install
-  git clean -f
+  git clean -fd
+  git checkout .
 popd
 
 
