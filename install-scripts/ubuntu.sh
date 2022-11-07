@@ -41,6 +41,12 @@ fi
 sudo ln -sf /home/linuxbrew/.linuxbrew/share/git-core /usr/local/share/git-core
 
 pushd /tmp/
+  if ! command -v nvim &> /dev/null
+  then
+    curl -LO https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb
+    sudo dpkg -i nvim-linux64.deb
+  fi
+
   if ! command -v fd &> /dev/null
   then
     curl -LO https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb
