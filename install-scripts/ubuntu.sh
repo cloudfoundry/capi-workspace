@@ -81,15 +81,8 @@ pushd /tmp/
   rm -r chruby-0.3.9/
 popd
 
-pushd ~/workspace/lastpass-cli
-  sudo apt install -y openssl libcurl4-openssl-dev libxml2 libssl-dev libxml2-dev pinentry-curses xclip cmake build-essential pkg-config
-  git clean -fd
-  git checkout .
-  git pull
-  cmake .
-  make
-  sudo make install
-popd
+
+sudo apt install -y openssl libcurl4-openssl-dev libxml2 libssl-dev libxml2-dev pinentry-curses xclip cmake build-essential pkg-config lastpass-cli
 
 
 
