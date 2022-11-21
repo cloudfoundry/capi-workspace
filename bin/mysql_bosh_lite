@@ -16,8 +16,9 @@ get_database_password(){
 }
 
 ssh_tunnel(){
+	# random port on local machine for the SSH tunnel
 	mysql_port=$(gshuf -i 10000-65535 -n 1)
-	mysql_ip=$(bosh is --column ips --column instance | grep database | cut -f 2)
+	mysql_ip=$(bosh is --column ips --column instance | grep ^database | cut -f 2)
 	test -z "$mysql_port" && exit 1
 	test -z "$mysql_ip" && exit 1
 	bosh ssh --opts="-L ${mysql_port}:${mysql_ip}:3306" -c 'while true; do continue; done' database &
@@ -31,6 +32,7 @@ connect_to_db(){
 		exit 1
 	fi
 
+	# connect to the database via localhost:<random port>, using the SSH tunnel we created above
 	mysql -ucloud_controller -p"${cc_database_password}" -P $mysql_port -h 127.0.0.1 cloud_controller
 }
 
