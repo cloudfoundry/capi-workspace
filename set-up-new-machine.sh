@@ -101,7 +101,7 @@ rm -rf /tmp/credhub
 credhub --version
 
 # install om cli
-wget https://github.com/pivotal-cf/om/releases/download/7.8.2/om-linux-7.8.2
+wget https://github.com/pivotal-cf/om/releases/download/7.8.2/om-linux-amd64-7.8.2
 chmod +x om*
 sudo mv om* /usr/bin/om
 om --version
