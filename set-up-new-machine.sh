@@ -47,18 +47,18 @@ sudo sed -i 's/md5/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo service postgresql restart
 
 # install golang to get latest
-wget https://go.dev/dl/go1.19.3.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.19.3.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.19.5.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.19.5.linux-amd64.tar.gz
 # set go and cf cli on path
 cat >> ~/.$(basename $SHELL)rc <<EOF
 PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
 EOF
-rm go1.19.3.linux-amd64.tar.gz
+rm go1.19.5.linux-amd64.tar.gz
 
 # ruby-install
-wget -O ruby-install-0.8.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.3.tar.gz
-tar -xzvf ruby-install-0.8.3.tar.gz
-cd ruby-install-0.8.3/
+wget -O ruby-install-0.8.5.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.5.tar.gz
+tar -xzvf ruby-install-0.8.5.tar.gz
+cd ruby-install-0.8.5/
 sudo make install
 ruby-install -V
 cd ..
@@ -85,7 +85,7 @@ cat >> ~/.ruby-version <<EOF
 EOF
 
 # install bosh cli
-wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.0.1/bosh-cli-7.0.1-linux-amd64
+wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.1.2/bosh-cli-7.1.2-linux-amd64
 chmod +x bosh-cli-*-linux-amd64
 sudo mv bosh-cli-*-linux-amd64 /usr/bin/bosh
 bosh --version
@@ -93,7 +93,7 @@ bosh --version
 # install credhub cli
 mkdir -p /tmp/credhub
 cd /tmp/credhub
-wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.3/credhub-linux-2.9.3.tgz
+wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.10/credhub-linux-2.9.10.tgz
 tar xf credhub*tgz
 chmod +x credhub
 sudo mv credhub /usr/bin
@@ -101,7 +101,7 @@ rm -rf /tmp/credhub
 credhub --version
 
 # install om cli
-wget https://github.com/pivotal-cf/om/releases/download/7.7.0/om-linux-7.7.0
+wget https://github.com/pivotal-cf/om/releases/download/7.8.2/om-linux-7.8.2
 chmod +x om*
 sudo mv om* /usr/bin/om
 om --version
