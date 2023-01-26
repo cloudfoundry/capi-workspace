@@ -19,6 +19,14 @@ sudo apt autoremove -y
 # make workspace
 mkdir -p ~/workspace
 
+# clone things into workspace
+cd ~/workspace
+git clone https://github.com/cloudfoundry/capi-release.git
+git clone https://github.com/cloudfoundry/capi-ci.git
+cd capi-release
+./scripts/update
+cd ..
+
 # tmux setup with luan
 cd ~/workspace
 git clone https://github.com/luan/tmuxfiles.git
@@ -153,10 +161,3 @@ git config --global alias.ci commit
 git config --global alias.st status
 git config --global alias.co checkout
 
-# clone things into workspace
-cd ~/workspace
-git clone https://github.com/cloudfoundry/capi-release.git
-git clone https://github.com/cloudfoundry/capi-ci.git
-cd capi-release
-./scripts/update
-cd ..
