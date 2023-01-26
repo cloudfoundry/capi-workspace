@@ -105,6 +105,7 @@ wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.10/credhu
 tar xf credhub*tgz
 chmod +x credhub
 sudo mv credhub /usr/bin
+cd ..
 rm -rf /tmp/credhub
 credhub --version
 
