@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -x
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
@@ -23,15 +23,15 @@ mkdir -p ~/workspace
 # Need to clone with https because we don't have a Github account with SSH key available at this point
 cd ~/workspace
 
-git clone https://github.com/cloudfoundry/capi-release.git --branch develop
+git clone https://github.com/cloudfoundry/capi-release --branch develop
 pushd capi-release
-  git remote set-url origin git@github.com:cloudfoundry/capi-release.git
   ./scripts/update
+  git remote set-url origin git@github.com:cloudfoundry/capi-release.git
 popd
 
-git clone https://github.com:cloudfoundry/capi-ci.git
+git clone https://github.com:cloudfoundry/capi-ci
 pushd capi-ci
-  git remote set-url origin git@github.com:cloudfoundry/capi-release.git
+  git remote set-url origin git@github.com:cloudfoundry/capi-ci.git
 popd
 
 # tmux setup with luan
