@@ -21,8 +21,8 @@ mkdir -p ~/workspace
 
 # clone things into workspace
 cd ~/workspace
-git clone https://github.com/cloudfoundry/capi-release.git
-git clone https://github.com/cloudfoundry/capi-ci.git
+git clone git@github.com:cloudfoundry/capi-release.git --branch develop
+git clone git@github.com:cloudfoundry/capi-ci.git
 cd capi-release
 ./scripts/update
 cd ..
@@ -163,11 +163,3 @@ EOF
 git config --global alias.ci commit
 git config --global alias.st status
 git config --global alias.co checkout
-
-# clone things into workspace
-cd ~/workspace
-git clone git@github.com:cloudfoundry/capi-release.git --branch develop
-git clone git@github.com:cloudfoundry/capi-ci.git
-cd capi-release
-./scripts/update
-cd ..
