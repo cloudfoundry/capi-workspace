@@ -20,12 +20,19 @@ sudo apt autoremove -y
 mkdir -p ~/workspace
 
 # clone things into workspace
+# Need to clone with https because we don't have a Github account with SSH key available at this point
 cd ~/workspace
-git clone git@github.com:cloudfoundry/capi-release.git --branch develop
-git clone git@github.com:cloudfoundry/capi-ci.git
-cd capi-release
-./scripts/update
-cd ..
+
+git clone https://github.com/cloudfoundry/capi-release.git --branch develop
+pushd capi-release
+  git remote set-url origin git@github.com:cloudfoundry/capi-release.git
+  ./scripts/update
+popd
+
+git clone https://github.com:cloudfoundry/capi-ci.git
+pushd capi-ci
+  git remote set-url origin git@github.com:cloudfoundry/capi-release.git
+popd
 
 # tmux setup with luan
 cd ~/workspace
