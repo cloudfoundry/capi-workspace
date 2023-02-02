@@ -74,7 +74,7 @@ rm -rf ruby-install-*
 
 # install ruby 3.1
 # For best results this should match the version in capi-release
-RUBY_VERSION="3.1.2"
+RUBY_VERSION="$(<~/workspace/capi-release/.ruby-version)"
 
 ruby-install ${RUBY_VERSION}
 
