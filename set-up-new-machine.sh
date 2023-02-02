@@ -73,7 +73,10 @@ cd ..
 rm -rf ruby-install-*
 
 # install ruby 3.1
-ruby-install 3.1
+# For best results this should match the version in capi-release
+RUBY_VERSION="3.1.2"
+
+ruby-install ${RUBY_VERSION}
 
 # chruby
 wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
@@ -88,9 +91,8 @@ cat >> ~/.$(basename $SHELL)rc <<EOF
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 EOF
-cat >> ~/.ruby-version <<EOF
-3.1
-EOF
+
+echo "ruby-${RUBY_VERSION}" > ~/.ruby-version
 
 # install bosh cli
 wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.1.2/bosh-cli-7.1.2-linux-amd64
