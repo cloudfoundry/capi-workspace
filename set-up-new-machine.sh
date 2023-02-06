@@ -20,17 +20,14 @@ mkdir -p ~/workspace
 # clone things into workspace
 # Need to clone with https because we don't have a Github account with SSH key available at this point
 cd ~/workspace
+git config --global url."git@github.com:".pushInsteadOf https://github.com/
 
 git clone https://github.com/cloudfoundry/capi-release --branch develop
 pushd capi-release
   ./scripts/update
-  git remote set-url origin git@github.com:cloudfoundry/capi-release.git
 popd
 
 git clone https://github.com:cloudfoundry/capi-ci
-pushd capi-ci
-  git remote set-url origin git@github.com:cloudfoundry/capi-ci.git
-popd
 
 # tmux setup with luan
 cd ~/workspace
