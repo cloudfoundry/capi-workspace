@@ -128,14 +128,16 @@ cf --version
 wget https://github.com/git-duet/git-duet/releases/download/0.9.0/linux_amd64.tar.gz
 sudo tar -xvf linux_amd64.tar.gz -C /usr/local/bin/
 
-# add git authors file and remove git together signoff
+# add git authors file
 ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
-cat >> ~/.$(basename $SHELL)rc <<EOF
-export GIT_DUET_CO_AUTHORED_BY=1
-EOF
 
-# helper bash functions (deploy only new capi, claim bosh lite)  manually alias roundup_bosh_lites cause don't know if we want all of lib/misc.bash yet
+# environment variables and helper bash functions (deploy only new capi, claim bosh lite)  manually alias roundup_bosh_lites cause don't know if we want all of lib/misc.bash yet
 cat >> ~/.$(basename $SHELL)rc <<EOF
+# use co-authored-by trailer in git-duet
+export GIT_DUET_CO_AUTHORED_BY=1
+
+export TERM=xterm-256color
+
 source ~/workspace/capi-workspace/lib/pullify.bash
 source ~/workspace/capi-workspace/lib/target-bosh.bash
 source ~/workspace/capi-workspace/lib/claim-bosh-lite.bash
