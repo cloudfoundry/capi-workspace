@@ -1,33 +1,9 @@
-[git-together]
-  domain = pivotal.io
-[git-together "authors"]
-  ar  = "Alex Rocha; alexr1@vmware.com"
-  bl  = "Belinda Liu; bliu"
-  cl  = "Carson Long; lcarson@vmware.com"
-  cs  = "Chris Selzo; cselzo"
-  cy  = "Caitlyn Yu; caitlyny@vmware.com"
-  es  = "Elena Sharma; elenasharma"
-  gc  = "Greg Cobb; gcobb"
-  gh = "Galen Hammond; galenh@vmware.com"
-  jg  = "Jenna Goldstrich; jgoldstrich"
-  jp  = "Jaskanwal Pawar; jpawar"
-  mp  = "Marc Paquette; mpaquette@vmware.com"
-  mdl = "Merric de Launey; mdelauney"
-  mk =  "Matthew Kocher; mkocher"
-  mo =  "Michael Oleske; moleske"
-  mm  = "Mona Mohebbi; mmohebbi"
-  mr  = "Matt Royal; mroyal@vmware.com"
-  pb  = "Piyali Banerjee; pbanerjee"
-  rc  = "Renee Chu; rchu"
-  sb  = "Seth Boyles; sboyles"
-  sj  = "Sannidhi Jalukar; sjalukar"
-  sw  = "Sarah Weinstein; sweinstein"
-  td  = "Tim Downey; tdowney@vmware.com"
-  tp  = "Travis Patterson; travisp@vmware.com"
-  ts  = "Teal Stannard; tstannard"
-  tv  = "Tom Viehman; tviehman"
-  wf  = "Weyman Fung; weymanf@vmware.com"
-  zr  = "Zach Robinson; zrobinson"
-  bp  = "Brandon Potts; bpotts@vmware.com"
-  da  = "David Alvarado; alvaradoda@vmware.com"
-  bot = "CAPI CI; cf-capi-eng+ci"
+authors:
+  sb: Seth Boyles; sboyles
+  mo: Michael Oleske; moleske
+  da: David Alvarado; alvaradoda
+  ar: Alex Rocha; alexr1
+  mdl: Merric de Launey; mdelauney
+  ef: Evan Farrar; efarrar
+email:
+  domain: vmware.com
