@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -xe
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 # dependencies to run tests
