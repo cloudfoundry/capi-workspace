@@ -36,16 +36,6 @@ cd tmuxfiles
 ./install
 cd ../..
 
-# neovim (there is no vim) need at least 7.0 neovim for luan vim config
-wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-sudo DEBIAN_FRONTEND=noninteractive apt install ./nvim-linux64.deb -y
-rm nvim-linux64.deb
-nvim -v
-# install dependencies for luan's neovim config
-sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep fd-find bat python3-neovim -y
-# get luan vim config
-git clone https://github.com/luan/nvim ~/.config/nvim
-
 # setup mysql
 sudo service mysql start
 sudo service mysql status # might need loop here depending how long status takes
