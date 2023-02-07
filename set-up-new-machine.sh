@@ -135,7 +135,7 @@ ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
 # environment variables and helper bash functions (deploy only new capi, claim bosh lite)  manually alias roundup_bosh_lites cause don't know if we want all of lib/misc.bash yet
 cat >> ~/.$(basename $SHELL)rc <<EOF
 # use co-authored-by trailer in git-duet
-export GIT_DUET_CO_AUTHORED_BY=1
+export GIT_DUET_CO_AUTHORED_BY=true
 
 export TERM=xterm-256color
 
