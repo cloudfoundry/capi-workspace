@@ -21,6 +21,7 @@ mkdir -p ~/workspace
 # Need to clone with https because we don't have a Github account with SSH key available at this point
 cd ~/workspace
 git config --global url."git@github.com:".pushInsteadOf https://github.com/
+git config --global core.editor "vim"
 
 git clone https://github.com/cloudfoundry/capi-release --branch develop
 pushd capi-release
@@ -115,6 +116,10 @@ chmod +x bbl*
 sudo mv bbl* /usr/bin/bbl
 bbl --version
 
+# install git-duet
+wget https://github.com/git-duet/git-duet/releases/download/0.9.0/linux_amd64.tar.gz
+sudo tar -xvf linux_amd64.tar.gz -C /usr/local/bin/
+
 # set up cf cli
 cd ~/workspace
 git clone https://github.com/cloudfoundry/cli.git
@@ -123,10 +128,6 @@ git switch v8
 PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
 make build
 cf --version
-
-# install git-duet
-wget https://github.com/git-duet/git-duet/releases/download/0.9.0/linux_amd64.tar.gz
-sudo tar -xvf linux_amd64.tar.gz -C /usr/local/bin/
 
 # add git authors file
 ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
