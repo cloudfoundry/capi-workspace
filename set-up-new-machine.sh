@@ -27,7 +27,7 @@ pushd capi-release
   ./scripts/update
 popd
 
-git clone https://github.com:cloudfoundry/capi-ci
+git clone https://github.com/cloudfoundry/capi-ci
 
 # tmux setup with luan
 cd ~/workspace
