@@ -37,6 +37,9 @@ jobs:
               echo "run set-up-new-machine.sh on workstation"
               gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command '~/workspace/capi-workspace/set-up-new-machine.sh'
 
+              # if we don't wait, the last written file in the set up new machine script won't be written correctly when we make the machine image
+              sleep 30
+
               gcloud compute machine-images describe capi-ws-image-latest --project "cf-capi-arya"
               testVal=$?
               if [[ $testVal -eq 0 ]]; then
