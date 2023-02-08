@@ -1,5 +1,5 @@
 function unclaim_bosh_lite() {
-  git_authors=$(git config --get git-together.active)
+  git_authors=$(git duet)
   if [ -z "$git_authors" ]; then
     echo "please set your git authors before running this!"
     return
