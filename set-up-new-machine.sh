@@ -29,6 +29,9 @@ pushd capi-release
 popd
 
 git clone https://github.com/cloudfoundry/capi-ci
+git clone https://github.com/cloudfoundry/cf-acceptance-tests
+git clone https://github.com/cloudfoundry/capi-bara-tests
+git clone https://github.com/cloudfoundry/sync-integration-tests
 
 # tmux setup with luan
 cd ~/workspace
