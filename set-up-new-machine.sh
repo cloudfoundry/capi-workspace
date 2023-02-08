@@ -136,6 +136,8 @@ ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
 cat >> ~/.$(basename $SHELL)rc <<EOF
 # use co-authored-by trailer in git-duet
 export GIT_DUET_CO_AUTHORED_BY=true
+export GIT_DUET_SET_GIT_USER_CONFIG=true
+export GIT_DUET_GLOBAL=true
 
 export TERM=xterm-256color
 

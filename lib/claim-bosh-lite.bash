@@ -36,7 +36,7 @@ function story_selector() {
 }
 
 function claim_bosh_lite() {
-  git_authors=$(git config --get git-together.active)
+  git_authors=$(git duet)
   if [ -z "$git_authors" ]; then
     echo "please set your git authors before running this!"
     echo "maybe run 'story' while you're at it."
