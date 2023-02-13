@@ -18,6 +18,7 @@ jobs:
             repository: google/cloud-sdk
         params:
           GCP_SERVICE_ACCOUNT_KEY: ((arya_gcp_json_key))
+          PCF_BOSH_LITE_DEPLOY_KEY: ((pcf_bosh_lite_pool_deploy_key))
         inputs:
         - name: capi-workspace
         run:
@@ -35,7 +36,9 @@ jobs:
               gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command 'mkdir -p ~/workspace'
               gcloud compute scp --recurse capi-workspace/ --zone "us-central1-a" "pivotal@capi-ws-vm-latest:~/workspace" --project "cf-capi-arya" -q
               echo "run set-up-new-machine.sh on workstation"
-              gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command '~/workspace/capi-workspace/set-up-new-machine.sh'
+              eval `ssh-agent -s`
+              ssh-add <(echo $PCF_BOSH_LITE_DEPLOY_KEY)
+              gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command '~/workspace/capi-workspace/set-up-new-machine.sh' --ssh-flag="-A"
 
               # if we don't wait, the last written file in the set up new machine script won't be written correctly when we make the machine image
               sleep 30
