@@ -32,7 +32,7 @@ git clone https://github.com/cloudfoundry/capi-ci
 git clone https://github.com/cloudfoundry/cf-acceptance-tests
 git clone https://github.com/cloudfoundry/capi-bara-tests
 git clone https://github.com/cloudfoundry/sync-integration-tests
-git clone https://github.com/pivotal-cf/capi-env-pool
+git clone git@github.com:pivotal-cf/capi-env-pool.git
 
 # tmux setup with luan
 cd ~/workspace
