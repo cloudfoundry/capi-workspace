@@ -14,6 +14,9 @@ mkdir -p ~/.config
 # clean up anything not needed
 sudo apt autoremove -y
 
+# add github.com to list of known hosts
+ssh-keyscan github.com >> ~/.ssh/known_hosts
+
 # make workspace
 mkdir -p ~/workspace
 
