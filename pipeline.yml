@@ -1,9 +1,15 @@
 resources:
-- name: capi-workspace
-  type: git
-  source:
-    branch: new-workstations
-    uri: https://github.com/cloudfoundry/capi-workspace
+  - name: capi-workspace
+    type: git
+    source:
+      branch: new-workstations
+      uri: https://github.com/cloudfoundry/capi-workspace
+  - name: capi-env-pool
+    type: git
+    source:
+      branch: main
+      uri: git@github.com:pivotal-cf/capi-env-pool.git
+      private_key: ((pcf_bosh_lite_pool_deploy_key))
 
 jobs:
   - name: create-latest-workstation
@@ -35,11 +41,8 @@ jobs:
               echo "copy capi-workspace over"
               gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command 'mkdir -p ~/workspace'
               gcloud compute scp --recurse capi-workspace/ --zone "us-central1-a" "pivotal@capi-ws-vm-latest:~/workspace" --project "cf-capi-arya" -q
+              gcloud compute scp --recurse capi-env-pool/ --zone "us-central1-a" "pivotal@capi-ws-vm-latest:~/workspace" --project "cf-capi-arya" -q
               echo "run set-up-new-machine.sh on workstation"
-              eval `ssh-agent -s`
-              ssh-add <(echo $PCF_BOSH_LITE_DEPLOY_KEY)
-              gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
-              gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command 'ssh-keyscan -t rsa github.com | ssh-keygen -lf -'
               gcloud compute ssh --zone "us-central1-a" "pivotal@capi-ws-vm-latest" --project "cf-capi-arya" -q --command '~/workspace/capi-workspace/set-up-new-machine.sh' --ssh-flag="-A"
 
               # if we don't wait, the last written file in the set up new machine script won't be written correctly when we make the machine image
