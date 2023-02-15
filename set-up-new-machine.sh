@@ -160,3 +160,8 @@ EOF
 git config --global alias.ci commit
 git config --global alias.st status
 git config --global alias.co checkout
+
+# workaround for bug in git duet v 0.9.0
+git config --global duet.git-author-initials none
+git config --global duet.git-author-name bogus
+git config --global duet.git-author-email bogus@example.com
