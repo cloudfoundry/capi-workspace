@@ -126,6 +126,16 @@ bbl --version
 wget https://github.com/git-duet/git-duet/releases/download/0.9.0/linux_amd64.tar.gz
 sudo tar -xvf linux_amd64.tar.gz -C /usr/local/bin/
 
+# install dir-env
+sudo apt install direnv
+
+# install fly if not already installed
+if ! which fly > /dev/null ; then
+	destination=/usr/local/bin/fly
+	sudo wget "https://ci.cake.capi.land/api/v1/cli?arch=amd64&platform=linux" -O $destination
+	sudo chmod +x $destination
+fi
+
 # set up cf cli
 cd ~/workspace
 git clone https://github.com/cloudfoundry/cli.git
