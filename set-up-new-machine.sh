@@ -54,13 +54,13 @@ sudo sed -i 's/scram-sha-256/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo service postgresql restart
 
 # install golang to get latest
-wget https://go.dev/dl/go1.19.5.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.19.5.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.20.1.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.20.1.linux-amd64.tar.gz
 # set go and cf cli on path
 cat >> ~/.$(basename $SHELL)rc <<EOF
 PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
 EOF
-rm go1.19.5.linux-amd64.tar.gz
+rm go1.20.1.linux-amd64.tar.gz
 
 # ruby-install
 wget -O ruby-install-0.8.5.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.5.tar.gz
