@@ -25,7 +25,6 @@ jobs:
             repository: google/cloud-sdk
         params:
           GCP_SERVICE_ACCOUNT_KEY: ((arya_gcp_json_key))
-          PCF_BOSH_LITE_DEPLOY_KEY: ((pcf_bosh_lite_pool_deploy_key))
         inputs:
         - name: capi-workspace
         - name: capi-env-pool
