@@ -58,7 +58,6 @@ nvim -v
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 mkdir -p ~/.config/nvim
 ln -s ~/workspace/capi-workspace/init.vim ~/.config/nvim/init.vim
-nvim -es -i NONE -c "PlugInstall" -c "qa"
 
 # setup mysql
 sudo service mysql start
