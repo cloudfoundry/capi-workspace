@@ -36,6 +36,11 @@ git clone https://github.com/cloudfoundry/cf-acceptance-tests
 git clone https://github.com/cloudfoundry/capi-bara-tests
 git clone https://github.com/cloudfoundry/sync-integration-tests
 
+# set correct branch for capi env pools
+pushd capi-env-pool
+  git switch main
+popd
+
 # tmux setup with luan
 cd ~/workspace
 git clone https://github.com/luan/tmuxfiles.git
