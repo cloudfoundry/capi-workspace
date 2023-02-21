@@ -153,7 +153,6 @@ cat >> ~/.$(basename $SHELL)rc <<EOF
 # use co-authored-by trailer in git-duet
 export GIT_DUET_CO_AUTHORED_BY=1
 export GIT_DUET_SET_GIT_USER_CONFIG=true
-export GIT_DUET_GLOBAL=true
 
 export TERM=xterm-256color
 
@@ -170,8 +169,3 @@ EOF
 git config --global alias.ci commit
 git config --global alias.st status
 git config --global alias.co checkout
-
-# workaround for bug in git duet v 0.9.0
-git config --global duet.git-author-initials none
-git config --global duet.git-author-name bogus
-git config --global duet.git-author-email bogus@example.com
