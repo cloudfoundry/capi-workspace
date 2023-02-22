@@ -12,8 +12,14 @@ Plug 'hrsh7th/nvim-cmp'
 " For vsnip users.
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+" commenting
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
+
+" enable commenting - see https://github.com/preservim/nerdcommenter for
+" keybindings
+filetype plugin on
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
