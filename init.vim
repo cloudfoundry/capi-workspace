@@ -2,7 +2,7 @@ call plug#begin()
 
 " treesitter syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
@@ -16,4 +16,5 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+require'lspconfig'.solargraph.setup{}
 EOF
