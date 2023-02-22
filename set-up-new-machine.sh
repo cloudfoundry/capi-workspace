@@ -24,7 +24,7 @@ mkdir -p ~/workspace
 # Need to clone with https because we don't have a Github account with SSH key available at this point
 cd ~/workspace
 git config --global url."git@github.com:".pushInsteadOf https://github.com/
-git config --global core.editor "vim"
+git config --global core.editor "nvim"
 
 git clone https://github.com/cloudfoundry/capi-release --branch develop
 pushd capi-release
