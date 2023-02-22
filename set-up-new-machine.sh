@@ -72,9 +72,9 @@ sudo service postgresql restart
 # install golang to get latest
 wget https://go.dev/dl/go1.20.1.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.20.1.linux-amd64.tar.gz
-# set go and cf cli on path
+# set go and cf cli and ~/go/bin on path
 cat >> ~/.$(basename $SHELL)rc <<EOF
-PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin"
+PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
 EOF
 rm go1.20.1.linux-amd64.tar.gz
 

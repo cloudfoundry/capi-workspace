@@ -17,4 +17,5 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 require'lspconfig'.solargraph.setup{}
+require'lspconfig'.gopls.setup{}
 EOF
