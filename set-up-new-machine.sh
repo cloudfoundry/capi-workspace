@@ -78,9 +78,6 @@ PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
 EOF
 rm go1.20.1.linux-amd64.tar.gz
 
-# install gopls for nvim
-go install golang.org/x/tools/gopls@latest
-
 # ruby-install
 wget -O ruby-install-0.8.5.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.5.tar.gz
 tar -xzvf ruby-install-0.8.5.tar.gz
@@ -163,6 +160,9 @@ git switch v8
 PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
 make build
 cf --version
+
+# install gopls for nvim
+go install golang.org/x/tools/gopls@latest
 
 # add git authors file
 ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
