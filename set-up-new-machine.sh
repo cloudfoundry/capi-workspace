@@ -8,8 +8,10 @@ sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq
 sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
 # install dependencies for target_cf helper
 sudo DEBIAN_FRONTEND=noninteractive apt install jq -y
+# install dependencies for nvim telescope (fuzzy search)
+sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep -y
 # install dependencies for capi-team-playbook which apparently needs a config directory
-sudo DEBIAN_FRONTEND=noninteractive apt install lastpass-cli
+sudo DEBIAN_FRONTEND=noninteractive apt install lastpass-cli -y
 mkdir -p ~/.config
 # clean up anything not needed
 sudo apt autoremove -y
