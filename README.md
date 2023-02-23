@@ -23,6 +23,14 @@ You can now set up by doing the following:
 
 **Make sure you ssh in as the "pivotal" user** 
 
+## Adding nvim plugins
+We use vimPlug to manage our plugins. Add the plugin to init.vim. Declare your plugin in the top section between plug#begin and plug#end. Add configuration for your plugin in the lua section between lua <<EOF and EOF.
+
+
+## Modifying general vim behavior
+Add configuration in the Standard Vim Config section of init.vim
+
+
 ## Contributing to this repo
 
 * [bash-it](https://github.com/Bash-it/bash-it) We use bash-it to organize and streamline our bash settings. This includes stuff like color schemes, aliases, shell settings, and the shell prompt formatting. Adding "plugins" to `custom-bash-it-plugins` will cause them to be installed in every new shell.
