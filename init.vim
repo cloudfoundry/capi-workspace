@@ -26,9 +26,14 @@ Plug 'olimorris/neotest-rspec'
 
 call plug#end()
 
+" Standard Vim Config
+
 " enable commenting - see https://github.com/preservim/nerdcommenter for
 " keybindings
 filetype plugin on
+
+" set numbers on
+set nu
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
