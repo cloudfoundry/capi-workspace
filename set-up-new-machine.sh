@@ -187,11 +187,11 @@ alias gst="git status"
 EOF
 
 # prepare cloudcontroller_ng for running tests
-pushd ~/workspace/capi-release/src/cloud_controller_ng
-  bundle install
-  DB=mysql rake db:create
-  DB=postgres rake db:create
-popd
+#pushd ~/workspace/capi-release/src/cloud_controller_ng
+  #bundle install
+  #DB=mysql rake db:create
+  #DB=postgres rake db:create
+#popd
 
 # git alias some of the above scripts use and we like
 git config --global alias.ci commit
