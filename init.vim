@@ -23,6 +23,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'nvim-neotest/neotest'
 Plug 'olimorris/neotest-rspec'
+Plug 'nvim-neotest/neotest-go'
 
 call plug#end()
 
@@ -177,6 +178,7 @@ require("neotest").setup({
       })
     end
     }),
+    require("neotest-go")
   }
 })
 vim.keymap.set('n', '<leader>tt', function()
