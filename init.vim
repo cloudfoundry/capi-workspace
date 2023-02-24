@@ -17,6 +17,12 @@ Plug 'preservim/nerdcommenter'
 " fuzzy searching
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+" running test from vim
+" 'nvim-treesitter/nvim-treesitter' explicitly brought in
+" 'nvim-lua/plenary.nvim' brought in for fuzzy search
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'nvim-neotest/neotest'
+Plug 'olimorris/neotest-rspec'
 
 call plug#end()
 
@@ -153,4 +159,26 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-- neotest (copied from https://github.com/nvim-neotest/neotest)
+require("neotest").setup({
+  adapters = {
+    require("neotest-rspec")({
+    rspec_cmd = function()
+      return vim.tbl_flatten({
+        "bundle",
+        "exec",
+        "rspec",
+      })
+    end
+    }),
+  }
+})
+vim.keymap.set('n', '<leader>tt', function()
+  require("neotest").output_panel.open()
+  require("neotest").run.run()
+end,{})
+vim.keymap.set('n', '<leader>ts', require("neotest").summary.toggle, {})
+vim.keymap.set('n', '<leader>to', require("neotest").output_panel.toggle, {})
+
 EOF
