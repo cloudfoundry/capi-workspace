@@ -150,7 +150,7 @@ sudo apt install direnv
 # install fly if not already installed
 if ! which fly > /dev/null ; then
 	destination=/usr/local/bin/fly
-	sudo wget "https://ci.cake.capi.land/api/v1/cli?arch=amd64&platform=linux" -O $destination
+	sudo wget "https://ci.capi.land/api/v1/cli?arch=amd64&platform=linux" -O $destination
 	sudo chmod +x $destination
 fi
 
