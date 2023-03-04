@@ -3,7 +3,7 @@ resources:
     type: git
     source:
       branch: new-workstations
-      uri: https://github.com/cloudfoundry/capi-workspace
+      uri: https://github.com/cloudfoundry/capi-workspace.git
   - name: capi-env-pool
     type: git
     source:
