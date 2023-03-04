@@ -15,6 +15,7 @@ jobs:
   - name: create-latest-workstation
     plan:
     - get: capi-workspace
+      trigger: true
     - get: capi-env-pool
     - task: create-workstation-image
       config:
