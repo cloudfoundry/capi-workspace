@@ -13,6 +13,7 @@ resources:
 
 jobs:
   - name: create-latest-workstation
+    serial: true
     plan:
     - get: capi-workspace
       trigger: true
