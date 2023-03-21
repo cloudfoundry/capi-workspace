@@ -1,5 +1,21 @@
 #!/bin/bash
 set -xe
+
+function clone {
+	local repo=$1
+	local destination=$2
+
+	if [ ! -d $destination ]; then
+		echo "Cloning $destination"
+                git clone $repo $destination	
+	else
+		echo "$destination already present, skipping"
+	fi
+}
+
+
+
+
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 # dependencies to run tests
@@ -28,15 +44,19 @@ cd ~/workspace
 git config --global url."git@github.com:".pushInsteadOf https://github.com/
 git config --global core.editor "nvim"
 
-git clone https://github.com/cloudfoundry/capi-release --branch develop
+if [ ! -d ~/workspace/capi-release ]; then
+	git clone https://github.com/cloudfoundry/capi-release --branch develop
+fi
+
 pushd capi-release
   ./scripts/update
 popd
 
-git clone https://github.com/cloudfoundry/capi-ci
-git clone https://github.com/cloudfoundry/cf-acceptance-tests
-git clone https://github.com/cloudfoundry/capi-bara-tests
-git clone https://github.com/cloudfoundry/sync-integration-tests
+clone https://github.com/cloudfoundry/capi-ci ~/workspace/capi-ci
+clone https://github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
+clone https://github.com/cloudfoundry/capi-bara-tests ~/workspace/capi-bara-tests
+clone https://github.com/cloudfoundry/sync-integration-tests ~/workspace/sync-integration-tests
+clone https://github.com/cloudfoundry/capi-dockerfiles ~/workspace/capi-dockerfiles
 
 # set correct branch for capi env pools
 pushd capi-env-pool
