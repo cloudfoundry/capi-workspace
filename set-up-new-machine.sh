@@ -35,6 +35,10 @@ sudo apt autoremove -y
 # add github.com to list of known hosts
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 
+# Install kubectl
+sudo curl -L -o /usr/local/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo chmod +x /usr/local/bin/kubectl
+
 # make workspace
 mkdir -p ~/workspace
 
