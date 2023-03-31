@@ -88,6 +88,9 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 mkdir -p ~/.config/nvim
 ln -s ~/workspace/capi-workspace/init.vim ~/.config/nvim/init.vim
 
+# automated PlugInstall (from https://github.com/junegunn/vim-plug/wiki/tips#install-plugins-on-the-command-line)
+nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
+
 # setup mysql
 sudo service mysql start
 sudo service mysql status # might need loop here depending how long status takes
