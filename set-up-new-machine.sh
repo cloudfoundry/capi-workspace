@@ -68,11 +68,10 @@ pushd capi-env-pool
 popd
 
 # tmux setup with luan
-cd ~/workspace
-git clone https://github.com/luan/tmuxfiles.git
-cd tmuxfiles
+clone https://github.com/luan/tmuxfiles.git ~/workspace/tmuxfiles
+pushd ~/workspace/tmuxfiles
 ./install
-cd ../..
+popd
 
 # install nvim
 wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
@@ -81,17 +80,27 @@ rm nvim-linux64.deb
 nvim -v
 
 # up/down arrow search history
-ln -s ~/workspace/capi-workspace/.inputrc ~/.inputrc
+if [ ! -L ~/.inputrc ]; then
+  ln -s ~/workspace/capi-workspace/.inputrc ~/.inputrc
+fi
 
 # nvim plugins
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 mkdir -p ~/.config/nvim
-ln -s ~/workspace/capi-workspace/init.vim ~/.config/nvim/init.vim
+if [ ! -L ~/.config/nvim/init.vim ]; then
+  ln -s ~/workspace/capi-workspace/init.vim ~/.config/nvim/init.vim
+fi
 
 # setup mysql
 sudo service mysql start
 sudo service mysql status # might need loop here depending how long status takes
-sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
+set +e
+mysql -u root --password=password -e "show databases;"
+MYSQL_RETURN=$?
+set -e
+if [ $MYSQL_RETURN != 0 ]; then
+  sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
+fi
 
 # setup postgres
 sudo sed -i 's/peer/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
@@ -182,9 +191,8 @@ if ! which fly > /dev/null ; then
 fi
 
 # set up cf cli
-cd ~/workspace
-git clone https://github.com/cloudfoundry/cli.git
-cd cli
+clone https://github.com/cloudfoundry/cli.git ~/workspace/cli
+cd ~/workspace/cli
 git switch v8
 PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
 make build
@@ -194,7 +202,9 @@ cf --version
 go install golang.org/x/tools/gopls@latest
 
 # add git authors file
-ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
+if [ ! -L ~/.git-authors ]; then
+  ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
+fi
 
 # environment variables and helper bash functions (deploy only new capi, claim bosh lite)  manually alias roundup_bosh_lites cause don't know if we want all of lib/misc.bash yet
 cat >> ~/.$(basename $SHELL)rc <<EOF
