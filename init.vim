@@ -41,6 +41,9 @@ filetype plugin on
 " set numbers on
 set nu
 
+" set folding by syntax
+set foldmethod=syntax
+
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
