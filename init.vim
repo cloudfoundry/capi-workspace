@@ -27,6 +27,8 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'nvim-neotest/neotest'
 Plug 'olimorris/neotest-rspec'
 Plug 'nvim-neotest/neotest-go'
+"common quality of life improvements"
+Plug 'tpope/vim-rake'
 
 call plug#end()
 
