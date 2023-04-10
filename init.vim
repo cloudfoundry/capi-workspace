@@ -27,6 +27,8 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'nvim-neotest/neotest'
 Plug 'olimorris/neotest-rspec'
 Plug 'nvim-neotest/neotest-go'
+"common quality of life improvements"
+Plug 'tpope/vim-rake'
 
 call plug#end()
 
@@ -38,6 +40,9 @@ filetype plugin on
 
 " set numbers on
 set nu
+
+" set folding by syntax
+set foldmethod=syntax
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
