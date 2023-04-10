@@ -74,9 +74,12 @@ pushd ~/workspace/tmuxfiles
 popd
 
 # install nvim
-wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-sudo DEBIAN_FRONTEND=noninteractive apt install ./nvim-linux64.deb -y
-rm nvim-linux64.deb
+wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage --appimage-extract
+sudo mv squashfs-root /
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+rm nvim.appimage
 nvim -v
 
 # up/down arrow search history
