@@ -61,6 +61,8 @@ clone https://github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-accepta
 clone https://github.com/cloudfoundry/capi-bara-tests ~/workspace/capi-bara-tests
 clone https://github.com/cloudfoundry/sync-integration-tests ~/workspace/sync-integration-tests
 clone https://github.com/cloudfoundry/capi-dockerfiles ~/workspace/capi-dockerfiles
+clone https://github.com/cloudfoundry/stack-auditor ~/workspace/stack-auditor
+
 
 # set correct branch for capi env pools
 pushd capi-env-pool
