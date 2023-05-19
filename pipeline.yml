@@ -10,14 +10,24 @@ resources:
       branch: main
       uri: git@github.com:pivotal-cf/capi-env-pool.git
       private_key: ((pcf_bosh_lite_pool_deploy_key))
+  - name: weekly-sunday
+    type: time
+    source:
+      location: America/Los_Angeles
+      start: 23:00
+      stop: 23:30
+      days: [Sunday]
 
 jobs:
   - name: create-latest-workstation
     serial: true
     plan:
-    - get: capi-workspace
-      trigger: true
-    - get: capi-env-pool
+    - in_parallel:
+      - get: weekly-sunday
+        trigger: true
+      - get: capi-workspace
+        trigger: true
+      - get: capi-env-pool
     - task: create-workstation-image
       config:
         platform: linux
