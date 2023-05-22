@@ -15,11 +15,11 @@ function clone {
 
 
 
-
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 # dependencies to run tests
-sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq-dev mysql-server libmysqlclient-dev zip unzip nodejs npm -y
+sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq-dev mysql-server libmysqlclient-dev zip unzip nodejs -y
 # ruby dependencies - this is to keep noninteractive mode on ruby-install command
 sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
 # install dependencies for target_cf helper
@@ -28,6 +28,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt install jq -y
 sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep -y
 # install dependencies for capi-team-playbook which apparently needs a config directory
 sudo DEBIAN_FRONTEND=noninteractive apt install lastpass-cli -y
+# cypress
+sudo DEBIAN_FRONTEND=noninteractive apt install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb chromium-browser -y
 mkdir -p ~/.config
 # clean up anything not needed
 sudo apt autoremove -y
@@ -76,14 +78,15 @@ pushd ~/workspace/tmuxfiles
 popd
 
 # install nvim
-wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-chmod u+x nvim.appimage
-./nvim.appimage --appimage-extract
-sudo mv squashfs-root /
-sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
-rm nvim.appimage
-nvim -v
-
+if ! command -v nvim &> /dev/null; then
+  wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+  chmod u+x nvim.appimage
+  ./nvim.appimage --appimage-extract
+  sudo mv squashfs-root /
+  sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+  rm nvim.appimage
+  nvim -v
+fi
 # up/down arrow search history
 if [ ! -L ~/.inputrc ]; then
   ln -s ~/workspace/capi-workspace/.inputrc ~/.inputrc
@@ -134,7 +137,7 @@ rm -rf ruby-install-*
 # For best results this should match the version in capi-release
 RUBY_VERSION="$(<~/workspace/capi-release/.ruby-version)"
 
-ruby-install ${RUBY_VERSION}
+ruby-install ${RUBY_VERSION} --no-reinstall
 
 # chruby
 wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
@@ -233,8 +236,8 @@ source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 pushd ~/workspace/capi-release/src/cloud_controller_ng
   bundle install
-  DB=mysql rake db:create
-  DB=postgres rake db:create
+  DB=mysql bundle exec rake db:recreate
+  DB=postgres bundle exec rake db:recreate
 popd
 
 # git alias some of the above scripts use and we like
