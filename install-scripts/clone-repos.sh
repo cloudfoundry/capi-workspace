@@ -43,6 +43,10 @@ pushd ~/workspace > /dev/null
 	clone git@github.com:cloudfoundry/sync-integration-tests.git ~/go/src/code.cloudfoundry.org/sync-integration-tests
 	clone git@github.com:cloudfoundry/capi-bara-tests.git ~/go/src/github.com/cloudfoundry/capi-bara-tests
 	clone git@github.com:cloudfoundry/cli.git ~/go/src/code.cloudfoundry.org/cli
+	
+	clone git@github.com:pivotal-cf/devex-performance-suite.git ~/workspace/devex-performance-suite
+	clone git@github.com:pivotal-cf/pcf-scheduler-release.git ~/workspace/pcf-scheduler-release
+	clone git@github.com:pivotal-cf/p-scheduler.git ~/workspace/p-scheduler
 
 	disable_cred_hook ~/workspace/capi-env-pool
 	disable_cred_hook ~/workspace/capi-ci-private
