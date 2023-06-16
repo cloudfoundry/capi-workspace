@@ -113,6 +113,7 @@ fi
 # setup postgres
 sudo sed -i 's/peer/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo sed -i 's/scram-sha-256/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
+sudo sed -i 's/md5/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo service postgresql restart
 
 # install golang to get latest

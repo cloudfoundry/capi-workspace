@@ -48,7 +48,7 @@ jobs:
               set -e
               gcloud auth activate-service-account --key-file=<(echo $GCP_SERVICE_ACCOUNT_KEY)
               echo "Creating Latest VM"
-              gcloud compute instances create capi-ws-vm-latest --zone "us-central1-a" --project "cf-capi-arya" --boot-disk-size=50GB --boot-disk-type=pd-balanced --machine-type=e2-standard-8 --tags=workstations --image-family=ubuntu-2204-lts --image-project=ubuntu-os-cloud
+              gcloud compute instances create capi-ws-vm-latest --zone "us-central1-a" --project "cf-capi-arya" --boot-disk-size=50GB --boot-disk-type=pd-balanced --machine-type=e2-standard-8 --tags=workstations --image-family=ubuntu-2004-lts --image-project=ubuntu-os-cloud
               echo "wait 30 for instance to be up"
               sleep 30
               echo "copy capi-workspace over"
