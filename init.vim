@@ -30,6 +30,9 @@ Plug 'nvim-neotest/neotest-go'
 "common quality of life improvements"
 Plug 'tpope/vim-rake'
 
+" for linting
+Plug 'dense-analysis/ale'
+
 call plug#end()
 
 " Standard Vim Config
@@ -97,7 +100,7 @@ end
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip`le users.
         -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
