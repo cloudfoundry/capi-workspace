@@ -44,6 +44,7 @@ filetype plugin on
 " set numbers on
 set nu
 
+set expandtab
 " set folding by syntax
 set foldmethod=syntax
 
