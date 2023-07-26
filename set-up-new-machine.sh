@@ -139,6 +139,7 @@ rm -rf ruby-install-*
 RUBY_VERSION="$(<~/workspace/capi-release/.ruby-version)"
 
 ruby-install ${RUBY_VERSION} --no-reinstall
+ruby-install 3.0.6 --no-reinstall
 
 # chruby
 wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
