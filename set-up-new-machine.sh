@@ -7,7 +7,7 @@ function clone {
 
 	if [ ! -d $destination ]; then
 		echo "Cloning $destination"
-                git clone $repo $destination	
+                git clone "$repo" "$destination"
 	else
 		echo "$destination already present, skipping"
 	fi
@@ -30,27 +30,27 @@ sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep -y
 sudo DEBIAN_FRONTEND=noninteractive apt install lastpass-cli -y
 # cypress
 sudo DEBIAN_FRONTEND=noninteractive apt install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb chromium-browser -y
-mkdir -p ~/.config
+mkdir -p "$HOME/.config"
 # clean up anything not needed
 sudo apt autoremove -y
 
 # add github.com to list of known hosts
-ssh-keyscan github.com >> ~/.ssh/known_hosts
+ssh-keyscan github.com >> "$HOME/.ssh/known_hosts"
 
 # Install kubectl
 sudo curl -L -o /usr/local/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo chmod +x /usr/local/bin/kubectl
 
 # make workspace
-mkdir -p ~/workspace
+mkdir -p "$HOME/workspace"
 
 # clone things into workspace
 # Need to clone with https because we don't have a Github account with SSH key available at this point
-cd ~/workspace
+cd "$HOME/workspace"
 git config --global url."git@github.com:".pushInsteadOf https://github.com/
 git config --global core.editor "nvim"
 
-if [ ! -d ~/workspace/capi-release ]; then
+if [ ! -d "$HOME/workspace/capi-release" ]; then
 	git clone https://github.com/cloudfoundry/capi-release --branch develop
 fi
 
@@ -58,12 +58,12 @@ pushd capi-release
   ./scripts/update
 popd
 
-clone https://github.com/cloudfoundry/capi-ci ~/workspace/capi-ci
-clone https://github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
-clone https://github.com/cloudfoundry/capi-bara-tests ~/workspace/capi-bara-tests
-clone https://github.com/cloudfoundry/sync-integration-tests ~/workspace/sync-integration-tests
-clone https://github.com/cloudfoundry/capi-dockerfiles ~/workspace/capi-dockerfiles
-clone https://github.com/cloudfoundry/stack-auditor ~/workspace/stack-auditor
+clone https://github.com/cloudfoundry/capi-ci "$HOME/workspace/capi-ci"
+clone https://github.com/cloudfoundry/cf-acceptance-tests "$HOME/workspace/cf-acceptance-tests"
+clone https://github.com/cloudfoundry/capi-bara-tests "$HOME/workspace/capi-bara-tests"
+clone https://github.com/cloudfoundry/sync-integration-tests "$HOME/workspace/sync-integration-tests"
+clone https://github.com/cloudfoundry/capi-dockerfiles "$HOME/workspace/capi-dockerfiles"
+clone https://github.com/cloudfoundry/stack-auditor "$HOME/workspace/stack-auditor"
 
 
 # set correct branch for capi env pools
@@ -72,8 +72,8 @@ pushd capi-env-pool
 popd
 
 # tmux setup with luan
-clone https://github.com/luan/tmuxfiles.git ~/workspace/tmuxfiles
-pushd ~/workspace/tmuxfiles
+clone https://github.com/luan/tmuxfiles.git "$HOME/workspace/tmuxfiles"
+pushd "$HOME/workspace/tmuxfiles"
 ./install
 popd
 
@@ -88,15 +88,15 @@ if ! command -v nvim &> /dev/null; then
   nvim -v
 fi
 # up/down arrow search history
-if [ ! -L ~/.inputrc ]; then
-  ln -s ~/workspace/capi-workspace/.inputrc ~/.inputrc
+if [ ! -L "$HOME/.inputrc" ]; then
+  ln -s "$HOME/workspace/capi-workspace/.inputrc" "$HOME/.inputrc"
 fi
 
 # nvim plugins
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-mkdir -p ~/.config/nvim
-if [ ! -L ~/.config/nvim/init.vim ]; then
-  ln -s ~/workspace/capi-workspace/init.vim ~/.config/nvim/init.vim
+mkdir -p "$HOME/.config/nvim"
+if [ ! -L "$HOME/.config/nvim/init.vim" ]; then
+  ln -s "$HOME/workspace/capi-workspace/init.vim" "$HOME/.config/nvim/init.vim"
 fi
 
 # setup mysql
@@ -119,8 +119,8 @@ sudo service postgresql restart
 # install golang to get latest
 wget https://go.dev/dl/go1.20.6.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.20.6.linux-amd64.tar.gz
-# set go and cf cli and ~/go/bin on path
-cat >> ~/.$(basename $SHELL)rc <<EOF
+# set go and cf cli and "$HOME/go/bin" on path
+cat >> "$HOME/.$(basename $SHELL)rc" <<EOF
 PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
 EOF
 rm go1.20.6.linux-amd64.tar.gz
@@ -136,7 +136,7 @@ rm -rf ruby-install-*
 
 # install ruby 3.1
 # For best results this should match the version in capi-release
-RUBY_VERSION="$(<~/workspace/capi-release/.ruby-version)"
+RUBY_VERSION="$(<$HOME/workspace/capi-release/.ruby-version)"
 
 ruby-install ${RUBY_VERSION} --no-reinstall
 ruby-install 3.0.6 --no-reinstall
@@ -150,12 +150,12 @@ cd ..
 rm -rf chruby-*
 
 # add chruby to shell
-cat >> ~/.$(basename $SHELL)rc <<EOF
+cat >> "$HOME/.$(basename $SHELL)rc" <<EOF
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 EOF
 
-echo "ruby-${RUBY_VERSION}" > ~/.ruby-version
+echo "ruby-${RUBY_VERSION}" > "$HOME/.ruby-version"
 
 # install bosh cli
 wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.1.2/bosh-cli-7.1.2-linux-amd64
@@ -196,13 +196,13 @@ sudo apt install direnv
 # install fly if not already installed
 if ! which fly > /dev/null ; then
 	destination=/usr/local/bin/fly
-	sudo wget "https://ci.capi.land/api/v1/cli?arch=amd64&platform=linux" -O $destination
-	sudo chmod +x $destination
+	sudo wget "https://ci.capi.land/api/v1/cli?arch=amd64&platform=linux" -O "$destination"
+	sudo chmod +x "$destination"
 fi
 
 # set up cf cli
-clone https://github.com/cloudfoundry/cli.git ~/workspace/cli
-cd ~/workspace/cli
+clone https://github.com/cloudfoundry/cli.git "$HOME/workspace/cli"
+cd "$HOME/workspace/cli"
 git switch v8
 PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
 make build
@@ -212,22 +212,22 @@ cf --version
 go install golang.org/x/tools/gopls@latest
 
 # add git authors file
-if [ ! -L ~/.git-authors ]; then
-  ln -s ~/workspace/capi-workspace/assets/git-authors ~/.git-authors
+if [ ! -L "$HOME/.git-authors" ]; then
+  ln -s "$HOME/workspace/capi-workspace/assets/git-authors" "$HOME/.git-authors"
 fi
 
 # environment variables and helper bash functions (deploy only new capi, claim bosh lite)  manually alias roundup_bosh_lites cause don't know if we want all of lib/misc.bash yet
-cat >> ~/.$(basename $SHELL)rc <<EOF
+cat >> "$HOME/.$(basename $SHELL)rc" <<EOF
 # use co-authored-by trailer in git-duet
 export GIT_DUET_CO_AUTHORED_BY=1
 export GIT_DUET_SET_GIT_USER_CONFIG=true
 
 export TERM=xterm-256color
 
-source ~/workspace/capi-workspace/lib/pullify.bash
-source ~/workspace/capi-workspace/lib/target-bosh.bash
-source ~/workspace/capi-workspace/lib/claim-bosh-lite.bash
-source ~/workspace/capi-workspace/lib/unclaim-bosh-lite.bash
+source "$HOME/workspace/capi-workspace/lib/pullify.bash"
+source "$HOME/workspace/capi-workspace/lib/target-bosh.bash"
+source "$HOME/workspace/capi-workspace/lib/claim-bosh-lite.bash"
+source "$HOME/workspace/capi-workspace/lib/unclaim-bosh-lite.bash"
 PATH="$PATH:$HOME/workspace/capi-workspace/bin"
 alias roundup_bosh_lites="print_env_info"
 alias gst="git status"
@@ -236,7 +236,7 @@ EOF
 # prepare cloudcontroller_ng for running tests
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-pushd ~/workspace/capi-release/src/cloud_controller_ng
+pushd "$HOME/workspace/capi-release/src/cloud_controller_ng"
   bundle install
   DB=mysql bundle exec rake db:recreate
   DB=postgres bundle exec rake db:recreate

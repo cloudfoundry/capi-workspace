@@ -2,7 +2,7 @@
 set -ex
 
 echo "setting up toolsmiths creds..."
-pushd ~
+pushd "$HOME"
 
 printf '%s\n' '#!/bin/bash' 'lpass show --password "Toolsmiths GCP Env Pool Creds"'> .smith-token-hook.sh
 chmod 777 .smith-token-hook.sh
@@ -13,5 +13,4 @@ cd workspace
 cd smith && git pull
 go install
 popd
-
 
