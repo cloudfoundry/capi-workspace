@@ -1,31 +1,37 @@
 #!/bin/bash
+#vi:tabstop=2 shiftwidth=2 expandtab
 set -xe
 
 function clone {
-	local repo=$1
-	local destination=$2
+  local repo=$1
+  local destination=$2
+  local branch=$3
 
-	if [ ! -d $destination ]; then
-		echo "Cloning $destination"
-                git clone "$repo" "$destination"
-	else
-		echo "$destination already present, skipping"
-	fi
+  if [ ! -d "$destination" ]; then
+    echo "Cloning $destination"
+
+    if [[ -n "$branch" ]]; then
+      git clone --branch "$branch" "$repo" "$destination"
+    else
+      git clone "$repo" "$destination"
+    fi
+  else
+    echo "$destination already present, updating"
+    pushd "$destination"
+      git pull || echo "messy..."
+    popd
+  fi
 }
-
-
 
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 # dependencies to run tests
-sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq-dev mysql-server libmysqlclient-dev zip unzip nodejs -y
+sudo DEBIAN_FRONTEND=noninteractive apt install build-essential postgresql libpq-dev mysql-server libmysqlclient-dev zip unzip -y
 # ruby dependencies - this is to keep noninteractive mode on ruby-install command
 sudo DEBIAN_FRONTEND=noninteractive apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
 # install dependencies for target_cf helper
-sudo DEBIAN_FRONTEND=noninteractive apt install jq -y
 # install dependencies for nvim telescope (fuzzy search)
-sudo DEBIAN_FRONTEND=noninteractive apt install ripgrep -y
 # install dependencies for capi-team-playbook which apparently needs a config directory
 sudo DEBIAN_FRONTEND=noninteractive apt install lastpass-cli -y
 # cypress
@@ -37,10 +43,6 @@ sudo apt autoremove -y
 # add github.com to list of known hosts
 ssh-keyscan github.com >> "$HOME/.ssh/known_hosts"
 
-# Install kubectl
-sudo curl -L -o /usr/local/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo chmod +x /usr/local/bin/kubectl
-
 # make workspace
 mkdir -p "$HOME/workspace"
 
@@ -50,13 +52,14 @@ cd "$HOME/workspace"
 git config --global url."git@github.com:".pushInsteadOf https://github.com/
 git config --global core.editor "nvim"
 
-if [ ! -d "$HOME/workspace/capi-release" ]; then
-	git clone https://github.com/cloudfoundry/capi-release --branch develop
-fi
+clone https://github.com/cloudfoundry/capi-release "$HOME/workspace/capi-release" develop
 
 pushd capi-release
   ./scripts/update
 popd
+
+clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" v0.12.0
+source "$HOME/.asdf/asdf.sh"
 
 clone https://github.com/cloudfoundry/capi-ci "$HOME/workspace/capi-ci"
 clone https://github.com/cloudfoundry/cf-acceptance-tests "$HOME/workspace/cf-acceptance-tests"
@@ -77,20 +80,56 @@ pushd "$HOME/workspace/tmuxfiles"
 ./install
 popd
 
-# install nvim
-if ! command -v nvim &> /dev/null; then
-  wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-  chmod u+x nvim.appimage
-  ./nvim.appimage --appimage-extract
-  sudo mv squashfs-root /
-  sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
-  rm nvim.appimage
-  nvim -v
-fi
-# up/down arrow search history
-if [ ! -L "$HOME/.inputrc" ]; then
-  ln -s "$HOME/workspace/capi-workspace/.inputrc" "$HOME/.inputrc"
-fi
+cat >> "$HOME/.$(basename $SHELL)rc" <<EOF
+  source "$HOME/.asdf/asdf.sh"
+  source "$HOME/.asdf/completions/asdf.bash"
+EOF
+
+cat >> "$HOME/.asdfrc" <<EOF
+legacy_version_file = yes
+EOF
+
+# For best results this should match the version in capi-release
+RUBY_VERSION="$(<$HOME/workspace/capi-release/.ruby-version)"
+RUBY_CAPI_LTS_VERSION=3.0.6
+
+asdf plugin add ruby || true
+asdf install ruby latest
+asdf install ruby "${RUBY_VERSION}"
+asdf install ruby "${RUBY_CAPI_LTS_VERSION}"
+asdf global ruby latest
+
+function asdf_install_and_make_global {
+  local name=$1
+  local version=${2:-latest}
+
+  asdf plugin add "${name:?}" || true
+  asdf install "${name:?}" "${version:?}"
+  asdf global "${name:?}" "${version:?}"
+}
+
+asdf plugin-add direnv || true
+asdf direnv setup --shell bash --version latest
+
+asdf_install_and_make_global nodejs
+asdf_install_and_make_global golang
+asdf_install_and_make_global bosh
+asdf_install_and_make_global credhub
+asdf_install_and_make_global fly
+asdf_install_and_make_global om
+asdf_install_and_make_global uaa-cli
+asdf_install_and_make_global ytt
+asdf_install_and_make_global pivnet
+asdf_install_and_make_global jq
+asdf_install_and_make_global yq
+asdf_install_and_make_global fzf
+asdf_install_and_make_global fd
+asdf_install_and_make_global ripgrep
+asdf_install_and_make_global kubectl
+asdf_install_and_make_global k9s
+asdf_install_and_make_global cf
+asdf_install_and_make_global github-cli
+asdf_install_and_make_global neovim
 
 # nvim plugins
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -116,69 +155,6 @@ sudo sed -i 's/scram-sha-256/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo sed -i 's/md5/trust/' "$(find /etc/postgresql -name pg_hba.conf)"
 sudo service postgresql restart
 
-# install golang to get latest
-wget https://go.dev/dl/go1.20.6.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.20.6.linux-amd64.tar.gz
-# set go and cf cli and "$HOME/go/bin" on path
-cat >> "$HOME/.$(basename $SHELL)rc" <<EOF
-PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
-EOF
-rm go1.20.6.linux-amd64.tar.gz
-
-# ruby-install
-wget -O ruby-install-0.8.5.tar.gz https://github.com/postmodern/ruby-install/archive/v0.8.5.tar.gz
-tar -xzvf ruby-install-0.8.5.tar.gz
-cd ruby-install-0.8.5/
-sudo make install
-ruby-install -V
-cd ..
-rm -rf ruby-install-*
-
-# install ruby 3.1
-# For best results this should match the version in capi-release
-RUBY_VERSION="$(<$HOME/workspace/capi-release/.ruby-version)"
-
-ruby-install ${RUBY_VERSION} --no-reinstall
-ruby-install 3.0.6 --no-reinstall
-
-# chruby
-wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
-tar -xzvf chruby-0.3.9.tar.gz
-cd chruby-0.3.9/
-sudo make install
-cd ..
-rm -rf chruby-*
-
-# add chruby to shell
-cat >> "$HOME/.$(basename $SHELL)rc" <<EOF
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-EOF
-
-echo "ruby-${RUBY_VERSION}" > "$HOME/.ruby-version"
-
-# install bosh cli
-wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.1.2/bosh-cli-7.1.2-linux-amd64
-chmod +x bosh-cli-*-linux-amd64
-sudo mv bosh-cli-*-linux-amd64 /usr/bin/bosh
-bosh --version
-
-# install credhub cli
-mkdir -p /tmp/credhub
-cd /tmp/credhub
-wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.10/credhub-linux-2.9.10.tgz
-tar xf credhub*tgz
-chmod +x credhub
-sudo mv credhub /usr/bin
-cd ..
-rm -rf /tmp/credhub
-credhub --version
-
-# install om cli
-wget https://github.com/pivotal-cf/om/releases/download/7.8.2/om-linux-amd64-7.8.2
-chmod +x om*
-sudo mv om* /usr/bin/om
-om --version
 
 # install bbl
 wget https://github.com/cloudfoundry/bosh-bootloader/releases/download/v8.4.110/bbl-v8.4.110_linux_x86-64
@@ -189,16 +165,6 @@ bbl --version
 # install git-duet
 wget https://github.com/git-duet/git-duet/releases/download/0.9.0/linux_amd64.tar.gz
 sudo tar -xvf linux_amd64.tar.gz -C /usr/local/bin/
-
-# install dir-env
-sudo apt install direnv
-
-# install fly if not already installed
-if ! which fly > /dev/null ; then
-	destination=/usr/local/bin/fly
-	sudo wget "https://ci.capi.land/api/v1/cli?arch=amd64&platform=linux" -O "$destination"
-	sudo chmod +x "$destination"
-fi
 
 # set up cf cli
 clone https://github.com/cloudfoundry/cli.git "$HOME/workspace/cli"
@@ -234,9 +200,8 @@ alias gst="git status"
 EOF
 
 # prepare cloudcontroller_ng for running tests
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
 pushd "$HOME/workspace/capi-release/src/cloud_controller_ng"
+  asdf install
   bundle install
   DB=mysql bundle exec rake db:recreate
   DB=postgres bundle exec rake db:recreate
