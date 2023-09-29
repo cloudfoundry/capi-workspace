@@ -166,7 +166,7 @@ bosh --version
 # install credhub cli
 mkdir -p /tmp/credhub
 cd /tmp/credhub
-wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.21/credhub-linux-2.9.21.tgz
+wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.21/credhub-linux-amd64-2.9.21.tgz
 tar xf credhub*tgz
 chmod +x credhub
 sudo mv credhub /usr/bin
