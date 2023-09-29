@@ -158,7 +158,7 @@ EOF
 echo "ruby-${RUBY_VERSION}" > ~/.ruby-version
 
 # install bosh cli
-wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.1.2/bosh-cli-7.1.2-linux-amd64
+wget https://github.com/cloudfoundry/bosh-cli/releases/download/v7.4.0/bosh-cli-7.4.0-linux-amd64
 chmod +x bosh-cli-*-linux-amd64
 sudo mv bosh-cli-*-linux-amd64 /usr/bin/bosh
 bosh --version
@@ -166,7 +166,7 @@ bosh --version
 # install credhub cli
 mkdir -p /tmp/credhub
 cd /tmp/credhub
-wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.10/credhub-linux-2.9.10.tgz
+wget https://github.com/cloudfoundry/credhub-cli/releases/download/2.9.21/credhub-linux-2.9.21.tgz
 tar xf credhub*tgz
 chmod +x credhub
 sudo mv credhub /usr/bin
@@ -175,13 +175,13 @@ rm -rf /tmp/credhub
 credhub --version
 
 # install om cli
-wget https://github.com/pivotal-cf/om/releases/download/7.8.2/om-linux-amd64-7.8.2
+wget https://github.com/pivotal-cf/om/releases/download/7.9.0/om-linux-amd64-7.9.0
 chmod +x om*
 sudo mv om* /usr/bin/om
 om --version
 
 # install bbl
-wget https://github.com/cloudfoundry/bosh-bootloader/releases/download/v8.4.110/bbl-v8.4.110_linux_x86-64
+wget https://github.com/cloudfoundry/bosh-bootloader/releases/download/v9.0.12/bbl-v9.0.12_linux_amd64
 chmod +x bbl*
 sudo mv bbl* /usr/bin/bbl
 bbl --version
