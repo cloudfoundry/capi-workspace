@@ -54,12 +54,15 @@ pushd ~/workspace > /dev/null
 	disable_cred_hook ~/workspace/capi-env-pool
 	disable_cred_hook ~/workspace/capi-ci-private
 
+        clone git@github.com:pivotal-cf/notifications-ci.git ~/workspace/notifications-ci
         clone git@github.com:pivotal-cf/notifications-ui.git ~/go/src/github.com/pivotal-cf/notifications-ui
+        clone git@github.com:cloudfoundry/notifications.git ~/go/src/github.com/cloudfoundry/notifications
 
 	# clone golang repos and symlink them into the GOPATH
 	ln -sf	$HOME/go/src/github.com/cloudfoundry/cf-acceptance-tests ~/workspace/cf-acceptance-tests
 	ln -sfn $HOME/go/src/code.cloudfoundry.org/sync-integration-tests ~/workspace/sync-integration-tests
 	ln -sf	$HOME/go/src/github.com/cloudfoundry/capi-bara-tests ~/workspace/capi-bara-tests
 	ln -sf	$HOME/go/src/github.com/pivotal-cf/notifications-ui ~/workspace/notifications-ui
+	ln -sf	$HOME/go/src/github.com/cloudfoundry/notifications ~/workspace/notifications
 	ln -sf	$HOME/go/src/code.cloudfoundry.org/cli/ ~/workspace/cli
 popd > /dev/null
