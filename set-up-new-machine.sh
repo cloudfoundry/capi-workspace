@@ -104,6 +104,12 @@ if [ ! -L ~/.config/nvim/init.vim ]; then
   ln -s ~/workspace/capi-workspace/init.vim ~/.config/nvim/init.vim
 fi
 
+# link basic .vimrc
+if [ ! -L ~/.vimrc ]; then
+  ln -s ~/workspace/capi-workspace/vimrc ~/.vimrc
+f
+
+
 # setup mysql
 sudo service mysql start
 sudo service mysql status # might need loop here depending how long status takes
