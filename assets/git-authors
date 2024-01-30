@@ -1,12 +1,12 @@
 authors:
-  sb: Seth Boyles; sboyles
-  mo: Michael Oleske; moleske
-  da: David Alvarado; alvaradoda
-  ar: Alex Rocha; alexr1
-  mdl: Merric de Launey; mdelauney
-  ef: Evan Farrar; efarrar
-  tv: Tom Viehman; tviehman
-  sg: Shwetha Gururaj; gururajsh
-  dfo: Daniel Felipe Ochoa; danielfelipo
+  sb: Seth Boyles; seth.boyles
+  mo: Michael Oleske; michael.oleske
+  da: David Alvarado; david.alvarado
+  ar: Alex Rocha; alex.rocha
+  ef: Evan Farrar; evan.farrar
+  sg: Shwetha Gururaj; shwetha.gururaj
+  dfo: Daniel Felipe Ochoa; daniel.ochoa
+  mp: Marc Paquette; marc.paquette 
+  ad: Amelia Downs; amelia.downs 
 email:
-  domain: vmware.com
+  domain: broadcom.com
