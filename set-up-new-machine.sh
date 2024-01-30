@@ -84,7 +84,7 @@ fi
 # link basic .vimrc
 if [ ! -L ~/.vimrc ]; then
   ln -s ~/workspace/capi-workspace/vimrc ~/.vimrc
-f
+fi
 
 
 # setup mysql
