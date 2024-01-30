@@ -13,7 +13,7 @@ function clone {
 	fi
 }
 
-sudo ./system_install.sh
+sudo ~/workspace/capi-workspace/system_install.sh
 
 mkdir -p ~/.config
 # add github.com to list of known hosts
