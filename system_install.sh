@@ -13,6 +13,10 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 # Add docker apt repo
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(grep VERSION_CODENAME /etc/os-release | cut -d '=' -f 2) stable" | tee /etc/apt/sources.list.d/docker.list
 curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+# add github cli apt repo
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list
 
 apt update
 apt upgrade -y
@@ -33,6 +37,8 @@ apt install ripgrep -y
 apt install lastpass-cli -y
 # cypress
 apt install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb chromium-browser -y
+# github cli
+apt install gh -y
 # clean up anything not needed
 apt autoremove -y
 
