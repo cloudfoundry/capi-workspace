@@ -14,6 +14,9 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(grep VERSION_CODENAME /etc/os-release | cut -d '=' -f 2) stable" | tee /etc/apt/sources.list.d/docker.list
 curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
+user=pivotal
+sudo gpasswd -a "${user}" docker
+
 apt update
 apt upgrade -y
 
