@@ -61,6 +61,7 @@ EOC
 }
 
 with_asdf_get(){
+    install_asdf
     package_name=${1:?Need package name}
     package_version=${2:-latest}
 
