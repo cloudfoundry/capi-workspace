@@ -29,19 +29,53 @@ apt install build-essential postgresql libpq-dev mysql-server libmysqlclient-dev
 apt-get install -yq apt-utils ca-certificates curl gpg
 apt-get install -yq cowsay docker-buildx-plugin docker-ce docker-ce-cli docker-compose-plugin 
 
-return
 # ruby dependencies - this is to keep noninteractive mode on ruby-install command
 apt install bison libffi-dev libgdbm-dev libncurses-dev libncurses5-dev libreadline-dev libyaml-dev m4 -y
-# install dependencies for target_cf helper
-apt install jq -y
-# install dependencies for nvim telescope (fuzzy search)
-apt install ripgrep -y
 # install dependencies for capi-team-playbook which apparently needs a config directory
 apt install lastpass-cli -y
 # cypress
 apt install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb chromium-browser -y
-# github cli
-apt install gh -y
 # clean up anything not needed
 apt autoremove -y
 
+install_asdf() {
+    which asdf && return
+
+    remote=https://github.com/asdf-vm/asdf.git
+    branch=$(git ls-remote --tags --exit-code --refs "$remote" \
+      | sed -E 's/^[[:xdigit:]]+[[:space:]]+refs\/tags\/(.+)/\1/g' \
+      | sort --version-sort | tail -n1)
+
+    git clone ${remote:?} ~/.asdf \
+      --branch "${branch:?}" \
+      --depth 1 \
+      --shallow-submodules
+
+     grep --quiet asdf.sh $HOME/.bashrc || cat <<EOC >> "$HOME/.bashrc"
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
+EOC
+
+    source "$HOME/.asdf/asdf.sh"
+    asdf update --all
+}
+
+with_asdf_get(){
+    package_name=${1:?Need package name}
+    package_version=${2:-latest}
+
+    asdf plugin add "$package_name"
+    asdf install    "$package_name" "$package_version"
+    asdf  global    "$package_name" "$package_version"
+}
+
+# full list of asdf plugins https://github.com/asdf-vm/asdf-plugins/tree/master/plugins
+
+with_asdf_get fd          latest
+with_asdf_get fzf         latest
+with_asdf_get github-cli  latest
+with_asdf_get jless       0.8.0
+with_asdf_get jq          latest
+with_asdf_get ripgrep     latest
+with_asdf_get yq          latest
+with_asdf_get ytt         latest
