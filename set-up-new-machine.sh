@@ -59,6 +59,25 @@ pushd ~/workspace/tmuxfiles
 ./install
 popd
 
+cat  <<EOT >> $HOME/.tmux.conf.local
+unbind-key C-Space
+unbind-key Enter
+
+# TODO: if the current tab runs SSH with nested tmux, second C-Space send conrol key to the nested tmux
+bind-key C-Space run "tmux last-pane || tmux last-window || tmux display 'No last pane or window'"
+bind-key Enter run "tmux last-window || tmux last-pane || tmux display 'No last window or pane'"
+
+set -g base-index 1
+setw -g pane-base-index 1
+set -sg escape-time 10
+
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
+set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
+EOT
+
 # install nvim
 if ! command -v nvim &> /dev/null; then
   wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
