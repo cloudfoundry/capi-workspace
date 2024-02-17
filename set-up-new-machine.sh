@@ -224,6 +224,7 @@ source ~/workspace/capi-workspace/lib/unclaim-bosh-lite.bash
 PATH="$PATH:$HOME/workspace/capi-workspace/bin"
 alias roundup_bosh_lites="print_env_info"
 alias gst="git status"
+alias vi=nvim
 EOF
 
 # prepare cloudcontroller_ng for running tests
