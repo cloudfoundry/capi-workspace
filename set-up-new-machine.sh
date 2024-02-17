@@ -210,6 +210,11 @@ cat >> ~/.$(basename $SHELL)rc <<EOF
 export GIT_DUET_CO_AUTHORED_BY=1
 export GIT_DUET_SET_GIT_USER_CONFIG=true
 
+export GIT_EDITOR=nvim
+export EDITOR=nvim
+
+export CDPATH=".:$HOME/workspace"
+
 export TERM=xterm-256color
 
 source ~/workspace/capi-workspace/lib/pullify.bash
