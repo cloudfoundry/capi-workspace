@@ -5,6 +5,21 @@ export PS4=$'+ \e[0;40;36m${BASH_SOURCE}:${FUNCNAME[0]:+${FUNCNAME[0]}}:${LINENO
 # env SHELLOPTS="${SHELLOPTS}:xtrace" shep_env
 set -e
 
+#
+#    Script allow developer to list, select, and target TAS shepherd environments from the workstation
+#    By default scripts use tas-devex namespace, but you can easially point to your personal namespace by `export SH_NS=`
+#
+#    ```
+#    SH_NS=aberezovsky shep_env
+#    ```
+#
+#    You can pass environment filter options after `s` or `shep_select` command
+#
+#    ```
+#    shep_select APPSMAN-148
+#    ```
+#
+
 ${DEBUG:+set -x}
 
 export SH_NS="${SH_NS:-tas-devex}"

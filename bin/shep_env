@@ -5,6 +5,18 @@ export PS4=$'+ \e[0;40;36m${BASH_SOURCE}:${FUNCNAME[0]:+${FUNCNAME[0]}}:${LINENO
 ${DEBUG:+set -x}
 set -e
 
+#
+#  There is a shortcut to target specific environment via `export SH_ID=`
+#
+#  ```
+#  SH_ID=205d4fca-66da-48c6-90ae-10a6f79610e1 SH_NS=aberezovsky shep_env
+#  ```
+#
+#  After this `bosh`, `credhub`, and `cf`  commands will be targeted to selected shepherd environment.
+#
+#  By default scripts use tas-devex namespace, but you can easially point to your personal namespace by `export SH_NS=`
+#
+
 export SH_NS=${SH_NS:-tas-devex} \
        SH_ID=${SH_ID:---last-lease}
 
