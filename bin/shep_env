@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2155
+export PS4=$'+ \e[0;40;36m${BASH_SOURCE}:${FUNCNAME[0]:+${FUNCNAME[0]}}:${LINENO} :: \e[0m'
+# env SHELLOPTS="${SHELLOPTS}:xtrace" shep_env
+${DEBUG:+set -x}
+set -e
+
+export SH_NS=${SH_NS:-tas-devex} \
+       SH_ID=${SH_ID:---last-lease}
+
+export SHEP_LEASE_OUTPUT_JSON=$(shepherd get lease --namespace "${SH_NS:?}" "${SH_ID:?}" --json | jq -r '.output' \
+| jq --sort-keys "del(.ops_file_content, .ops_manager.private_key)" | jq --compact-output
+)
+
+#echo ${SHEP_LEASE_OUTPUT_JSON:?} | jless
+
+echo "Loading BOSH for ${SH_ID:?}"
+#time eval "$(smith bosh -l <(echo "${SHEP_LEASE_OUTPUT_JSON:?}"))"
+
+ssh_key_path=$(mktemp)
+
+printf "%s" "${SHEP_LEASE_OUTPUT_JSON:?}" | jq -r '.ops_manager_private_key' > "${ssh_key_path}"
+chmod 0600 "${ssh_key_path}"
+
+bosh_ca_path=$(mktemp)
+
+ops_manager_public_ip=$(printf "%s" "${SHEP_LEASE_OUTPUT_JSON:?}" | jq -r '.ops_manager_public_ip')
+
+ssh -o IdentitiesOnly=yes \
+    -o StrictHostKeyChecking=no \
+    -i "${ssh_key_path}" \
+    ubuntu@"${ops_manager_public_ip:?}" cat /var/tempest/workspaces/default/root_ca_certificate \
+    1>"${bosh_ca_path}" \
+    2>/dev/null
+
+chmod 0600 "${bosh_ca_path}"
+
+ops_manager_url=$(printf "%s" "${SHEP_LEASE_OUTPUT_JSON:?}" | jq -r '.ops_manager.url')
+ops_manager_username=$(printf "%s" "${SHEP_LEASE_OUTPUT_JSON:?}" | jq -r '.ops_manager.username')
+ops_manager_password=$(printf "%s" "${SHEP_LEASE_OUTPUT_JSON:?}" | jq -r '.ops_manager.password')
+
+creds=$(om -t "${ops_manager_url:?}"  -k -u "${ops_manager_username:?}" -p "${ops_manager_password:?}" \
+                  curl -s -p "/api/v0/deployed/director/credentials/bosh_commandline_credentials")
+
+bosh_all=$(echo "${creds}" | jq -r .credential | tr ' ' '\n' | grep '=')
+
+bosh_client=$(echo "${bosh_all}" | tr ' ' '\n' | grep 'BOSH_CLIENT=')
+bosh_env=$(echo "${bosh_all}" | tr ' ' '\n' | grep 'BOSH_ENVIRONMENT=')
+bosh_secret=$(echo "${bosh_all}" | tr ' ' '\n' | grep 'BOSH_CLIENT_SECRET=')
+bosh_ca_cert="BOSH_CA_CERT=${bosh_ca_path:?}"
+bosh_proxy="BOSH_ALL_PROXY=ssh+socks5://ubuntu@${ops_manager_public_ip:?}:22?private-key=${ssh_key_path}" #, data.OpsManager.IP.String()),
+bosh_deployment="BOSH_DEPLOYMENT=$(/usr/bin/env \
+                                     "${bosh_client:?}" \
+                                     "${bosh_env:?}" \
+                                     "${bosh_secret:?}" \
+                                     "${bosh_ca_cert:?}" \
+                                     "${bosh_proxy:?}" \
+                                     bosh deployments --json \
+                                   | jq -r '.Tables[0].Rows[0].name')"
+
+
+#/usr/bin/env $bosh_client $bosh_env $bosh_secret $bosh_ca_cert $bosh_proxy $bosh_deployment bosh vms
+
+export BOSH_CREDS="export BOSH_ENV_NAME=${bosh_deployment:?}" \
+                         "${bosh_client:?}" \
+                         "${bosh_env:?}" \
+                         "${bosh_secret:?}" \
+                         "${bosh_ca_cert:?}" \
+                         "${bosh_proxy:?}" \
+                         "${bosh_deployment:?}"
+
+export CREDHUB_CREDS="export CREDHUB_SERVER=\"\${BOSH_ENVIRONMENT}:8844\" \
+                             CREDHUB_PROXY=\"\${BOSH_ALL_PROXY}\" \
+                             CREDHUB_CLIENT=\"\${BOSH_CLIENT}\" \
+                             CREDHUB_SECRET=\"\${BOSH_CLIENT_SECRET}\" \
+                             CREDHUB_CA_CERT=\"\${BOSH_CA_CERT}\""
+
+eval "$BOSH_CREDS"
+eval "$CREDHUB_CREDS"
+
+
+export  OM_SKIP_SSL_VALIDATION=true \
+         SYS_DOMAIN=$( jq -r '.sys_domain'           <(printf '%s' "${SHEP_LEASE_OUTPUT_JSON:?}") ) \
+          OM_TARGET=$( jq -r '.ops_manager.url'      <(printf '%s' "${SHEP_LEASE_OUTPUT_JSON:?}") ) \
+        OM_USERNAME=$( jq -r '.ops_manager.username' <(printf '%s' "${SHEP_LEASE_OUTPUT_JSON:?}") ) \
+        OM_PASSWORD=$( jq -r '.ops_manager.password' <(printf '%s' "${SHEP_LEASE_OUTPUT_JSON:?}") ) \
+TAS_URL_APPS_DOMAIN=$( jq -r '.apps_domain'          <(printf '%s' "${SHEP_LEASE_OUTPUT_JSON:?}") ) \
+          SHEP_NAME=$( jq -r '.name'                 <(printf '%s' "${SHEP_LEASE_OUTPUT_JSON:?}") ) 
+ TAS_ADMIN_PASSWORD=$( credhub get --output-json \
+                                   --name "/opsmgr/$(bosh deployments --json | jq -r '.Tables[].Rows[].name')/uaa/admin_credentials" \
+                       | jq -r '.value.password')
+
+
+export CF_INT_API="api.${SYS_DOMAIN:?}" \
+       CF_INT_PASSWORD="${TAS_ADMIN_PASSWORD:?}" \
+       CF_HOME=$(mktemp -d)
+
+cleanup_temps() {
+  rm -f "${ssh_key_path}"
+  rm -f "${bosh_ca_path}"
+  rm -rf "${CF_HOME}"
+}
+
+trap cleanup_temps EXIT
+
+echo "Connecting CF CLI... CF_HOME=${CF_HOME:?}"
+time cf login -a "${CF_INT_API:?}"\
+              -u "admin" \
+              -p "${TAS_ADMIN_PASSWORD:?}" \
+              --skip-ssl-validation
+
+export SHEP_ENV_CREDENTIALS=$(
+echo cf login -a "api.${SYS_DOMAIN:?}" \
+              -u "admin" \
+              -p "${TAS_ADMIN_PASSWORD:?}" \
+              --skip-ssl-validation
+
+echo "http://apps.${SYS_DOMAIN:?}"
+echo "http://tas-portal.${SYS_DOMAIN:?}"
+echo "http://tas-portal.${TAS_URL_APPS_DOMAIN:?}"
+echo -e "login: admin\npassword: ${TAS_ADMIN_PASSWORD:?}"
+)
+
+echo "$SHEP_ENV_CREDENTIALS"
+# shellcheck disable=SC2016
+echo 'To recall env credentials run: echo $SHEP_ENV_CREDENTIALS'
+
+zsh
+# [[ $_ != "$0" ]] || 
+# eval "$SHELL"
+#

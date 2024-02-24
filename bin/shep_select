@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+query=$*
+
+export PS4=$'+ \e[0;40;36m${BASH_SOURCE}:${FUNCNAME[0]:+${FUNCNAME[0]}}:${LINENO} :: \e[0m'
+# env SHELLOPTS="${SHELLOPTS}:xtrace" shep_env
+set -e
+
+${DEBUG:+set -x}
+
+export SH_NS="${SH_NS:-tas-devex}"
+
+# https://gitlab.eng.vmware.com/shepherd/shepherd2/-/blob/main/documentation/public-docs/how-tos/quickstart.md
+# shellcheck disable=SC2016
+shepherd list --namespace "${SH_NS:?}" lease --json \
+ | jq -c '.[]' \
+ | fzf --no-mouse \
+   ${query:+--query "$query"} \
+   --preview 'shepherd get lease --namespace ${SH_NS:?} $(jq -r .identifier <(echo {})) --json | jq --sort-keys "[.output.ops_manager, del(.output, .environment.nodes), .output|del(.ops_manager,.azs,.env_dns_zone_name_servers)|del(.ops_manager_private_key,.ops_manager_public_key)]" ' \
+   --bind 'ctrl-/:change-preview-window(down|hidden|)' \
+   --bind 'return:execute(SH_ID="$(jq -r .identifier <(echo {}))" shep_env)' \
+   --bind 'ctrl-t:execute(export SH_ID="$(jq -r .identifier <(echo {}))"; export sh_date=$(shepherd set-duration lease --json --expire-in 48h ${SH_ID:?} | yq .expires_at); echo Bumped for another 48 hours now expires at: $(date -jf "%Y-%m-%dT%H:%M:%S" +"%Y-%m-%d %H:%M" "${sh_date%.*}"); read)' \
+   --bind 'space:execute(shepherd get lease --namespace ${SH_NS:?} $(jq -r .identifier <(echo {})) --json | jq --sort-keys "[.output.ops_manager]" )' \
+   --header 'RETURN - shell with loaded env; SPACE - print opsman' \
+   || shepherd login user
+
