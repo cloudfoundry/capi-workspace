@@ -229,6 +229,11 @@ cat >> ~/.$(basename $SHELL)rc <<EOF
 export GIT_DUET_CO_AUTHORED_BY=1
 export GIT_DUET_SET_GIT_USER_CONFIG=true
 
+export GIT_EDITOR=nvim
+export EDITOR=nvim
+
+export CDPATH=".:$HOME/workspace"
+
 export TERM=xterm-256color
 
 source ~/workspace/capi-workspace/lib/pullify.bash
@@ -238,6 +243,7 @@ source ~/workspace/capi-workspace/lib/unclaim-bosh-lite.bash
 PATH="$PATH:$HOME/workspace/capi-workspace/bin"
 alias roundup_bosh_lites="print_env_info"
 alias gst="git status"
+alias vi=nvim
 EOF
 
 # prepare cloudcontroller_ng for running tests
