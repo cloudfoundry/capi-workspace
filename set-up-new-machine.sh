@@ -190,11 +190,18 @@ fi
 
 # set up cf cli
 clone https://github.com/cloudfoundry/cli.git ~/workspace/cli
-cd ~/workspace/cli
-git switch v8
-PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
-make build
-cf --version
+pushd ~/workspace/cli
+  git switch v8
+  PATH="$PATH:$HOME/workspace/cli/out:/usr/local/go/bin:$HOME/go/bin"
+  make build
+  cf --version
+  # install cli dependencies
+  go get github.com/onsi/ginkgo
+  go install github.com/onsi/ginkgo/ginkgo@v1.16.4
+  go install github.com/onsi/gomega/matchers
+  go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.56.2
+  go install github.com/maxbrunsfeld/counterfeiter/v6
+popd
 
 # install gopls for nvim
 go install golang.org/x/tools/gopls@latest
