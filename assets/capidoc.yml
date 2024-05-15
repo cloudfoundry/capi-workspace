@@ -58,7 +58,7 @@ mysql_bosh_lite:
   description: Connect to current bosh target's MySQL DB
   location: capi-workspace/bin
   group: bosh-lite-pool
-roundup_bosh_lites:
+print_env_info:
   description: List all the claimed bosh-lites in the pool
   location: capi-workspace/bin
   group: bosh-lite-pool

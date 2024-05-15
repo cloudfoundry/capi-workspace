@@ -119,9 +119,9 @@ bosh-lite-pool
     claim_bosh_lite     		 Claim an available bosh lite CF
     gcs_to_claimed      		 Convert bosh-lite environment files stored in gcs to a claimed bosh-lite
     mysql_bosh_lite     		 Connect to current bosh target's MySQL DB
+    print_env_info      		 List all the claimed bosh-lites in the pool
     psql_bosh_lite      		 Connect to current bosh target's MySQL DB
     rebootstrap_cf      		 Delete the 'org' org then call bootstrap_cf. For cleaning the slate.
-    roundup_bosh_lites  		 List all the claimed bosh-lites in the pool
     seed_users          		 Add users of every role to the current org and space
     target_bosh         		 Target a bosh environment from the pool
     target_cf           		 Change cf cli target to the cloud foundry deployed on currently targeted bosh (hint: use "target_bosh" first).
