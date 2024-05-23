@@ -1,7 +1,7 @@
 function unclaim_bosh_lite() {
-  git_authors=$(git config --get git-together.active)
-  if [ -z "$git_authors" ]; then
-    echo "please set your git authors before running this!"
+  git_user=$(git config --get user.name)
+  if [ -z "$git_user" ]; then
+    echo "Please set your git user before running this!"
     return
   fi
 
@@ -26,6 +26,7 @@ function unclaim_bosh_lite() {
       return 1
     fi
 
+    echo "Refreshing bosh lite pool state..."
     git pull -n -r --quiet --no-verify
 
     function mark_broken {
@@ -45,7 +46,7 @@ function unclaim_bosh_lite() {
         git rm -rf "${env}" && \rm -rf "${env}"
       fi
 
-      git ci --quiet -m"releasing $env on ${HOSTNAME} [nostory]" --no-verify
+      git ci --quiet -m"releasing $env on $( hostname )" --no-verify
       echo "Pushing the release commit to $( basename "$PWD" )..."
       git push --quiet
     }
@@ -56,10 +57,11 @@ function unclaim_bosh_lite() {
   )
 
   unset BOSH_CA_CERT BOSH_CLIENT BOSH_CLIENT_SECRET BOSH_ENVIRONMENT \
-    BOSH_GW_USER BOSH_GW_HOST BOSH_LITE_DOMAIN BOSH_GW_PRIVATE_KEY_CONTENTS \
-    BOSH_GW_PRIVATE_KEY
+    BOSH_DEPLOYMENT BOSH_GW_USER BOSH_GW_HOST BOSH_LITE_DOMAIN \
+    BOSH_GW_PRIVATE_KEY_CONTENTS BOSH_GW_PRIVATE_KEY CONFIG BOSH_ALL_PROXY \
+    CREDHUB_SERVER CREDHUB_CLIENT CREDHUB_SECRET
 
-  echo "Done"
+  echo "Done!"
 }
 
 export -f unclaim_bosh_lite
