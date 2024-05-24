@@ -46,7 +46,7 @@ function unclaim_bosh_lite() {
         git rm -rf "${env}" && \rm -rf "${env}"
       fi
 
-      git ci --quiet -m"releasing $env on $( hostname )" --no-verify
+      git commit --quiet -m"releasing $env on $( hostname )" --no-verify
       echo "Pushing the release commit to $( basename "$PWD" )..."
       git push --quiet
     }
