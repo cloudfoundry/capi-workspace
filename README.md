@@ -102,67 +102,65 @@ in your terminal using the `capi` command.
 
 ```
 auth
-    load-key            		 Loads the an ssh key in the currently logged in lastpass called "github-private-key".  Run eval $(ssh-agent) if it fails
+    load-key                             Loads the an ssh key in the currently logged in lastpass called "github-private-key".  Run eval $(ssh-agent) if it fails
 backup-restore
-    compare_db_rows     		 Compares counts of two db's rows to validate backup & restore
+    compare_db_rows                      Compares counts of two db's rows to validate backup & restore
 bosh-deploy
-    create_and_deploy   		 Create a capi release, upload to current bosh target, and deploy with default ops files (interactive)
-    create_and_upload   		 Create a capi release and upload to current bosh target
-    deploy              		 Create a capi release, upload to current bosh target, and deploy with default ops files (non interactive)
-    deploy_only_new_capi 		 Deploy just the current CAPI to current bosh target
-    quick_deploy        		 Quickly upload changes in cloud_controller_ng to relevant vms and restart"
+    create_and_deploy                    Create a capi release, upload to current bosh target, and deploy with default ops files (interactive)
+    create_and_upload                    Create a capi release and upload to current bosh target
+    deploy                               Create a capi release, upload to current bosh target, and deploy with default ops files (non interactive)
+    deploy_only_new_capi                 Deploy just the current CAPI to current bosh target
+    quick_deploy                         Quickly upload changes in cloud_controller_ng to relevant vms and restart"
 bosh-lite-pool
-    attach_debugger     		 Attaches the rubymine debugger to your bosh lite
-    bootstrap_cf        		 Target a CF, creates an org, space, and targets them
-    cf_admin_password   		 Get the CF admin password for a current bosh target (requires credhub)
-    cfu                 		 Alias for seed_users
-    claim_bosh_lite     		 Claim an available bosh lite CF
-    gcs_to_claimed      		 Convert bosh-lite environment files stored in gcs to a claimed bosh-lite
-    mysql_bosh_lite     		 Connect to current bosh target's MySQL DB
-    print_env_info      		 List all the claimed bosh-lites in the pool
-    psql_bosh_lite      		 Connect to current bosh target's MySQL DB
-    rebootstrap_cf      		 Delete the 'org' org then call bootstrap_cf. For cleaning the slate.
-    seed_users          		 Add users of every role to the current org and space
-    target_bosh         		 Target a bosh environment from the pool
-    target_cf           		 Change cf cli target to the cloud foundry deployed on currently targeted bosh (hint: use "target_bosh" first).
-    target_uaa          		 Change uaac target to currently targeted bosh and login as admin
-    unclaim_bosh_lite   		 Return a bosh lite CF back to the pool
-    which_bosh          		 Print which bosh environment is currently targeted
+    attach_debugger                      Attaches the rubymine debugger to your bosh lite
+    bootstrap_cf                         Target a CF, creates an org, space, and targets them
+    cf_admin_password                    Get the CF admin password for a current bosh target (requires credhub)
+    cfu                                  Alias for seed_users
+    claim_bosh_lite                      Claim an available bosh lite CF
+    mysql_bosh_lite                      Connect to current bosh target's MySQL DB
+    print_env_info                       List all the claimed bosh-lites in the pool
+    psql_bosh_lite                       Connect to current bosh target's MySQL DB
+    rebootstrap_cf                       Delete the 'org' org then call bootstrap_cf. For cleaning the slate.
+    seed_users                           Add users of every role to the current org and space
+    target_bosh                          Target a bosh environment from the pool
+    target_cf                            Change cf cli target to the cloud foundry deployed on currently targeted bosh (hint: use "target_bosh" first).
+    target_uaa                           Change uaac target to currently targeted bosh and login as admin
+    unclaim_bosh_lite                    Return a bosh lite CF back to the pool
+    which_bosh                           Print which bosh environment is currently targeted
 capi-release-author
-    sync_package_specs  		 Add go submodule dependencies to bosh package specs
-    sync_submodule_config 		 Sync git submodules with go dependencies using gosub
-    unused_blobs        		 Detects unused blobs from the blobs.yml file
+    sync_package_specs                   Add go submodule dependencies to bosh package specs
+    sync_submodule_config                Sync git submodules with go dependencies using gosub
+    unused_blobs                         Detects unused blobs from the blobs.yml file
 ci
-    set_capi_pipeline   		 Set the capi pipeline to your local config file (fly set-pipeline)
-    watch_cc_units      		 Watch CAPI CI unit tests. For a specific run, -b build_number (fly watch)
+    watch_cc_units                       Watch CAPI CI unit tests. For a specific run, -b build_number (fly watch)
 file-system
-    v                   		 Open matching location in vim (fasd -e vim)
-    z                   		 Change current directory to directory matching provided pattern (ex: z ng)
+    v                                    Open matching location in vim (fasd -e vim)
+    z                                    Change current directory to directory matching provided pattern (ex: z ng)
 git
-    commit_with_shortlog 		 Git commit with a staged_shortlog
-    fixcommitter        		 Cleans up committer/author after a rebase
-    g                   		 git status
-    gd                  		 git diff
-    gdc                 		 git diff --cached
-    pullify             		 Pull down all PRs for current git repo as branches
-    staged_shortlog     		 Get commit shortlogs and authors from submodule changes
-    update              		 Update all the git submodules
-    which_capi          		 Given a cloud_controller_ng commit, print which version of capi-release it first appears in
+    commit_with_shortlog                 Git commit with a staged_shortlog
+    fixcommitter                         Cleans up committer/author after a rebase
+    g                                    git status
+    gd                                   git diff
+    gdc                                  git diff --cached
+    pullify                              Pull down all PRs for current git repo as branches
+    staged_shortlog                      Get commit shortlogs and authors from submodule changes
+    update                               Update all the git submodules
+    which_capi                           Given a cloud_controller_ng commit, print which version of capi-release it first appears in
 ruby-dev
-    b                   		 bundle exec
-    bake                		 bundle exec rake
-    gi                  		 gem install
-    mybake              		 DB=mysql bundle exec rake
-    pgbake              		 DB=postgres bundle exec rake
+    b                                    bundle exec
+    bake                                 bundle exec rake
+    gi                                   gem install
+    mybake                               DB=mysql bundle exec rake
+    pgbake                               DB=postgres bundle exec rake
 testing
-    baras               		 Runs baras with local integration_config
-    cats                		 Runs cats with local integration_config
-    cats_cleanup        		 Deletes builpacks, orgs, quotes, and service brokers in a targeted CF
-    check_certificate_expirations 		 Reads YAML files, checks for expired (or premature) certs. Useful for pipeline troubleshooting
-    delete_orgs         		 Delete all orgs for current cf target
-    run_bridge_tests    		 Run Bridge unit tests
-    sits                		 Runs sits against a bosh lite
+    baras                                Runs baras with local integration_config
+    cats                                 Runs cats with local integration_config
+    cats_cleanup                         Deletes builpacks, orgs, quotes, and service brokers in a targeted CF
+    check_certificate_expirations                Reads YAML files, checks for expired (or premature) certs. Useful for pipeline troubleshooting
+    delete_orgs                          Delete all orgs for current cf target
+    run_bridge_tests                     Run Bridge unit tests
+    sits                                 Runs sits against a bosh lite
 workspaces
-    capi-workspaces     		 List and connect to existing K8s CAPI workspaces
-    create-capi-workspace 		 Create a CAPI workspace in K8s cluster
+    capi-workspaces                      List and connect to existing K8s CAPI workspaces
+    create-capi-workspace                Create a CAPI workspace in K8s cluster
 ```
