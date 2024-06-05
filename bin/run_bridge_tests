@@ -2,8 +2,8 @@
 
 set -e
 
-scripts_path="./$(dirname $0)"
-bridge_path="$scripts_path/../src/code.cloudfoundry.org"
+readonly CAPI_RELEASE_DIR="${CAPI_RELEASE_DIR:-$HOME/workspace/capi-release}"
+bridge_path="${CAPI_RELEASE_DIR}/src/code.cloudfoundry.org"
 
 pushd $bridge_path > /dev/null
   ginkgo -r -keepGoing -p -trace -randomizeAllSpecs -progress --race \
