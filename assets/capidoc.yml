@@ -26,10 +26,6 @@ check_certificate_expirations:
   description: Reads YAML files, checks for expired (or premature) certs. Useful for pipeline troubleshooting
   location: capi-workspace/bin
   group: testing
-commit_with_shortlog:
-  description: Git commit with a staged_shortlog
-  location: capi-workspace/bin
-  group: git
 compare_db_rows:
   description: Compares counts of two db's rows to validate backup & restore
   location: capi-workspace/bin
