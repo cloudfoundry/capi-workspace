@@ -2,19 +2,31 @@
 
 set -ue
 
+orgname=${1:-org}
+spacename=${2:-space}
+
 main() {
+  echo "Creating users in ${orgname}/${spacename}..."
   cf create-user space_developer password
-  cf set-space-role space_developer test test SpaceDeveloper
+  cf set-space-role space_developer $orgname $spacename SpaceDeveloper
+
   cf create-user space_manager password
-  cf set-space-role space_manager test test SpaceManager
+  cf set-space-role space_manager $orgname $spacename SpaceManager
+
   cf create-user space_auditor password
-  cf set-space-role space_auditor test test SpaceAuditor
+  cf set-space-role space_auditor $orgname $spacename SpaceAuditor
+
+  cf create-user space_supporter password
+  cf set-space-role space_supporter $orgname $spacename SpaceSupporter
+
   cf create-user billing_manager password
-  cf set-org-role billing_manager test BillingManager
+  cf set-org-role billing_manager $orgname BillingManager
+
   cf create-user org_manager password
-  cf set-org-role org_manager test OrgManager
+  cf set-org-role org_manager $orgname OrgManager
+
   cf create-user org_auditor password
-  cf set-org-role org_auditor test OrgAuditor
+  cf set-org-role org_auditor $orgname OrgAuditor
 }
 
 main
