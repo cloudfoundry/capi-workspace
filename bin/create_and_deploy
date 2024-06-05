@@ -1,12 +1,18 @@
 #!/bin/bash
-set -exu
+set -eu
+
+cfd_dir="${CF_DEPLOYMENT_DIR:-$HOME/workspace/cf-deployment}"
+capi_ci_dir="${CAPI_CI_DIR:-$HOME/workspace/capi-ci}"
 
 create_and_upload
 
-# deploy to current bosh env
-bosh deploy ~/workspace/cf-deployment/cf-deployment.yml \
+printf "\nDeploying uploaded release...\n"
+echo "bosh deploy cf-deployment.yml -o..."
+
+bosh deploy "${cfd_dir}/cf-deployment.yml" \
   -v system_domain=$BOSH_LITE_DOMAIN \
-  -o ~/workspace/capi-ci/cf-deployment-operations/skip-cert-verify.yml \
-  -o ~/workspace/cf-deployment/operations/bosh-lite.yml \
-  -o ~/workspace/cf-deployment/operations/use-compiled-releases.yml \
-  -o ~/workspace/capi-ci/cf-deployment-operations/use-latest-capi.yml $@
+  -o "${capi_ci_dir}/cf-deployment-operations/skip-cert-verify.yml" \
+  -o "${cfd_dir}/operations/bosh-lite.yml" \
+  -o "${cfd_dir}/operations/use-compiled-releases.yml" \
+  -o "${capi_ci_dir}/cf-deployment-operations/use-latest-capi.yml" \
+  $@

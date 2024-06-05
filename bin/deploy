@@ -1,4 +1,4 @@
 #!/bin/bash
-set -exu
+set -e
 
 create_and_deploy $@ -n
