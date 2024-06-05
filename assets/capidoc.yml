@@ -139,10 +139,6 @@ gi:
   description: gem install
   location: capi-workspace/custom-bash-it-plugins
   group: ruby-dev
-watch_cc_units:
-  description: Watch CAPI CI unit tests. For a specific run, -b build_number (fly watch)
-  location: capi-workspace/bin
-  group: ci
 cfu:
   description: Alias for seed_users
   location: capi-workspace/bin
