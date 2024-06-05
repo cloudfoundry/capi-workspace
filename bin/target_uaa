@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-set e
+set -e
 
 get_uaa_admin_password() {
-  echo "Getting UAA admin password from credhub... "
+  echo "Getting UAA admin password from credhub..."
   set -u
   uaa_admin_password=$(credhub get --name '/bosh-lite/cf/uaa_admin_client_secret' --output-json | jq -r '.value')
   echo "UAA admin password: ${uaa_admin_password}"
 }
 
 login() {
-  echo "Targeting UAA with uaac..."
-  uaac target uaa.${BOSH_LITE_DOMAIN} --skip-ssl-validation 2>&1| sed 's/^/\t/'
-  echo "Getting access token for admin client..."
-  uaac token client get admin -s $uaa_admin_password 2>&1 | sed 's/^/\t/'
+  printf "\nTargeting UAA with uaac...\n"
+  uaac target uaa.${BOSH_LITE_DOMAIN} --skip-ssl-validation
+  printf "\nGetting access token for admin client...\n"
+  uaac token client get admin -s $uaa_admin_password
 }
 
 main() {

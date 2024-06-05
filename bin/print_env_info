@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-pool_dir="$HOME/workspace/capi-env-pool/bosh-lites"
+env_pool="${CAPI_ENV_POOL_DIR:-$HOME/workspace/capi-env-pool}"
+pool_dir="${env_pool}/bosh-lites"
 
 function print_env_info {
   local blue
