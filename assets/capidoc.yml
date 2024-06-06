@@ -46,6 +46,14 @@ fixcommitter:
   description: Cleans up committer/author after a rebase
   location: capi-workspace/bin
   group: git
+generate_integration_config:
+  description: Create an integration_config.json for running CATS against current bosh target.
+  location: capi-workspace/bin
+  group: testing
+git-open:
+  description: Open a git repo in your browser, courtesy of Paul Irish.
+  location: capi-workspace/bin
+  group: git
 mysql_bosh_lite:
   description: Connect to current bosh target's MySQL DB
   location: capi-workspace/bin
