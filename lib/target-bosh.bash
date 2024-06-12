@@ -21,20 +21,20 @@ target_bosh() {
 
       env_integration_config_path="${env_pool}/${1}/integration_config.json"
       if [ ! -f "${env_integration_config_path}" ]; then
-        echo "\nWriting a capi-specific integration_config.json...\n"
+        echo "Writing a capi-specific integration_config.json..."
         generate_integration_config > "${env_integration_config_path}"
-        echo -e "\tGenerated ${env_integration_config_path}. Enjoy!"
+        echo -e "Generated ${env_integration_config_path}. Enjoy!\n"
       fi
 
       env_ssh_key_path="${env_pool}/${1}/bosh.pem"
       if [ ! -f "${env_ssh_key_path}" ]; then
-        printf "\nWriting a bosh gateway ssh key...\n"
+        echo "Writing a bosh gateway ssh key..."
         echo "${BOSH_GW_PRIVATE_KEY_CONTENTS}" > "${env_ssh_key_path}"
         chmod 0600 "${env_ssh_key_path}"
-        echo -e "\tGenerated ${env_ssh_key_path}. Enjoy!"
+        echo -e "Generated ${env_ssh_key_path}. Enjoy!\n"
       fi
 
-      printf "\nSetting BOSH_GW_PRIVATE_KEY, BOSH_ALL_PROXY, and CONFIG environment variables...\n"
+      printf "Setting BOSH_GW_PRIVATE_KEY, BOSH_ALL_PROXY, and CONFIG environment variables...\n"
       export BOSH_GW_PRIVATE_KEY="${env_ssh_key_path}"
       export BOSH_ALL_PROXY=ssh+socks5://${BOSH_GW_USER}@${BOSH_ENVIRONMENT}:22?private-key=${BOSH_GW_PRIVATE_KEY}
       export CONFIG="${env_integration_config_path}"

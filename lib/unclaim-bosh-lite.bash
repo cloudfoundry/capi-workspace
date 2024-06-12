@@ -38,7 +38,7 @@ function unclaim_bosh_lite() {
         return 1
       fi
 
-      printf "Hit enter to release ${env} "
+      printf "Hit enter to release '${env}' "
       read -r
 
       git mv "${file}" "${broken_pool}/unclaimed/"

@@ -24,7 +24,7 @@ function claim_bosh_lite() {
       for f in $(ls -tr ./bosh-lites/unclaimed/*); do
         test -f "$f" || continue
 
-        msg "Claiming $( basename $f )..."
+        msg "Claiming '$( basename $f )'..."
         claim_specific_environment $(basename $f)
         return $?
       done
