@@ -5,13 +5,6 @@ set -e
 set -o pipefail
 
 get_database_password(){
-	set +u # $CREDHUB_PASSWORD may be unbound
-  if [[ -z $CREDHUB_PASSWORD ]]; then
-    credhub login --skip-tls-validation
-  else
-    credhub login -s "$CREDHUB_SERVER" -u "$CREDHUB_USERNAME" -p "$CREDHUB_PASSWORD" --skip-tls-validation
-  fi
-  set -u
 	cc_database_password=$(credhub get -n '/bosh-lite/cf/cc_database_password' --output-json | jq -r '.value')
 }
 
@@ -44,6 +37,13 @@ kill_tree() {
 
 	kill $pid
 }
+
+set +u
+if [ -z "$BOSH_ENVIRONMENT" ]; then
+  echo "No bosh targeted. Use \"target_bosh\" before connecting to MySQL."
+  exit 1
+fi
+set -u
 
 {
 	get_database_password &&

@@ -26,10 +26,6 @@ check_certificate_expirations:
   description: Reads YAML files, checks for expired (or premature) certs. Useful for pipeline troubleshooting
   location: capi-workspace/bin
   group: testing
-commit_with_shortlog:
-  description: Git commit with a staged_shortlog
-  location: capi-workspace/bin
-  group: git
 compare_db_rows:
   description: Compares counts of two db's rows to validate backup & restore
   location: capi-workspace/bin
@@ -50,10 +46,14 @@ fixcommitter:
   description: Cleans up committer/author after a rebase
   location: capi-workspace/bin
   group: git
-gcs_to_claimed:
-  description: Convert bosh-lite environment files stored in gcs to a claimed bosh-lite
+generate_integration_config:
+  description: Create an integration_config.json for running CATS against current bosh target.
   location: capi-workspace/bin
-  group: bosh-lite-pool
+  group: testing
+git-open:
+  description: Open a git repo in your browser, courtesy of Paul Irish.
+  location: capi-workspace/bin
+  group: git
 mysql_bosh_lite:
   description: Connect to current bosh target's MySQL DB
   location: capi-workspace/bin
@@ -147,14 +147,6 @@ gi:
   description: gem install
   location: capi-workspace/custom-bash-it-plugins
   group: ruby-dev
-set_capi_pipeline:
-  description: Set the capi pipeline to your local config file (fly set-pipeline)
-  location: capi-workspace/bin
-  group: ci
-watch_cc_units:
-  description: Watch CAPI CI unit tests. For a specific run, -b build_number (fly watch)
-  location: capi-workspace/bin
-  group: ci
 cfu:
   description: Alias for seed_users
   location: capi-workspace/bin
@@ -200,10 +192,6 @@ attach_debugger:
   description: Attaches the rubymine debugger to your bosh lite
   location: capi-release/src/cloud_controller_ng/scripts/short-circuit-cc
   group: bosh-lite-pool
-load-key:
-  description: Loads the an ssh key in the currently logged in lastpass called "github-private-key".  Run eval $(ssh-agent) if it fails
-  location: capi-workspace/bin
-  group: auth
 capi-workspaces:
   description: List and connect to existing K8s CAPI workspaces
   location: capi-workspace/bin

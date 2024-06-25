@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 do_fixcommitter () 
 { 
     ( committer=$(git show HEAD -s --pretty="tformat:%b" | grep Signed-off | cut -d: -f2);

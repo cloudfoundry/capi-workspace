@@ -1,7 +1,45 @@
 #!/bin/bash
 set -e
 
-pushd ~/workspace/capi-env-pool > /dev/null
-  git pull -n > /dev/null
-  ~/workspace/capi-ci/ci/bosh-lite/src/print_env_info
-popd > /dev/null
+env_pool="${CAPI_ENV_POOL_DIR:-$HOME/workspace/capi-env-pool}"
+pool_dir="${env_pool}/bosh-lites"
+
+function print_env_info {
+  local blue
+  blue='\033[0;34m'
+  nc='\033[0m'
+
+  echo -e "${blue}Rounding up claimed environments...${nc}"
+
+  pushd "${pool_dir}/claimed" > /dev/null
+    git pull -n > /dev/null
+    if [ -z "$(ls .)" ]; then
+      echo "No claimed environments."
+      exit 0
+    fi
+
+    claimed_files="$(git log --reverse --name-only --pretty=format: -- * | sort | uniq | xargs)"
+
+    output="${blue}\n* ENV *\t* CLAIMED BY *\t* CLAIMED ON *\t* CLAIMED SINCE *\n${nc}"
+
+    for file in ${claimed_files}; do
+      file="$( basename "${file}" )"
+      author="$(git log --max-count=1 --pretty='format:%an' "${file}")"
+      committer="$(git log --max-count=1 --pretty='format:%cn' "${file}")"
+      claimed_since="$(git log --max-count=1 --pretty='format:%ar' "${file}")"
+      workstation="$(git log --max-count=1 --pretty='format:%s' "${file}" | sed -E "s/^manually claim [^[:space:]]+ on ([^[:space:]]+).*$/\1/")"
+
+      if [ "${author}" != "${committer}" ]; then
+        claimed_by="${author}+${committer}"
+      else
+        claimed_by="${author}"
+      fi
+
+      output="${output}${file}\t${claimed_by}\t${workstation}\t${claimed_since}\n"
+    done
+
+  popd > /dev/null
+  echo -e "$output" | column -t -s $'\t'
+}
+
+print_env_info

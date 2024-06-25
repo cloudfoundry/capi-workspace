@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-fly -t capi watch -j capi/cc-unit-tests $*

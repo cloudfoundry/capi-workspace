@@ -1,17 +1,29 @@
 #!/bin/sh
 
-set -exu
+set -e
 
 TARFILE=$(mktemp -t qd)
 TARBASE=$(basename $TARFILE)
 SLEEP=15
 QUICK_DEPLOY=$HOME/.cf/last_quick_deploy
+ccng_dir="${CLOUD_CONTROLLER_DIR:-$HOME/workspace/capi-release/src/cloud_controller_ng}"
 
-pushd ~/workspace/capi-release/src/cloud_controller_ng
+if [ -z "$BOSH_ENVIRONMENT" ]; then
+  echo "No bosh targeted. Use \"target_bosh\" before deploying, quickly."
+  exit 1
+fi
+echo "Deploying to $BOSH_ENVIRONMENT, posthaste!"
+
+set -u
+
+printf "\nGathering modified Cloud Controller files...\n"
+pushd $ccng_dir > /dev/null
   deletedFiles=$(git status -s | awk '$1 == "D" { print $2 }')
   if [ -f $QUICK_DEPLOY ] ; then
+      echo "Detected prior quick deploy in $QUICK_DEPLOY."
       changedFiles=$(find . -type f -newer $QUICK_DEPLOY \! -name '*.log' \! -name '*.txt' \! -name workspace.xml | grep -v -e spec/ -e docs/ ) || true
   else
+      echo "No prior quick deploy detected."
       changedFiles=$(git status -s | awk '$1 != "D" { print $2 }')
   fi
   if [ -z "$changedFiles" -a -z "$deletedFiles" ] ; then
@@ -19,13 +31,15 @@ pushd ~/workspace/capi-release/src/cloud_controller_ng
       exit 0
   fi
   tar cf $TARFILE $changedFiles
-popd
+popd > /dev/null
 
 SDIR=/var/vcap/packages/cloud_controller_ng/cloud_controller_ng
 
+printf "\nbosh SCPing modified files to CAPI bosh instances...\n"
 targets=$(bosh is --json | jq -r '.Tables[0].Rows[] | select(.process_state="running") | select(.instance | test("\\A(?:api|cc-worker|scheduler)/")) | .instance')
 for target in $targets
 do 
+  printf "\nCopying modified files to ${target}\n"
   bosh scp $TARFILE "${target}:/tmp/${TARBASE}"
   for x in $deletedFiles ; do
      bosh ssh $target "sudo rm -f $SDIR/$x"
@@ -34,17 +48,21 @@ do
 done
 
 MONIT=/var/vcap/bosh/bin/monit
+printf "\nMonit restarting api Cloud Controller jobs...\n"
 bosh ssh api "sudo $MONIT restart cloud_controller_ng; sudo $MONIT restart cloud_controller_worker_local_1 ; sudo $MONIT restart cloud_controller_worker_local_2"
+printf "\nMonit restarting cc-worker Cloud Controller jobs...\n"
 bosh ssh cc-worker "sudo $MONIT restart cloud_controller_worker_1"
-bosh ssh scheduler "sudo $MONIT restart cloud_controller_clock"
+printf "\nMonit restarting scheduler Cloud Controller jobs...\n"
+bosh ssh scheduler "sudo $MONIT restart cloud_controller_clock; sudo $MONIT restart cc_deployment_updater"
 
-echo "sleeping for $SLEEP seconds before checking status..."
+printf "\nSleeping for $SLEEP seconds before checking status...\n"
 sleep $SLEEP
 
+printf "\nChecking status of bosh jobs...\n"
 for target in $targets
 do
-    echo $target
-    bosh ssh $target "sudo $MONIT summary"
+    echo "CAPI jobs for ${target}:"
+    bosh ssh $target "sudo $MONIT summary | grep -E 'cloud_controller|cc'"
 done
 
 touch $QUICK_DEPLOY

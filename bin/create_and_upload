@@ -1,9 +1,28 @@
 #!/bin/bash
-set -eu
+set -e
 
-# create and upload a release
-pushd ~/workspace/capi-release
+if [ -z "$BOSH_ENVIRONMENT" ]; then
+  echo "No bosh targeted. Use \"target_bosh\" before creating and uploading a release."
+  exit 1
+fi
+echo "Uploading new release to $BOSH_ENVIRONMENT."
+
+set -u
+
+capi_release_dir="${CAPI_RELEASE_DIR:-$HOME/workspace/capi-release}"
+
+pushd "${capi_release_dir}" > /dev/null
+
+  printf "\nSyncing bosh blobs...\n"
+  echo "bosh sync-blobs"
   bosh sync-blobs
+
+  printf "\nCreating bosh release...\n"
+  echo "create-release --force --name capi"
   bosh create-release --force --name capi
+
+  printf "\nUploading release to bosh director...\n"
+  echo "bosh upload-release --rebase"
   bosh upload-release --rebase
-popd
+
+popd > /dev/null
