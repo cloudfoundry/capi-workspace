@@ -105,7 +105,7 @@ workspaces
 As a perk, [CAPI
 approvers](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-interfaces.md)
 get access to a pool of cf-deployment environments, deployed on bosh lites in a
-CFF-managed IaaS account. These environments are displosable, and are only
+CFF-managed IaaS account. These environments are disposable, and are only
 intended for development use.
 
 Though it is technically possible to use the pool without them, there are a
