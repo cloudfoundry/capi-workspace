@@ -22,6 +22,7 @@ cat << EOF
   "include_security_groups": true,
   "include_services": true,
   "include_v3": true,
+  "include_deployments": true,
   "include_tasks": true,
   "include_backend_compatibility": false,
   "include_capi_no_bridge": false,
