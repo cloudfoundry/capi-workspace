@@ -11,8 +11,8 @@ echo "bosh deploy cf-deployment.yml -o..."
 
 bosh deploy --no-redact "${cfd_dir}/cf-deployment.yml" \
   -v system_domain=$BOSH_LITE_DOMAIN \
-  -o "${capi_ci_dir}/cf-deployment-operations/skip-cert-verify.yml" \
   -o "${cfd_dir}/operations/bosh-lite.yml" \
   -o "${cfd_dir}/operations/use-compiled-releases.yml" \
   -o "${capi_ci_dir}/cf-deployment-operations/use-latest-capi.yml" \
+  -o "${capi_ci_dir}/cf-deployment-operations/seed-credhub-asg.yml" \
   $@
