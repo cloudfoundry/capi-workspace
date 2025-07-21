@@ -9,7 +9,7 @@ create_and_upload
 printf "\nDeploying uploaded release...\n"
 echo "bosh deploy cf-deployment.yml -o..."
 
-bosh deploy "${cfd_dir}/cf-deployment.yml" \
+bosh deploy --no-redact "${cfd_dir}/cf-deployment.yml" \
   -v system_domain=$BOSH_LITE_DOMAIN \
   -o "${capi_ci_dir}/cf-deployment-operations/skip-cert-verify.yml" \
   -o "${cfd_dir}/operations/bosh-lite.yml" \
